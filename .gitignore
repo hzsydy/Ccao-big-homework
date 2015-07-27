@@ -17,3 +17,5 @@
 *.lastbuildstate
 *.obj
 *.idb
+*.suo
+*.ilk
