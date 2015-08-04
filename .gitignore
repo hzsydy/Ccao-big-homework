@@ -24,3 +24,4 @@
 *.baml
 *.g.*
 TemporaryGeneratedFile*.*
+*.FileListAbsolute.txt
