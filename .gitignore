@@ -25,3 +25,4 @@
 *.g.*
 TemporaryGeneratedFile*.*
 *.FileListAbsolute.txt
+build*.*
