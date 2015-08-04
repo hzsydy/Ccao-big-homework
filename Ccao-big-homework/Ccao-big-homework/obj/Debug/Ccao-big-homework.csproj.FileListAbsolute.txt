@@ -1,0 +1,2 @@
+C:\Users\du\Documents\Visual Studio 2012\Projects\Ccao-big-homework\Ccao-big-homework\bin\Debug\Ccao-big-homework.exe.config
+C:\git_ssh\Ccao-big-homework\Ccao-big-homework\bin\Debug\Ccao-big-homework.exe.config
