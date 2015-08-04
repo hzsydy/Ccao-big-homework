@@ -19,3 +19,8 @@
 *.idb
 *.suo
 *.ilk
+*.exe
+*.dll.config
+*.baml
+*.g.*
+TemporaryGeneratedFile*.*

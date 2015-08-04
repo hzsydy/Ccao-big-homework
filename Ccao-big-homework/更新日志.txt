@@ -1,0 +1,5 @@
+2015.8.4
+（Du）兴建项目。准备了三个抽象类
+设计模式：Composite
+
+TODO：明天实现concrete类

@@ -37,14 +37,15 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CompositeGraphic.cs" />
+    <Compile Include="MyGraphic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MyWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
