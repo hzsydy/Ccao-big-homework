@@ -1,6 +1,0 @@
-C:\git_ssh\Ccao-big-homework\Ccao-big-homework-core\obj\Debug\Ccao-big-homework-core.csprojResolveAssemblyReference.cache
-C:\git_ssh\Ccao-big-homework\Ccao-big-homework-core\bin\Debug\Ccao-big-homework-core.dll.config
-C:\git_ssh\Ccao-big-homework\Ccao-big-homework-core\bin\Debug\Ccao-big-homework-core.dll
-C:\git_ssh\Ccao-big-homework\Ccao-big-homework-core\bin\Debug\Ccao-big-homework-core.pdb
-C:\git_ssh\Ccao-big-homework\Ccao-big-homework-core\obj\Debug\Ccao-big-homework-core.dll
-C:\git_ssh\Ccao-big-homework\Ccao-big-homework-core\obj\Debug\Ccao-big-homework-core.pdb
