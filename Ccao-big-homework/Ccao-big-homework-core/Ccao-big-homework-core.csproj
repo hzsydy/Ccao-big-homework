@@ -41,14 +41,20 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Complex Graphics\Heart.cs" />
     <Compile Include="CompositeGraphic.cs" />
-    <Compile Include="Concrete Graphics\MyCircle.cs" />
-    <Compile Include="Concrete Graphics\MyEllipse.cs" />
+    <Compile Include="Simple Graphics\MyArc.cs" />
+    <Compile Include="Simple Graphics\MyCircle.cs" />
+    <Compile Include="Simple Graphics\MyEllipse.cs" />
+    <Compile Include="Simple Graphics\MyLine.cs" />
     <Compile Include="DrawMode.cs" />
     <Compile Include="MyGraphic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyWindow.cs" />
-    <Compile Include="Concrete Graphics\MyRectangle.cs" />
+    <Compile Include="Simple Graphics\MyPie.cs" />
+    <Compile Include="Simple Graphics\MyRectangle.cs" />
+    <Compile Include="SingleModeCompositeGraphic.cs" />
+    <Compile Include="SingleModeGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

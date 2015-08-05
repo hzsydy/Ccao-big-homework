@@ -32,7 +32,7 @@ namespace Ccao_big_homework_core
         /// <summary>
         /// 这个类只是包装一下数据，或者说当结构使了
         /// </summary>
-        private class _graphicpos
+        protected class _graphicpos
         {
             public MyGraphic g { get; set; }
             public int left { get; set; }
@@ -42,7 +42,7 @@ namespace Ccao_big_homework_core
         /// <summary>
         /// 储存child的位置和内容
         /// </summary>
-        private List<_graphicpos> _list = new List<_graphicpos>();
+        protected List<_graphicpos> _list = new List<_graphicpos>();
         /// <summary>
         /// 充当iterator
         /// </summary>

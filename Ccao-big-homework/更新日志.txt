@@ -2,6 +2,6 @@
 （Du）兴建项目。准备了三个抽象类
 设计模式：Composite
 2015.8.5
-（Du）闷声加concrete类
+（Du）闷声加concrete类，以及各种装逼来把继承树弄长
 
-TODO：明天实现strategy模式
+TODO：实现strategy模式；实现freescale

@@ -10,7 +10,7 @@ namespace Ccao_big_homework_core
     /// 圆。
     /// radius表示半径
     /// </summary>
-    public sealed class MyCircle : MyRectangle
+    public class MyCircle : MyRectangle
     {
         public int Radius 
         {
@@ -24,14 +24,15 @@ namespace Ccao_big_homework_core
                 Height = Width = value * 2;
             }
         }
-        public override void Draw(MyWindow w, int left, int top)
+        public override GraphicsPath GetGraphicsPath(int left, int top)
         {
             GraphicsPath p = new GraphicsPath();
             Rectangle r = new Rectangle(left, top, Width, Height);
             p.AddEllipse(r);
-            Fill(w, p);
+            return p;
         }
-        public MyCircle() : base() { }
+        public MyCircle() { Radius = 0; }
+        public MyCircle(int radius) : base(radius * 2, radius * 2) { }
         public MyCircle(int height, int width) : base(height, width) { }
     }
 }
