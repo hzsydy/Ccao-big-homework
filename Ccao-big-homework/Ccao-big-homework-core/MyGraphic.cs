@@ -10,8 +10,8 @@ namespace Ccao_big_homework_core
     public abstract class MyGraphic
     {
         #region basic properties and methods
-        public int height { get; set; }
-        public int width { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
         /// <summary>
         /// draw this graphic
         /// </summary>
@@ -33,17 +33,18 @@ namespace Ccao_big_homework_core
         /// <param name="g">graphic</param>
         /// <param name="left">left</param>
         /// <param name="top">top</param>
-        public abstract void Add(MyGraphic g, int left, int top);
+        public virtual void Add(MyGraphic g, int left, int top) { }
         /// <summary>
         /// Clear all child graphics
         /// </summary>
-        public abstract void Clear();
-        /// <summary>
-        /// IEnumrator Interface
-        /// </summary>
-        public abstract Object Current { get; }
-        public abstract bool MoveNext();
-        public abstract void Reset();
+        public virtual void Clear() { }
+
+        #region IEnumerator Interface
+        public virtual Object Current { get { return null; } }
+        public virtual bool MoveNext() { return false; }
+        public virtual void Reset() { }
+        #endregion
+
 
         #endregion
 

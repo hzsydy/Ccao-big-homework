@@ -16,7 +16,7 @@ namespace Ccao_big_homework_core
         #region basic properties and methods
         public CompositeGraphic()
         {
-            height = width = 0;
+            Height = Width = 0;
         }
 
         public override void Draw(MyWindow w, int left, int top)
@@ -47,9 +47,9 @@ namespace Ccao_big_homework_core
         /// 充当iterator
         /// </summary>
         private int _currentindex = 0;
-        /// <summary>
-        /// 以下实现composite功能，函数功能请见Mygraphic介绍
-        /// </summary>
+        
+        // 以下实现composite功能，函数功能请见Mygraphic介绍
+        
         public override MyGraphic GetComposite() { return this; }
         public override void Add(MyGraphic g, int left, int top)
         {

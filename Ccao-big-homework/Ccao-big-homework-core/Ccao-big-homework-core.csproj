@@ -42,9 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompositeGraphic.cs" />
+    <Compile Include="Concrete Graphics\MyCircle.cs" />
+    <Compile Include="Concrete Graphics\MyEllipse.cs" />
+    <Compile Include="DrawMode.cs" />
     <Compile Include="MyGraphic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyWindow.cs" />
+    <Compile Include="Concrete Graphics\MyRectangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
