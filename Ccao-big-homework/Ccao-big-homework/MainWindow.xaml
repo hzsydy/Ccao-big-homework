@@ -1,8 +1,9 @@
 ﻿<Window x:Class="Ccao_big_homework.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Margin="10,0">
+        <Button Content="新建绘图" HorizontalAlignment="Left" Height="157" Margin="47,127,0,0" VerticalAlignment="Top" Width="291" Click="NewWindow"/>
+        <Button Content="离开" HorizontalAlignment="Left" Height="157" Margin="415,127,0,0" VerticalAlignment="Top" Width="291" Click="Close_MainWindow"/>
     </Grid>
 </Window>

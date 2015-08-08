@@ -24,5 +24,17 @@ namespace Ccao_big_homework
         {
             InitializeComponent();
         }
+
+        private void Close_MainWindow(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+            base.OnClosed(e);
+        }
+
+        private void NewWindow(object sender, RoutedEventArgs e)
+        {
+            WorkWindow workwindow = new WorkWindow();
+            workwindow.Show();
+        }
     }
 }
