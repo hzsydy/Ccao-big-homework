@@ -43,7 +43,7 @@ namespace Ccao_big_homework_core
         /// <summary>
         /// 本函数返回所有的下属图形合并在一起所形成的graphicpath
         /// </summary>
-        public GraphicsPath Combine()
+        public GraphicsPath GetGraphicsPath(int left, int top)
         {
             GraphicsPath p = new GraphicsPath();
             foreach (_graphicpos gp in _list)
@@ -52,19 +52,38 @@ namespace Ccao_big_homework_core
                 SingleModeGraphic smg = g as SingleModeGraphic;
                 if (smg != null)
                 {
-                    p.AddPath(smg.GetGraphicsPath(gp.left, gp.top), true);
+                    p.AddPath(smg.GetGraphicsPath(left + gp.left, top + gp.top), true);
                     continue;
                 }
                 SingleModeCompositeGraphic smcg = g as SingleModeCompositeGraphic;
                 if (smcg != null)
                 {
-                    p.AddPath(smcg.Combine(), true);
+                    p.AddPath(smcg.GetGraphicsPath(left, top), true);
                     continue;
                 }
             }
             return p;
         }
-
+        public override void Draw(MyWindow w, int left, int top)
+        {
+            GraphicsPath p = GetGraphicsPath(left, top);
+            Fill(w, p);
+        }
+        protected virtual void Fill(MyWindow w, GraphicsPath p)
+        {
+            if (drawmode.fillmode == DrawMode.MyFillMode.Empty)
+            {
+                w.DrawPath(drawmode.pen, p);
+            }
+            else if (drawmode.fillmode == DrawMode.MyFillMode.Filled)
+            {
+                w.FillPath(drawmode.brush, p);
+            }
+            else
+            {
+                ;
+            }
+        }
         /// <summary>
         /// 假冒伪劣的空构造函数
         /// </summary>

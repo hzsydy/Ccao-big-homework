@@ -8,5 +8,9 @@ namespace Ccao_big_homework_core.Complex_Graphics
 {
     public sealed class Heart : SingleModeCompositeGraphic
     {
+        public Heart()
+        {
+
+        }
     }
 }

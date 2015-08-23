@@ -17,5 +17,25 @@ namespace Ccao_big_homework_core
         /// </summary>
         /// <returns>graphicspath</returns>
         public abstract GraphicsPath GetGraphicsPath(int left, int top);
+        /// <summary>
+        /// 视fillmode的不同对图像进行填充
+        /// </summary>
+        /// <param name="w">window</param>
+        /// <param name="p">graphicspath</param>
+        protected virtual void Fill(MyWindow w, GraphicsPath p)
+        {
+            if (drawmode.fillmode == DrawMode.MyFillMode.Empty)
+            {
+                w.DrawPath(drawmode.pen, p);
+            }
+            else if (drawmode.fillmode == DrawMode.MyFillMode.Filled)
+            {
+                w.FillPath(drawmode.brush, p);
+            }
+            else
+            {
+                ;
+            }
+        }
     }
 }

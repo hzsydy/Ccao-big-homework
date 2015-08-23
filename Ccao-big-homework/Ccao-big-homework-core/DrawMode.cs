@@ -1,4 +1,7 @@
-﻿using System;
+﻿//Du 2015.8
+//All rights reserved.
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
