@@ -1,9 +1,15 @@
 ﻿<Window x:Class="Ccao_big_homework.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="600" Width="800">
-    <Grid Margin="10,0">
-        <Button Content="新建绘图" HorizontalAlignment="Left" Height="157" Margin="47,127,0,0" VerticalAlignment="Top" Width="291" Click="NewWindow"/>
-        <Button Content="离开" HorizontalAlignment="Left" Height="157" Margin="415,127,0,0" VerticalAlignment="Top" Width="291" Click="Close_MainWindow"/>
+        Title="MainWindow" WindowStyle="None" AllowsTransparency="True" Height="600" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" Closing="On_Closing">
+    <Grid Margin="10,0" Loaded="Window_Loaded">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="229*"/>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="500*"/>
+        </Grid.ColumnDefinitions>
+        <Button Height="45" HorizontalAlignment="Left" Margin="110,242,0,0" Name="button1" VerticalAlignment="Top" Width="135" Background="Gold" Click="NewWindow" FontSize="20" Grid.ColumnSpan="2">新建绘图</Button>
+        <Button Click="Close_MainWindow" Margin="276,242,0,0" Name="button2" Height="45" HorizontalAlignment="Left" VerticalAlignment="Top" Width="115" Background="Gold" FontSize="20" Grid.Column="2">离开</Button>
     </Grid>
 </Window>

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace Ccao_big_homework
 {
@@ -20,21 +22,58 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class MainWindow : Window
     {
+        Button b;
         public MainWindow()
         {
             InitializeComponent();
         }
-
-        private void Close_MainWindow(object sender, RoutedEventArgs e)
+        DispatcherTimer timer = new DispatcherTimer();
+        private void Window_Loaded(object sender, RoutedEventArgs e)//淡入效果
         {
-            Application.Current.Shutdown();
-            base.OnClosed(e);
+            this.Opacity = 0;
+            DoubleAnimation OpercityAnimation = new DoubleAnimation(0.01, 1.00, new Duration(TimeSpan.FromSeconds(0.4)));
+            this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
+        } 
+       
+        private void Close_MainWindow(object sender, RoutedEventArgs e)//离开按钮
+        {
+            if (b != null) b.IsEnabled = true;
+            b = sender as Button;
+            b.IsEnabled = false;
+            DoubleAnimation OpercityAnimation = new DoubleAnimation(1, 0.01, new Duration(TimeSpan.FromSeconds(0.4)));
+            this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
+            this.Close();
+            
         }
 
-        private void NewWindow(object sender, RoutedEventArgs e)
+
+        private void NewWindow(object sender, RoutedEventArgs e)//新建绘图按钮
         {
+            if (b != null) b.IsEnabled = true;
+            b = sender as Button;
+            b.IsEnabled = false;
             WorkWindow workwindow = new WorkWindow();
             workwindow.Show();
+            this.Close();
         }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)//窗口拖动
+        {
+            this.DragMove();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void On_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            timer.Interval = TimeSpan.FromSeconds(0.5);
+            timer.Start();
+            timer.Tick += new EventHandler(timer_Tick);
+        }
+
+        
     }
 }
