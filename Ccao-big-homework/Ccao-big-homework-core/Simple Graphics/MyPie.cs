@@ -9,7 +9,7 @@ namespace Ccao_big_homework_core
     /// <summary>
     /// 带两条半斤的圆饼。
     /// </summary>
-    public class MyPie : MyCircle
+    public class MyPie : MyEllipse
     {
         public float StartAngle { get; set; }
         public float SweepAngle { get; set; }
@@ -32,6 +32,5 @@ namespace Ccao_big_homework_core
             p.AddPie(left, top, Width, Height, StartAngle, SweepAngle);
             return p;
         }
-
     }
 }

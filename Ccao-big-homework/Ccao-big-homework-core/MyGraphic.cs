@@ -10,10 +10,8 @@ namespace Ccao_big_homework_core
     public abstract class MyGraphic
     {
         #region basic properties and methods
-        public int Height { get; set; }
-        public int Width { get; set; }
         /// <summary>
-        /// draw this graphic
+        /// 画图
         /// </summary>
         /// <param name="w">window to draw on</param>
         /// <param name="left">left</param>
@@ -23,11 +21,6 @@ namespace Ccao_big_homework_core
         #endregion
 
         #region composite
-        /// <summary>
-        /// to ensure whether it is a composite
-        /// </summary>
-        /// <returns></returns>
-        public virtual MyGraphic GetComposite() { return null; }
         /// <summary>
         /// add a graphic
         /// </summary>
