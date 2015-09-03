@@ -44,6 +44,7 @@
     <Compile Include="CompositeGraphic.cs" />
     <Compile Include="Draw_Mode\BrushMode.cs" />
     <Compile Include="Draw_Mode\PenMode.cs" />
+    <Compile Include="Draw_Mode\PictureMode.cs" />
     <Compile Include="Simple Graphics\MyArc.cs" />
     <Compile Include="Simple Graphics\MyEllipse.cs" />
     <Compile Include="Simple Graphics\MyLine.cs" />
