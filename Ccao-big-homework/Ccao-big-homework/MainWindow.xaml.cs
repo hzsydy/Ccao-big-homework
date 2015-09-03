@@ -22,6 +22,7 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class MainWindow : Window
     {
+        int C = 0;
         Button b;
         public MainWindow()
         {
@@ -42,6 +43,7 @@ namespace Ccao_big_homework
             b.IsEnabled = false;
             DoubleAnimation OpercityAnimation = new DoubleAnimation(1, 0.01, new Duration(TimeSpan.FromSeconds(0.4)));
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
+            C = 1;
             this.Close();
             
         }
@@ -68,10 +70,13 @@ namespace Ccao_big_homework
         }
         private void On_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            e.Cancel = true;
-            timer.Interval = TimeSpan.FromSeconds(0.5);
-            timer.Start();
-            timer.Tick += new EventHandler(timer_Tick);
+            if (C == 1)
+            {
+                e.Cancel = true;
+                timer.Interval = TimeSpan.FromSeconds(0.5);
+                timer.Start();
+                timer.Tick += new EventHandler(timer_Tick);
+            }
         }
 
         
