@@ -31,11 +31,11 @@ namespace Ccao_big_homework_core
         /// </summary>
         /// <param name="w">window</param>
         /// <param name="p">graphicspath</param>
-        public virtual void Fill(MyWindow w, GraphicsPath p)
+        public virtual void Fill(IWindow w, GraphicsPath p)
         {
             drawmode.Fill(w, p);
         }
-        public override void Draw(MyWindow w, int left, int top)
+        public override void Draw(IWindow w, int left, int top)
         {
             GraphicsPath p = GetGraphicsPath(left, top);
             if (fillable())

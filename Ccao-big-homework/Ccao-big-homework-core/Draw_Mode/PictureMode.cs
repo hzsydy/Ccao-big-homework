@@ -9,7 +9,7 @@ namespace Ccao_big_homework_core.Draw_Mode
     public sealed class PictureMode : DrawMode
     {
         public PictureMode(Pen p) : base() { }
-        public override void Fill(MyWindow w, GraphicsPath p)
+        public override void Fill(IWindow w, GraphicsPath p)
         {
         }
     }

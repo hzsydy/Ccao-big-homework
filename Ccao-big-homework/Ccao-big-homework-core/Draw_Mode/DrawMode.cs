@@ -12,6 +12,6 @@ namespace Ccao_big_homework_core.Draw_Mode
     public abstract class DrawMode
     {
         public DrawMode() { }
-        public abstract void Fill(MyWindow w, GraphicsPath p);
+        public abstract void Fill(IWindow w, GraphicsPath p);
     }
 }

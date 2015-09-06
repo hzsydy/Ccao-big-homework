@@ -13,7 +13,7 @@ using System.Windows.Media.Animation;
 
 namespace Ccao_big_homework
 {
-    /// FishEyePanel
+    ///菜单随鼠标凸出的动画
 
     public class FishEyePanel : Panel
     {

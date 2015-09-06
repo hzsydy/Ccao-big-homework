@@ -10,7 +10,7 @@ namespace Ccao_big_homework_core.Draw_Mode
     {
         public Pen pen { get; set; }
         public PenMode(Pen p) : base() { pen = p;}
-        public override void Fill(MyWindow w, GraphicsPath p)
+        public override void Fill(IWindow w, GraphicsPath p)
         {
             w.DrawPath(pen, p);
         }

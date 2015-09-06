@@ -4,9 +4,9 @@
         <name>Emgu.CV.ML</name>
     </assembly>
     <members>
-        <member name="T:Emgu.CV.ML.ANN_MLP">
+        <member name="T:Emgu.CV.ML.Boost">
             <summary>
-            Neural network
+            Boost Tree 
             </summary>
         </member>
         <member name="T:Emgu.CV.ML.StatModel">
@@ -29,50 +29,6 @@
         <member name="M:Emgu.CV.ML.StatModel.Clear">
             <summary>
             Clear the statistic model
-            </summary>
-        </member>
-        <member name="M:Emgu.CV.ML.ANN_MLP.#ctor(Emgu.CV.Matrix{System.Int32},Emgu.CV.ML.MlEnum.ANN_MLP_ACTIVATION_FUNCTION,System.Double,System.Double)">
-            <summary>
-            Create a neural network using the specific parameters
-            </summary>
-            <param name="layerSize">The size of the layer</param>
-            <param name="activeFunction">Activation function</param>
-            <param name="fParam1">Free parameters of the activation function, alpha</param>
-            <param name="fParam2">Free parameters of the activation function, beta</param>
-        </member>
-        <member name="M:Emgu.CV.ML.ANN_MLP.DisposeObject">
-            <summary>
-            Release the memory associated with this neural network
-            </summary>
-        </member>
-        <member name="M:Emgu.CV.ML.ANN_MLP.Train(Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Byte},Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams,Emgu.CV.ML.MlEnum.ANN_MLP_TRAINING_FLAG)">
-            <summary>
-            Train the ANN_MLP model with the specific paramters
-            </summary>
-            <param name="trainData">The training data. A 32-bit floating-point, single-channel matrix, one vector per row</param>
-            <param name="responses">A floating-point matrix of the corresponding output vectors, one vector per row. </param>
-            <param name="sampleWeights">It is not null only for RPROP. The optional floating-point vector of weights for each sample. Some samples may be more important than others for training, e.g. user may want to gain the weight of certain classes to find the right balance between hit-rate and false-alarm rate etc</param>
-            <param name="sampleIdx">Can be null if not needed. When specified, identifies samples of interest. It is a Matrix&gt;int&lt; of nx1</param>
-            <param name="parameters">The parameters for ANN_MLP</param>
-            <param name="flag">The traning flag</param>
-            <returns>The number of done iterations</returns>
-        </member>
-        <member name="M:Emgu.CV.ML.ANN_MLP.Predict(Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Single})">
-            <summary>
-            Predit the response of the <paramref name="samples"/>
-            </summary>
-            <param name="samples">The input samples</param>
-            <param name="outputs">The prediction results, should have the same # of rows as the <paramref name="samples"/></param>
-            <returns>In case of classification the method returns the class label, in case of regression - the output function value</returns>
-        </member>
-        <member name="P:Emgu.CV.ML.ANN_MLP.LayerCount">
-            <summary>
-            Get the number of layer in the neural network.
-            </summary>
-        </member>
-        <member name="T:Emgu.CV.ML.Boost">
-            <summary>
-            Boost Tree 
             </summary>
         </member>
         <member name="M:Emgu.CV.ML.Boost.#ctor">
@@ -463,6 +419,50 @@
             <param name="dist">Should be null if not needed. The distances from the input vectors to the neighbors. A vector of k*_samples->rows elements.</param>
             <returns>In case of regression, the predicted result will be a mean value of the particular vector's neighbor responses. In case of classification the class is determined by voting</returns>
         </member>
+        <member name="T:Emgu.CV.ML.ANN_MLP">
+            <summary>
+            Neural network
+            </summary>
+        </member>
+        <member name="M:Emgu.CV.ML.ANN_MLP.#ctor(Emgu.CV.Matrix{System.Int32},Emgu.CV.ML.MlEnum.ANN_MLP_ACTIVATION_FUNCTION,System.Double,System.Double)">
+            <summary>
+            Create a neural network using the specific parameters
+            </summary>
+            <param name="layerSize">The size of the layer</param>
+            <param name="activeFunction">Activation function</param>
+            <param name="fParam1">Free parameters of the activation function, alpha</param>
+            <param name="fParam2">Free parameters of the activation function, beta</param>
+        </member>
+        <member name="M:Emgu.CV.ML.ANN_MLP.DisposeObject">
+            <summary>
+            Release the memory associated with this neural network
+            </summary>
+        </member>
+        <member name="M:Emgu.CV.ML.ANN_MLP.Train(Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Byte},Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams,Emgu.CV.ML.MlEnum.ANN_MLP_TRAINING_FLAG)">
+            <summary>
+            Train the ANN_MLP model with the specific paramters
+            </summary>
+            <param name="trainData">The training data. A 32-bit floating-point, single-channel matrix, one vector per row</param>
+            <param name="responses">A floating-point matrix of the corresponding output vectors, one vector per row. </param>
+            <param name="sampleWeights">It is not null only for RPROP. The optional floating-point vector of weights for each sample. Some samples may be more important than others for training, e.g. user may want to gain the weight of certain classes to find the right balance between hit-rate and false-alarm rate etc</param>
+            <param name="sampleIdx">Can be null if not needed. When specified, identifies samples of interest. It is a Matrix&gt;int&lt; of nx1</param>
+            <param name="parameters">The parameters for ANN_MLP</param>
+            <param name="flag">The traning flag</param>
+            <returns>The number of done iterations</returns>
+        </member>
+        <member name="M:Emgu.CV.ML.ANN_MLP.Predict(Emgu.CV.Matrix{System.Single},Emgu.CV.Matrix{System.Single})">
+            <summary>
+            Predit the response of the <paramref name="samples"/>
+            </summary>
+            <param name="samples">The input samples</param>
+            <param name="outputs">The prediction results, should have the same # of rows as the <paramref name="samples"/></param>
+            <returns>In case of classification the method returns the class label, in case of regression - the output function value</returns>
+        </member>
+        <member name="P:Emgu.CV.ML.ANN_MLP.LayerCount">
+            <summary>
+            Get the number of layer in the neural network.
+            </summary>
+        </member>
         <member name="T:Emgu.CV.ML.NormalBayesClassifier">
             <summary>
             A Normal Bayes Classifier
@@ -496,56 +496,6 @@
             <param name="samples">The input samples</param>
             <param name="results">The prediction results, should have the same # of rows as the <paramref name="samples"/></param>
             <returns>In case of classification the method returns the class label, in case of regression - the output function value</returns>
-        </member>
-        <member name="T:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams">
-            <summary>
-            Parameters for Artificla Neural Network - MultiLayer Perceptron
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.term_crit">
-            <summary>
-            The termination criteria
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.train_method">
-            <summary>
-            The type of training method
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.bp_dw_scale">
-            <summary>
-            backpropagation parameters
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.bp_moment_scale">
-            <summary>
-            backpropagation parameters
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw0">
-            <summary>
-            rprop parameters
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_plus">
-            <summary>
-            rprop parameters
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_minus">
-            <summary>
-            rprop parameters
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_min">
-            <summary>
-            rprop parameters
-            </summary>
-        </member>
-        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_max">
-            <summary>
-            rprop parameters
-            </summary>
         </member>
         <member name="T:Emgu.CV.ML.Structure.MCvBoostParams">
             <summary>
@@ -1959,6 +1909,56 @@
         <member name="F:Emgu.CV.ML.MlEnum.VAR_TYPE.CATEGORICAL">
             <summary>
             Catagorical
+            </summary>
+        </member>
+        <member name="T:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams">
+            <summary>
+            Parameters for Artificla Neural Network - MultiLayer Perceptron
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.term_crit">
+            <summary>
+            The termination criteria
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.train_method">
+            <summary>
+            The type of training method
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.bp_dw_scale">
+            <summary>
+            backpropagation parameters
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.bp_moment_scale">
+            <summary>
+            backpropagation parameters
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw0">
+            <summary>
+            rprop parameters
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_plus">
+            <summary>
+            rprop parameters
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_minus">
+            <summary>
+            rprop parameters
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_min">
+            <summary>
+            rprop parameters
+            </summary>
+        </member>
+        <member name="F:Emgu.CV.ML.Structure.MCvANN_MLP_TrainParams.rp_dw_max">
+            <summary>
+            rprop parameters
             </summary>
         </member>
         <member name="T:Emgu.CV.ML.SVM">

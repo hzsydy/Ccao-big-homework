@@ -3,19 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:src="clr-namespace:Ccao_big_homework"
         Title="WorkWindow" WindowStyle="None" AllowsTransparency="True" Height="600" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/PulseButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid Background="#FFACACAC">
         <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,489" Height="85" Width="770">
             <src:FishEyePanel x:Name="fishButtons">
-                <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="New" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Save" Click="btnSave_Click" HorizontalAlignment="Center"/>
-                <Button x:Name="btnOpen" Margin="5,5,5,5" Width="48" Height="48" Content="1" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Open" Click="btnOpen_Click"/>
-                <Button x:Name="btnCut" Margin="5,5,5,5" Width="48" Height="48" Content="%" Style="{DynamicResource PulseButton}" FontFamily="Wingdings 2" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Cut" Click="btnCut_Click"/>
-                <Button x:Name="btnCopy" Margin="5,5,5,5" Width="48" Height="48" Content="2" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Copy" Click="btnCopy_Click"/>
-                <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Paste" Click="btnPaste_Click"/>
-                <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Delete" Click="btnDelete_Click"/>
-                <Button x:Name="btnSelectAll" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Select All" Click="btnSelectAll_Click"/>
-                <Button x:Name="btnFormatSelection" Margin="5,5,5,5" Width="48" Height="48" Content="¢" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Format Selection" Click="btnFormat_Click"/>
-                <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="Stylus Settings" Click="btnStylusSettings_Click"/>
+                <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存" Click="btnSave_Click" HorizontalAlignment="Center"/>
+                <Button x:Name="btnOpen" Margin="5,5,5,5" Width="48" Height="48" Content="1" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="打开" Click="btnOpen_Click"/>
+                <Button x:Name="btnCut" Margin="5,5,5,5" Width="48" Height="48" Content="%" Style="{DynamicResource PulseButton}" FontFamily="Wingdings 2" FontSize="28" Foreground="#FFFFFFFF" ToolTip="剪切" Click="btnCut_Click"/>
+                <Button x:Name="btnCopy" Margin="5,5,5,5" Width="48" Height="48" Content="2" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="复制" Click="btnCopy_Click"/>
+                <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="粘贴" Click="btnPaste_Click"/>
+                <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="删除" Click="btnDelete_Click"/>
+                <Button x:Name="btnSelectAll" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="全选" Click="btnSelectAll_Click"/>
+                <Button x:Name="btnFormatSelection" Margin="5,5,5,5" Width="48" Height="48" Content="¢" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="格式选择" Click="btnFormat_Click"/>
+                <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="" Click="btnStylusSettings_Click"/>
             </src:FishEyePanel>
         </Border>
         <Border Margin="148,142,40,156" Background="#FF3B373B" BorderThickness="4,4,4,4" CornerRadius="8,8,8,8">

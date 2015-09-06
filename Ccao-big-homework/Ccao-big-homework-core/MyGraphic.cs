@@ -16,8 +16,8 @@ namespace Ccao_big_homework_core
         /// <param name="w">window to draw on</param>
         /// <param name="left">left</param>
         /// <param name="top">top</param>
-        public virtual void Draw(MyWindow w, int left, int top) { ; }
-        public virtual void Draw(MyWindow w) { Draw(w, 0, 0); }
+        public virtual void Draw(IWindow w, int left, int top) { ; }
+        public virtual void Draw(IWindow w) { Draw(w, 0, 0); }
         #endregion
 
         #region composite

@@ -17,14 +17,13 @@ using Microsoft.Win32;
 using System.Windows.Ink;
 using System.IO;
 using System.Windows.Media.Imaging;
-using System.Windows.Media; 
 
 namespace Ccao_big_homework
 {
     /// <summary>
     /// WorkWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class WorkWindow :Window
+    public partial class WorkWindow :Window, IWindow
     {
         public WorkWindow()
         {
@@ -36,6 +35,16 @@ namespace Ccao_big_homework
             this.Opacity = 0;
             DoubleAnimation OpercityAnimation = new DoubleAnimation(0.01, 1.00, new Duration(TimeSpan.FromSeconds(0.4)));
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
+            CompositeGraphic paint = new CompositeGraphic();
+
+        }
+        public void DrawPath(Pen pen, GraphicsPath path) 
+        { 
+
+        }
+        public void FillPath(Brush brush, GraphicsPath path) 
+        {
+ 
         }
         //窗口拖动
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -105,7 +114,7 @@ namespace Ccao_big_homework
                         {
                             int marg = int.Parse(this.inkCanv.Margin.Left.ToString());
                             RenderTargetBitmap rtb = new RenderTargetBitmap((int)this.inkCanv.ActualWidth - marg,
-                                            (int)this.inkCanv.ActualHeight - marg, 0, 0, PixelFormats.Default);
+                                            (int)this.inkCanv.ActualHeight - marg, 0, 0, System.Windows.Media.PixelFormats.Default);
                             rtb.Render(this.inkCanv);
                             BmpBitmapEncoder encoder = new BmpBitmapEncoder();
                             encoder.Frames.Add(BitmapFrame.Create(rtb));

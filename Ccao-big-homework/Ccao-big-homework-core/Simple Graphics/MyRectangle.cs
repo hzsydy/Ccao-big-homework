@@ -24,7 +24,7 @@ namespace Ccao_big_homework_core
             p.AddRectangle(r);
             return p;
         }
-        public override void Draw(MyWindow w, int left, int top)
+        public override void Draw(IWindow w, int left, int top)
         {
             GraphicsPath p = GetGraphicsPath(left, top);
             Fill(w, p);

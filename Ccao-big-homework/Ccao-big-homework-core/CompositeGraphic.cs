@@ -16,7 +16,7 @@ namespace Ccao_big_homework_core
         #region basic properties and methods
         public CompositeGraphic() { _list.Clear(); }
 
-        public override void Draw(MyWindow w, int left, int top)
+        public override void Draw(IWindow w, int left, int top)
         {
             foreach(_graphicpos gp in _list)
             {

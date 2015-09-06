@@ -10,7 +10,7 @@ namespace Ccao_big_homework_core.Draw_Mode
     {
         public Brush brush { get; set; }
         public BrushMode(Brush b) : base() { brush = b; }
-        public override void Fill(MyWindow w, GraphicsPath p)
+        public override void Fill(IWindow w, GraphicsPath p)
         {
             w.FillPath(brush, p);
         }
