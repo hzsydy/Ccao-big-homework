@@ -33,14 +33,16 @@ namespace Ccao_big_homework_core
             p.AddArc(left, top, Width, Height, StartAngle, SweepAngle);
             return p;
         }
-        public MyArc() 
+        public MyArc()
+            : base()
         {
             Height = 0;
             Width = 0;
             StartAngle = 0;
             SweepAngle = 0;
         }
-        public MyArc(int height, int width, float startangle, float sweepangle)
+        public MyArc(int height, int width, float startangle, float sweepangle) 
+            : base()
         {
             Height = height;
             Width = width;
@@ -48,6 +50,7 @@ namespace Ccao_big_homework_core
             SweepAngle = sweepangle; 
         }
         public MyArc(int radius, float startangle, float sweepangle)
+            : base()
         {
             Radius = radius;
             Height = 2 * radius;

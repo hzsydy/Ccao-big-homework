@@ -12,6 +12,11 @@ namespace Ccao_big_homework_core
     /// </summary>
     public abstract class SingleModeGraphic : MyGraphic
     {
+        public SingleModeGraphic()
+        {
+            drawmode = DefaultMode;
+        }
+
         public static readonly PenMode DefaultMode = new PenMode(new Pen(Color.Black, 2.0f));
         /// <summary>
         /// 来确定一个图形能不能被fill。对于Line这种的来说，fill没有任何意义

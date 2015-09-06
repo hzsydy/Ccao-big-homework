@@ -24,6 +24,7 @@ namespace Ccao_big_homework_core
             return p;
         }
         public MyLine(int x1, int y1, int x2, int y2)
+            : base()
         {
             left1 = x1;
             left2 = x2;

@@ -27,7 +27,8 @@ namespace Ccao_big_homework_core
                 Height = Width = value * 2;
             }
         }
-        public MyPie() 
+        public MyPie()
+            : base()
         {
             Height = 0;
             Width = 0;
@@ -35,6 +36,7 @@ namespace Ccao_big_homework_core
             SweepAngle = 0;
         }
         public MyPie(int height, int width, float startangle, float sweepangle)
+            : base()
         {
             Height = height;
             Width = width;
@@ -42,6 +44,7 @@ namespace Ccao_big_homework_core
             SweepAngle = sweepangle; 
         }
         public MyPie(int radius, float startangle, float sweepangle)
+            : base()
         {
             Radius = radius;
             Height = 2 * radius;

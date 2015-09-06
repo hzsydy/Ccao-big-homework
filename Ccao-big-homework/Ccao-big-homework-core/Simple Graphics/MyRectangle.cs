@@ -27,10 +27,12 @@ namespace Ccao_big_homework_core
             Fill(w, p);
         }
         public MyRectangle()
+            : base()
         {
             Height = Width = 0;
         }
         public MyRectangle(int height, int width)
+            : base()
         {
             Height = height;
             Width = width;
