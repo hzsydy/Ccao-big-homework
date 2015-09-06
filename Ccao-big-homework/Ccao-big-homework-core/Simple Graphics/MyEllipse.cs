@@ -10,14 +10,16 @@ namespace Ccao_big_homework_core
     /// 椭圆。
     /// height和width分别表示纵向和横向的轴长。
     /// </summary>
-    public class MyEllipse : MyRectangle
+    public sealed class MyEllipse : SingleModeGraphic
     {
+        public override bool isFillable() { return true; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        /// <summary>
+        /// 注意这只是一个方便你设置的只读变量，事实上它还是一个椭圆
+        /// </summary>
         public int Radius
         {
-            get
-            {
-                return Radius;
-            }
             set
             {
                 Radius = value;
@@ -31,8 +33,21 @@ namespace Ccao_big_homework_core
             p.AddEllipse(r);
             return p;
         }
-        public MyEllipse() : base() { }
-        public MyEllipse(int radius) : base(radius * 2, radius * 2) { }
-        public MyEllipse(int height, int width) : base(height, width) { }
+        public MyEllipse() 
+        { 
+            Height = 0;
+            Width = 0;
+        }
+        public MyEllipse(int radius) 
+        { 
+            Radius = radius; 
+            Height = 2 * radius;
+            Width = 2 * radius;
+        }
+        public MyEllipse(int height, int width) 
+        { 
+            Height = height;
+            Width = width;
+        }
     }
 }

@@ -9,20 +9,43 @@ namespace Ccao_big_homework_core
     /// <summary>
     /// 带两条半斤的圆饼。
     /// </summary>
-    public class MyPie : MyEllipse
+    public sealed class MyPie : SingleModeGraphic
     {
+        public override bool isFillable() { return true; }
+        public int Height { get; set; }
+        public int Width { get; set; }
         public float StartAngle { get; set; }
         public float SweepAngle { get; set; }
-        public MyPie() : base() { StartAngle = SweepAngle = 0; }
-        public MyPie(int height, int width, float startangle, float sweepangle)
-            : base(height, width)
+        /// <summary>
+        /// 注意这只是一个方便你设置的只读变量
+        /// </summary>
+        public int Radius
         {
+            set
+            {
+                Radius = value;
+                Height = Width = value * 2;
+            }
+        }
+        public MyPie() 
+        {
+            Height = 0;
+            Width = 0;
+            StartAngle = 0;
+            SweepAngle = 0;
+        }
+        public MyPie(int height, int width, float startangle, float sweepangle)
+        {
+            Height = height;
+            Width = width;
             StartAngle = startangle; 
             SweepAngle = sweepangle; 
         }
         public MyPie(int radius, float startangle, float sweepangle)
-            : base(radius)
         {
+            Radius = radius;
+            Height = 2 * radius;
+            Width = 2 * radius;
             StartAngle = startangle;
             SweepAngle = sweepangle; 
         }

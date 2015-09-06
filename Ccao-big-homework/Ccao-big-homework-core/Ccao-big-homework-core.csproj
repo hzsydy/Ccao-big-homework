@@ -51,13 +51,14 @@
     <Compile Include="Draw_Mode\DrawMode.cs" />
     <Compile Include="MyGraphic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyWindow.cs" />
+    <Compile Include="IWindow.cs" />
     <Compile Include="Simple Graphics\MyPie.cs" />
     <Compile Include="Simple Graphics\MyRectangle.cs" />
     <Compile Include="SingleModeGraphic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

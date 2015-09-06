@@ -4,6 +4,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace Ccao_big_homework_core
 {
@@ -15,9 +17,20 @@ namespace Ccao_big_homework_core
 
         #region basic properties and methods
         public CompositeGraphic() { _list.Clear(); }
-
-        public override void Draw(MyWindow w, int left, int top)
+        public int Width { get; set; }
+        public int Height { get; set; }
+        /// <summary>
+        /// 背景色。切记如果你用的是普通的那啥，请将背景色置NULL，也就是透明
+        /// </summary>
+        public Brush BackColor { get; set; }
+        public override void Draw(IWindow w, int left, int top)
         {
+            if (BackColor != null)
+            {
+                GraphicsPath p = new GraphicsPath();
+                p.AddRectangle(new Rectangle(left, top, Width, Height));
+                w.FillPath(BackColor, p);
+            }
             foreach(_graphicpos gp in _list)
             {
                 gp.g.Draw(w, left + gp.left, top + gp.top);
@@ -46,6 +59,7 @@ namespace Ccao_big_homework_core
         private int _currentindex = 0;
         
         // 以下实现composite功能，函数功能请见Mygraphic介绍
+        public override bool isComposite() { return true; }
         public override void Add(MyGraphic g, int left, int top)
         {
             _list.Add(new _graphicpos(g, left, top));
@@ -59,7 +73,7 @@ namespace Ccao_big_homework_core
         {
             get
             {
-                return _list[_currentindex];
+                return _list[_currentindex].g;
             }
         }
         public override bool MoveNext()

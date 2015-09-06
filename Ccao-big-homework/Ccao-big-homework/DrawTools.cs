@@ -15,7 +15,7 @@ using System.Drawing.Drawing2D;
 
 namespace Ccao_big_homework
 {
-    public class DrawTools : MyWindow
+    public class DrawTools : IWindow
     {
         public DrawTools()
         {

@@ -10,9 +10,9 @@ namespace Ccao_big_homework_core
     /// 直线。
     /// 注意直线直接存储其点相对的坐标，所以draw直线的时候left和top都应设0，或者调用只有参数w的模式
     /// </summary>
-    public class MyLine : SingleModeGraphic
+    public sealed class MyLine : SingleModeGraphic
     {
-        public override bool fillable() { return false; }
+        public override bool isFillable() { return false; }
         public int left1{get; set;}
         public int top1{get; set;}
         public int left2{get; set;}

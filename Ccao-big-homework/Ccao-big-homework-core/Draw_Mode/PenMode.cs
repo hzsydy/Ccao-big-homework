@@ -8,11 +8,15 @@ namespace Ccao_big_homework_core.Draw_Mode
 {
     public sealed class PenMode : DrawMode
     {
+        /// <summary>
+        /// 用笔来按照graphicpath绘图
+        /// </summary>
         public Pen pen { get; set; }
         public PenMode(Pen p) : base() { pen = p;}
-        public override void Fill(MyWindow w, GraphicsPath p)
+        public override void Fill(IWindow w, GraphicsPath p)
         {
             w.DrawPath(pen, p);
         }
+        public override bool isFillable() { return false; }
     }
 }
