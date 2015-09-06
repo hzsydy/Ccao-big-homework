@@ -33,18 +33,21 @@ namespace Ccao_big_homework_core
             p.AddEllipse(r);
             return p;
         }
-        public MyEllipse() 
+        public MyEllipse()
+            : base()
         { 
             Height = 0;
             Width = 0;
         }
-        public MyEllipse(int radius) 
+        public MyEllipse(int radius)
+            : base()
         { 
             Radius = radius; 
             Height = 2 * radius;
             Width = 2 * radius;
         }
-        public MyEllipse(int height, int width) 
+        public MyEllipse(int height, int width)
+            : base()
         { 
             Height = height;
             Width = width;
