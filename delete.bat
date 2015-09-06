@@ -25,5 +25,6 @@ del /s /f /q *.g.*
 del /s /f /q TemporaryGeneratedFile*.*
 del /s /f /q *.FileListAbsolute.txt
 del /s /f /q build*.*
+del /s /f /q Ccao*.dll
 
 pause
