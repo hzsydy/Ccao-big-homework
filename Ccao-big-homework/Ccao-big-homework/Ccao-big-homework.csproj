@@ -64,7 +64,9 @@
     <Compile Include="WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkWindow_Exit.cs" />
     <Compile Include="WorkWindow_Load.cs" />
+    <Compile Include="WorkWindow_New.cs" />
     <Compile Include="WorkWindow_Save.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

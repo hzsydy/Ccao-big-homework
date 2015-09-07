@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:src="clr-namespace:Ccao_big_homework"
-        Title="WorkWindow" WindowStyle="None"  AllowsTransparency="True" Height="600" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded" OpacityMask="White" WindowStartupLocation="CenterScreen" Visibility="Visible">
+        Title="WorkWindow" WindowStyle="None"  AllowsTransparency="True" Height="600" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded" OpacityMask="White" WindowStartupLocation="CenterScreen" Visibility="Visible" Closing="On_Closing">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -11,8 +11,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    
         <Grid Background="#FFACACAC">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -22,6 +22,8 @@
                 <RowDefinition Height="339*"/>
                 <RowDefinition Height="137*"/>
             </Grid.RowDefinitions>
+
+        <!--上部菜单栏-->
             <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,13" Height="85" Width="770" Grid.ColumnSpan="2">
                 <src:FishEyePanel x:Name="fishButtons">
                     <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -32,15 +34,19 @@
                     <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="粘贴" Click="btnPaste_Click"/>
                     <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="删除" Click="btnDelete_Click"/>
                     <Button x:Name="btnSelectAll" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="全选" Click="btnSelectAll_Click"/>
-                    <Button x:Name="btnFormatSelection" Margin="5,5,5,5" Width="48" Height="48" Content="¢" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="格式选择" Click="btnFormat_Click"/>
-                    <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="" Click="btnStylusSettings_Click"/>
-                </src:FishEyePanel>
+                    <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="样式选择" Click="btnStylusSettings_Click"/>
+                    <Button x:Name="btnExit" Margin="5,5,5,5" Width="48" Height="48" Content="r" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="退出" Click="btnExit_Click"/>
+
+            </src:FishEyePanel>
             </Border>
 
+        <!--画布-->    
             <Border Margin="4,18,40,19" Background="#FF3B373B" BorderThickness="4,4,4,4" CornerRadius="8,8,8,8" Grid.Row="1" Grid.Column="1">
                 <Canvas Name="canvas1" Width="594" Height="286" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
-            <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#99FFFFFF" Margin="20,10,25,27">
+
+        <!--左侧工具栏-->
+        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#99FFFFFF" Margin="20,10,25,27">
                 <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center" Height="263" Margin="27,10,22,29" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
                     <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-5,10,11,-98" HorizontalAlignment="Center" VerticalAlignment="Top" Height="285">
                     <RadioButton x:Name="rbLine" IsChecked="True" ToolTip="直线" Height="40" Width="40" Background="{x:Null}">

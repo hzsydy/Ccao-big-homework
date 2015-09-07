@@ -22,34 +22,37 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class MainWindow : Window
     {
-        int C = 0;
+        private bool C = false;
         Button b;
         public MainWindow()
         {
             InitializeComponent();
         }
         DispatcherTimer timer = new DispatcherTimer();
-        private void Window_Loaded(object sender, RoutedEventArgs e)//淡入效果
+        
+        //窗口启动时的淡入效果
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Opacity = 0;
             DoubleAnimation OpercityAnimation = new DoubleAnimation(0.01, 1.00, new Duration(TimeSpan.FromSeconds(0.4)));
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
-        } 
-       
-        private void Close_MainWindow(object sender, RoutedEventArgs e)//离开按钮
+        }
+
+        //窗口关闭时的淡出动画
+        private void Close_MainWindow(object sender, RoutedEventArgs e)
         {
             if (b != null) b.IsEnabled = true;
             b = sender as Button;
             b.IsEnabled = false;
             DoubleAnimation OpercityAnimation = new DoubleAnimation(1, 0.01, new Duration(TimeSpan.FromSeconds(0.4)));
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
-            C = 1;
+            C = true;
             this.Close();
             
         }
 
-
-        private void NewWindow(object sender, RoutedEventArgs e)//新建绘图按钮
+        //新建绘图按钮
+        private void NewWindow(object sender, RoutedEventArgs e)
         {
             if (b != null) b.IsEnabled = true;
             b = sender as Button;
@@ -59,26 +62,28 @@ namespace Ccao_big_homework
             this.Close();
         }
 
-        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)//窗口拖动
+        //窗口拖动
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
 
+        //计时器
         private void timer_Tick(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
+
+        //关闭窗口时,若是彻底退出,则通过计时器载入淡出动画
         private void On_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (C == 1)
+            if (C == true)
             {
                 e.Cancel = true;
                 timer.Interval = TimeSpan.FromSeconds(0.5);
                 timer.Start();
                 timer.Tick += new EventHandler(timer_Tick);
             }
-        }
-
-        
+        }      
     }
 }
