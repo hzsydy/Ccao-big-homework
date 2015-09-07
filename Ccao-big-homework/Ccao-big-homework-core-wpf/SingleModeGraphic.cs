@@ -18,6 +18,7 @@ namespace Ccao_big_homework_core_wpf
         public SingleModeGraphic()
         {
             drawmode = new GeometryMode();
+            SelectError = 2.0f;
         }
         /// <summary>
         /// 设置填充模式
@@ -28,16 +29,24 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         /// <returns>graphicspath</returns>
         public abstract Geometry getGeometry(int left = 0, int top = 0);
-        /// <summary>
-        /// draw.
-        /// 会尝试调用各种drawmode，都挂掉了之后会使用defaultmode
-        /// </summary>
-        /// <param name="w"></param>
-        /// <param name="left"></param>
-        /// <param name="top"></param>
+
         public override Drawing Draw(int left = 0, int top = 0)
         {
             return drawmode.draw(getGeometry(left, top));
+        }
+
+
+        /// <summary>
+        /// 点取graphic时允许的误差
+        /// </summary>
+        public static float SelectError { get; set; }
+        public override bool isContained(Point p, int left = 0, int top = 0)
+        {
+            return getGeometry(left, top).FillContains(p, SelectError, ToleranceType.Absolute);
+        }
+        public override MyGraphic SelectPoint(Point p, int left = 0, int top = 0)
+        {
+            return isContained(p, left, top) ? this : null;
         }
     }
 }
