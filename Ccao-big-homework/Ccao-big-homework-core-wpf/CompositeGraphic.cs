@@ -11,7 +11,7 @@ using Ccao_big_homework_core_wpf.Draw_Mode;
 namespace Ccao_big_homework_core_wpf
 {
     /// <summary>
-    /// 可以包含其他graphic的graphic的基本实现。实现了IEnumerator，所以可以使用foreach
+    /// 可以包含其他graphic的graphic的基本实现。实现了IEnumerator
     /// </summary>
     public class CompositeGraphic : MyGraphic, IEnumerator
     {
@@ -53,9 +53,53 @@ namespace Ccao_big_homework_core_wpf
         }
         #endregion
 
-        #region composite
+        #region interactivities
+        public override bool isContained(Point p, int left = 0, int top = 0)
+        {
+            MyGraphic g = SelectPoint(p, left, top);
+            if (g != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public override MyGraphic SelectPoint(Point p, int left = 0, int top = 0)
+        {
+            if (BackColorBrush.Opacity == 0) //透明
+            {
+                foreach (_graphicpos gp in _list)
+                {
+                    MyGraphic g = gp.g.SelectPoint(p, left + gp.left, top + gp.top);
+                    if (g != null)
+                    {
+                        return g;
+                    } 
+                }
+                return null;
+            }
+            else //不透明
+            {
+                Geometry g = new RectangleGeometry(new Rect(left, top, Width, Height));
+                if (g.FillContains(p))
+                {
+                    return this;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        #endregion
+
+        #region 为了实现composite的辅助函数
         /// <summary>
         /// 这个类只是包装一下数据，或者说当结构使了
+        /// 三个参数分别是图像，left和top，都是字面意思
         /// </summary>
         protected class _graphicpos
         {
@@ -72,11 +116,32 @@ namespace Ccao_big_homework_core_wpf
         /// 充当iterator
         /// </summary>
         private int _currentindex = 0;
+        /// <summary>
+        /// 这个辅助函数用来删掉一个子graphic
+        /// </summary>
+        public void DeleteChildren(MyGraphic g)
+        {
+            _graphicpos mgp = null;
+            foreach (_graphicpos gp in _list)
+            {
+                if (gp.g == g)
+                {
+                    mgp = gp;
+                    break;
+                }
+            }
+            if (mgp != null)
+            {
+                _list.Remove(mgp);
+            }
+        }
+        #endregion
 
-        // 以下实现composite功能，函数功能请见Mygraphic介绍
+        #region 以下实现composite功能，函数功能请见Mygraphic介绍
         public override bool isComposite() { return true; }
         public override void Add(MyGraphic g, int left, int top)
         {
+            g.FatherDeleteMePlease += new Remove(this.DeleteChildren);
             _list.Add(new _graphicpos(g, left, top));
             _currentindex = 0;
         }
@@ -102,5 +167,7 @@ namespace Ccao_big_homework_core_wpf
         }
 
         #endregion
+
+        
     }
 }

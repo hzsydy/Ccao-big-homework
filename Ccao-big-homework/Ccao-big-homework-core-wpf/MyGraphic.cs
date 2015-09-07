@@ -25,6 +25,19 @@ namespace Ccao_big_homework_core_wpf
         public abstract Drawing Draw(int left = 0, int top = 0);
         #endregion
 
+        #region interactivities
+        /// <summary>
+        /// 感知点p是否在图形内部，如是返回true
+        /// left和top是两个修正值，因为如你所见你draw的时候也是要给left和top的，取iscontain的时候当然也要给。
+        /// 你draw的时候给的0，0那你iscontained的时候也可以0，0
+        /// </summary>
+        public abstract bool isContained(Point p, int left = 0, int top = 0);
+        /// <summary>
+        /// 同上，返回找到的第一个被这个点选中的graphic
+        /// </summary>
+        public abstract MyGraphic SelectPoint(Point p, int left = 0, int top = 0);
+        #endregion
+
         #region composite
         /// <summary>
         /// add a graphic
@@ -41,6 +54,24 @@ namespace Ccao_big_homework_core_wpf
         /// 确定这是否是一个composite
         /// </summary>
         public virtual bool isComposite() { return false; }
+
+        /// <summary>
+        /// 在自己挂掉的时候通知父节点删掉自己的callback
+        /// </summary>
+        /// <param name="o"></param>
+        public delegate void Remove(MyGraphic g);
+        public Remove FatherDeleteMePlease { get; set; }
+        /// <summary>
+        /// 对象删除
+        /// </summary>
+        public void Dispose() 
+        {
+            if (FatherDeleteMePlease != null)
+            {
+                FatherDeleteMePlease(this);
+            }
+        }
+
         #region IEnumerator Interface
         public virtual Object Current { get { return null; } }
         public virtual bool MoveNext() { return false; }
