@@ -4,6 +4,10 @@ using System.Windows.Input;
 using Ccao_big_homework_core;
 using System.Windows.Media.Animation;
 using System.Windows.Controls;
+using System.Windows.Threading;
+using System.Windows.Shapes;
+using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace Ccao_big_homework
 {
@@ -12,10 +16,32 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class WorkWindow :Window
     {
+        private Line line = null;
+
+        private List<Path> paths = new List<Path>();
+        private Point startPoint = new Point();
+        private Shape rubberBand = null;
+        Point currentPoint = new Point();
+        private bool isDragging = false;
+        private bool isDown = false;
+        private Path originalElement = new Path();
+        private Path movingElement = new Path();
+        private Path path1 = new Path();
+        private Path path2 = new Path();
+        private SolidColorBrush fillColor =
+        new SolidColorBrush();
+        private SolidColorBrush borderColor =
+        new SolidColorBrush();
+        private SolidColorBrush selectFillColor =
+        new SolidColorBrush();
+        private SolidColorBrush selectBorderColor = new SolidColorBrush();
+
+
         public WorkWindow()
         {
             InitializeComponent();
         }
+
         //淡入效果
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -30,16 +56,6 @@ namespace Ccao_big_homework
         {
             this.DragMove();
         }
-        private void btnNew_Click(object sender, RoutedEventArgs args)
-        {
-
-            canvas1.Children.Clear();
-        }
-
-        
-
-        //通过浏览窗口打开文件
-        
         
 
         //剪切选中的对象
@@ -79,9 +95,31 @@ namespace Ccao_big_homework
             //this.inkCanv.Select(this.inkCanv.Strokes);
         }
 
-        private void btnExit_Click(object sender, RoutedEventArgs e)
+        
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            App.Current.Shutdown();
+            if (!canvas1.IsMouseCaptured)
+            {
+                startPoint = e.GetPosition(canvas1);
+                canvas1.CaptureMouse();
+                if (rbCombine.IsChecked == true)
+                {
+                    SetCombineShapes(e);
+                }
+                else if (rbSelect.IsChecked == true)
+                {
+                    if (canvas1 == e.Source)
+                        return;
+                    isDown = true;
+                    originalElement = (Path)e.Source;
+                    e.Handled = true;
+                }
+                else if (rbDelete.IsChecked == true)
+                {
+                    originalElement = (Path)e.Source;
+                    DeleteShape(originalElement);
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -124,6 +162,7 @@ namespace Ccao_big_homework
             */
         }
 
+        //工具条隐藏尾部小箭头的方法
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {
             ToolBar toolBar = sender as ToolBar;

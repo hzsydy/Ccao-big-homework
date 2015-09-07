@@ -13,7 +13,9 @@ using System.Windows.Media.Animation;
 
 namespace Ccao_big_homework
 {
-    ///菜单随鼠标凸出的动画
+    /// <summary>
+    /// 工作窗口中上部菜单栏随鼠标移动的动画
+    /// </summary>
 
     public class FishEyePanel : Panel
     {
@@ -33,7 +35,7 @@ namespace Ccao_big_homework
             set { SetValue(MagnificationProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Magnification.  This enables animation, styling, binding, etc...
+        // 使用一个DependencyProperty对象作为后备放大存储，用来实现动画样式
         public static readonly DependencyProperty MagnificationProperty =
             DependencyProperty.Register("Magnification", typeof(double), typeof(FishEyePanel), new UIPropertyMetadata(2d));
 
@@ -43,19 +45,16 @@ namespace Ccao_big_homework
             set { SetValue(AnimationMillisecondsProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for AnimationMilliseconds.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AnimationMillisecondsProperty =
             DependencyProperty.Register("AnimationMilliseconds", typeof(int), typeof(FishEyePanel), new UIPropertyMetadata(125));
 
 
-        // If set true we scale different sized children to a constant width
         public bool ScaleToFit
         {
             get { return (bool)GetValue(ScaleToFitProperty); }
             set { SetValue(ScaleToFitProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for ScaleToFit.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ScaleToFitProperty =
             DependencyProperty.Register("ScaleToFit", typeof(bool), typeof(FishEyePanel), new UIPropertyMetadata(true));
 
@@ -84,7 +83,7 @@ namespace Ccao_big_homework
         {
             Size idealSize = new Size(0, 0);
 
-            // Allow children as much room as they want - then scale them
+            //给予子对象足够的宽度
             Size size = new Size(Double.PositiveInfinity, Double.PositiveInfinity);
             foreach (UIElement child in Children)
             {
@@ -93,7 +92,6 @@ namespace Ccao_big_homework
                 idealSize.Height = Math.Max(idealSize.Height, child.DesiredSize.Height);
             }
 
-            // EID calls us with infinity, but framework doesn't like us to return infinity
             if (double.IsInfinity(availableSize.Height) || double.IsInfinity(availableSize.Width))
                 return idealSize;
             else
@@ -110,7 +108,7 @@ namespace Ccao_big_homework
 
             foreach (UIElement child in this.Children)
             {
-                // If this is the first time we've seen this child, add our transforms
+                //若第一次有这个子对象,那么改变它的形态
                 if (child.RenderTransform as TransformGroup == null)
                 {
                     child.RenderTransformOrigin = new Point(0, 0.5);
@@ -118,7 +116,6 @@ namespace Ccao_big_homework
                     child.RenderTransform = group;
                     group.Children.Add(new ScaleTransform());
                     group.Children.Add(new TranslateTransform());
-                    //                    group.Children.Add(new RotateTransform());
                 }
 
                 child.Arrange(new Rect(0, 0, child.DesiredSize.Width, child.DesiredSize.Height));
@@ -138,7 +135,7 @@ namespace Ccao_big_homework
             animating = true;
 
             double childWidth = ourSize.Width / this.Children.Count;
-            // Scale the children so they fit in our size
+            //调整子对象大小使其适应窗口
             double overallScaleFactor = ourSize.Width / totalChildWidth;
 
             UIElement prevChild = null;
@@ -171,7 +168,6 @@ namespace Ccao_big_homework
                     ratio = (x - theChildX) / (ScaleToFit ? childWidth : (theChild.DesiredSize.Width * overallScaleFactor));    // Range 0-1 of where the mouse is inside the child
             }
 
-            // These next few lines took two of us hours to write!
             double mag = Magnification;
             double extra = 0;
             if (theChild != null)
@@ -187,9 +183,9 @@ namespace Ccao_big_homework
             double prevScale = this.Children.Count * (1 + ((mag - 1) * (1 - ratio))) / (this.Children.Count + extra);
             double theScale = (mag * this.Children.Count) / (this.Children.Count + extra);
             double nextScale = this.Children.Count * (1 + ((mag - 1) * ratio)) / (this.Children.Count + extra);
-            double otherScale = this.Children.Count / (this.Children.Count + extra);       // Applied to all non-interesting children
+            double otherScale = this.Children.Count / (this.Children.Count + extra); 
 
-            // Adjust for different sized children - we overmagnify large children, so shrink the others
+            //调整不同大小的子对象
             if (!ScaleToFit && this.IsMouseOver)
             {
                 double bigWidth = 0;
@@ -236,12 +232,10 @@ namespace Ccao_big_homework
 
                 if (ScaleToFit)
                 {
-                    // Now scale each individual child so it is a standard width
                     scale *= childWidth / child.DesiredSize.Width;
                 }
                 else
                 {
-                    // Apply overall scale so all children fit our width
                     scale *= overallScaleFactor;
                 }
 
@@ -257,20 +251,17 @@ namespace Ccao_big_homework
             TransformGroup group = (TransformGroup)child.RenderTransform;
             ScaleTransform scale = (ScaleTransform)group.Children[0];
             TranslateTransform trans = (TranslateTransform)group.Children[1];
-            //            RotateTransform rot = (RotateTransform)group.Children[2];
-
+            
             if (duration == 0)
             {
                 trans.BeginAnimation(TranslateTransform.XProperty, null);
                 trans.BeginAnimation(TranslateTransform.YProperty, null);
                 scale.BeginAnimation(ScaleTransform.ScaleXProperty, null);
                 scale.BeginAnimation(ScaleTransform.ScaleYProperty, null);
-                //                rot.BeginAnimation(RotateTransform.AngleProperty, null);
                 trans.X = x;
                 trans.Y = y;
                 scale.ScaleX = s;
                 scale.ScaleY = s;
-                //                rot.AngleProperty = r;
                 animation_Completed(null, null);
             }
             else
@@ -279,7 +270,6 @@ namespace Ccao_big_homework
                 trans.BeginAnimation(TranslateTransform.YProperty, MakeAnimation(y, duration));
                 scale.BeginAnimation(ScaleTransform.ScaleXProperty, MakeAnimation(s, duration));
                 scale.BeginAnimation(ScaleTransform.ScaleYProperty, MakeAnimation(s, duration));
-                //                rot.BeginAnimation(RotateTransform.AngleProperty, MakeAnimation(r, duration));
             }
         }
 

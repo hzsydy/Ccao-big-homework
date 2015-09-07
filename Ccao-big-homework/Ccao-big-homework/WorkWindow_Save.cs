@@ -11,7 +11,7 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class WorkWindow : Window
     {
-        //保存函数
+        //保存方法
          private void SaveToImage(FrameworkElement ui, string fileName)
         {
             System.IO.FileStream fs = new System.IO.FileStream(fileName, System.IO.FileMode.Create);
@@ -32,7 +32,10 @@ namespace Ccao_big_homework
                 dlg.FilterIndex = 1;
                 dlg.RestoreDirectory = true;
                 if ((bool)dlg.ShowDialog(this))
+                {
                     SaveToImage(canvas1, dlg.FileName.ToString());
+                    isSaved = true;
+                }
             }
             catch (Exception exc)
             {
