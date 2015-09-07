@@ -46,12 +46,20 @@
             </Border>
 
         <!--左侧工具栏-->
-        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#99FFFFFF" Margin="20,10,25,27">
-                <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center" Height="263" Margin="27,10,22,29" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
-                    <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-5,10,11,-98" HorizontalAlignment="Center" VerticalAlignment="Top" Height="285">
+        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#99FFFFFF" Margin="20,10,39,10">
+                <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center" Height="320" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
+                    <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
+                        <Polygon Points="14.4 2.4,24 2.4,24 24,33.6 24,19.2 38.4,4.8 24,14.4 24" Fill="#FF898989">
+                            <Polygon.RenderTransform>
+                                <RotateTransform CenterX="20" CenterY="20" Angle="225"/>
+                            </Polygon.RenderTransform>
+                        </Polygon>
+                    </RadioButton>
+
                     <RadioButton x:Name="rbLine" IsChecked="True" ToolTip="直线" Height="40" Width="40" Background="{x:Null}">
                             <Grid>
-                                <Line X1="2" Y1="2" X2="38" Y2="38" Stroke="#FF898989" StrokeThickness="4" Fill="#FF898989"/>
+                                <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="#FF898989" Stroke="#FF898989"/>
                             </Grid>
                         </RadioButton>
 
