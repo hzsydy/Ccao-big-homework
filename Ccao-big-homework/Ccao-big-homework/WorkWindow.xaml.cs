@@ -36,12 +36,10 @@ namespace Ccao_big_homework
         new SolidColorBrush();
         private SolidColorBrush selectBorderColor = new SolidColorBrush();
 
-
         public WorkWindow()
         {
             InitializeComponent();
         }
-
         //淡入效果
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -50,35 +48,29 @@ namespace Ccao_big_homework
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
             CompositeGraphic paint = new CompositeGraphic();
         }
-
         //窗口拖动
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
         }
-        
-
         //剪切选中的对象
         private void btnCut_Click(object sender, RoutedEventArgs args)
         {
            /* if (this.inkCanv.GetSelectedStrokes().Count > 0)
                 this.inkCanv.CutSelection();*/
         }
-
         //复制选中的对象
         private void btnCopy_Click(object sender, RoutedEventArgs args)
         {
            /* if (this.inkCanv.GetSelectedStrokes().Count > 0)
                 this.inkCanv.CopySelection();*/
         }
-
         //粘贴复制的对象
         private void btnPaste_Click(object sender, RoutedEventArgs args)
         {
            /* if (this.inkCanv.CanPaste())
                 this.inkCanv.Paste();*/
         }
-
         //删除选中的对象
         private void btnDelete_Click(object sender, RoutedEventArgs args)
         {
@@ -88,17 +80,14 @@ namespace Ccao_big_homework
                     this.inkCanv.Strokes.Remove(strk);
             }*/
         }
-
         //选中所有对象
         private void btnSelectAll_Click(object sender, RoutedEventArgs args)
         {
             //this.inkCanv.Select(this.inkCanv.Strokes);
-        }
-
-        
-        /*private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        }        
+        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (!canvas1.IsMouseCaptured)
+            /*if (!canvas1.IsMouseCaptured)
             {
                 startPoint = e.GetPosition(canvas1);
                 canvas1.CaptureMouse();
@@ -119,8 +108,8 @@ namespace Ccao_big_homework
                     originalElement = (Path)e.Source;
                     DeleteShape(originalElement);
                 }
-            }
-        }*/
+            }*/
+        }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -137,7 +126,6 @@ namespace Ccao_big_homework
                 this.inkCanv.DefaultDrawingAttributes = dlg.DrawingAttributes;
             }*/
         }
-
         private void btnFormat_Click(object sender, RoutedEventArgs e)
         {
 
@@ -161,7 +149,6 @@ namespace Ccao_big_homework
 
             */
         }
-
         //工具条隐藏尾部小箭头的方法
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {
