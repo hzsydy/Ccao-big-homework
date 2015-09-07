@@ -96,7 +96,7 @@ namespace Ccao_big_homework
         }
 
         
-        private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        /*private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (!canvas1.IsMouseCaptured)
             {
@@ -120,7 +120,7 @@ namespace Ccao_big_homework
                     DeleteShape(originalElement);
                 }
             }
-        }
+        }*/
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
