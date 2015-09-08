@@ -28,9 +28,9 @@ namespace Ccao_big_homework_core_wpf
         /// 获得此图像的Geometry
         /// </summary>
         /// <returns>graphicspath</returns>
-        public abstract Geometry getGeometry(int left = 0, int top = 0);
+        public abstract Geometry getGeometry(float left = 0, float top = 0);
 
-        public override Drawing Draw(int left = 0, int top = 0)
+        public override Drawing Draw(float left = 0, float top = 0)
         {
             return drawmode.draw(getGeometry(left, top));
         }
@@ -40,13 +40,29 @@ namespace Ccao_big_homework_core_wpf
         /// 点取graphic时允许的误差
         /// </summary>
         public static float SelectError { get; set; }
-        public override bool isContained(Point p, int left = 0, int top = 0)
+        public override bool isContained(Point p, float left = 0, float top = 0)
         {
             return getGeometry(left, top).FillContains(p, SelectError, ToleranceType.Absolute);
         }
-        public override MyGraphic SelectPoint(Point p, int left = 0, int top = 0)
+        public override MyGraphic SelectPoint(Point p, float left = 0, float top = 0)
         {
             return isContained(p, left, top) ? this : null;
+        }
+        public override List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0)
+        {
+            List<MyGraphic> lm = new List<MyGraphic>();
+            lm.Clear();
+            Point p = new Point(left, top);
+            RectangleGeometry rg = new RectangleGeometry(new Rect(_addpoint(p1, p), _addpoint(p2, p)));
+            if (getGeometry(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
+            {
+                lm.Add(this);
+                return lm;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

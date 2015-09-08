@@ -27,3 +27,6 @@ TemporaryGeneratedFile*.*
 *.FileListAbsolute.txt
 build*.*
 Ccao*.dll
+*.lref
+*CodeAnalysis*.*
+*codeanalysis*.*

@@ -35,7 +35,7 @@ namespace Ccao_big_homework_core_wpf
         /// 边框。
         /// </summary>
         public Pen BorderPen { get; set; }
-        public override Drawing Draw(int left = 0, int top = 0)
+        public override Drawing Draw(float left = 0, float top = 0)
         {
             DrawingGroup dg = new DrawingGroup();
             GeometryDrawing drawbackcolor =
@@ -54,7 +54,12 @@ namespace Ccao_big_homework_core_wpf
         #endregion
 
         #region interactivities
-        public override bool isContained(Point p, int left = 0, int top = 0)
+        /// <summary>
+        /// 这个选项被置true的时候整个compositegraphic被视为一个整体，
+        /// 不然被视为（对用户）透明的存在
+        /// </summary>
+        public bool isCombined { get; set; }
+        public override bool isContained(Point p, float left = 0, float top = 0)
         {
             MyGraphic g = SelectPoint(p, left, top);
             if (g != null)
@@ -66,9 +71,9 @@ namespace Ccao_big_homework_core_wpf
                 return false;
             }
         }
-        public override MyGraphic SelectPoint(Point p, int left = 0, int top = 0)
+        public override MyGraphic SelectPoint(Point p, float left = 0, float top = 0)
         {
-            if (BackColorBrush.Opacity == 0) //透明
+            if (!isCombined)
             {
                 foreach (_graphicpos gp in _list)
                 {
@@ -80,7 +85,7 @@ namespace Ccao_big_homework_core_wpf
                 }
                 return null;
             }
-            else //不透明
+            else
             {
                 Geometry g = new RectangleGeometry(new Rect(left, top, Width, Height));
                 if (g.FillContains(p))
@@ -93,7 +98,25 @@ namespace Ccao_big_homework_core_wpf
                 }
             }
         }
+        
+        public override List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0)
+        {
+            List<MyGraphic> lm = new List<MyGraphic>();
+            lm.Clear();
 
+            foreach (_graphicpos gp in _list)
+            {
+                List<MyGraphic> lg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
+                if (lg != null)
+                {
+                    foreach (MyGraphic mg in lg)
+                    {
+                        lm.Add(mg);
+                    }
+                }
+            }
+            return lm;
+        }
         #endregion
 
         #region 为了实现composite的辅助函数

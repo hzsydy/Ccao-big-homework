@@ -15,7 +15,7 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         public int Width { get; set; }
         public float RadiusX { get; set; }
         public float RadiusY { get; set; }
-        public override Geometry getGeometry(int left = 0, int top = 0)
+        public override Geometry getGeometry(float left = 0, float top = 0)
         {
             return new RectangleGeometry(new Rect(left, top, Width, Height), RadiusX, RadiusY);
         }
