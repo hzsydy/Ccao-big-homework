@@ -19,7 +19,7 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         /// 长轴
         /// </summary>
         public int Width { get; set; }
-        public override Geometry getGeometry(int left = 0, int top = 0)
+        public override Geometry getGeometry(float left = 0, float top = 0)
         {
             return new EllipseGeometry(new Rect(left, top, Width, Height));
         }
