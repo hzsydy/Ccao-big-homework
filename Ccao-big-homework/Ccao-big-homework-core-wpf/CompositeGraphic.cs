@@ -35,6 +35,10 @@ namespace Ccao_big_homework_core_wpf
         /// 边框。
         /// </summary>
         public Pen BorderPen { get; set; }
+        /// <summary>
+        /// 辅助函数。获得边界
+        /// </summary>
+        private Geometry getBorder(float left = 0, float top = 0) { return new RectangleGeometry(new Rect(left, top, Width, Height)); }
         public override Drawing Draw(float left = 0, float top = 0)
         {
             DrawingGroup dg = new DrawingGroup();
@@ -42,7 +46,7 @@ namespace Ccao_big_homework_core_wpf
                 new GeometryDrawing(
                     BackColorBrush,
                     BorderPen,
-                    new RectangleGeometry(new Rect(left, top, Width, Height))
+                    getBorder(left, top)
                 );
             dg.Children.Add(drawbackcolor);
             foreach (_graphicpos gp in _list)
@@ -87,8 +91,7 @@ namespace Ccao_big_homework_core_wpf
             }
             else
             {
-                Geometry g = new RectangleGeometry(new Rect(left, top, Width, Height));
-                if (g.FillContains(p))
+                if (getBorder(left, top).FillContains(p))
                 {
                     return this;
                 }
@@ -98,24 +101,41 @@ namespace Ccao_big_homework_core_wpf
                 }
             }
         }
+
         
         public override List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0)
         {
             List<MyGraphic> lm = new List<MyGraphic>();
             lm.Clear();
-
-            foreach (_graphicpos gp in _list)
+            Point p = new Point(left, top);
+            RectangleGeometry rg = new RectangleGeometry(new Rect(_addpoint(p1, p), _addpoint(p2, p)));
+            if (getBorder(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
             {
-                List<MyGraphic> lg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
-                if (lg != null)
+                if (!isCombined)
                 {
-                    foreach (MyGraphic mg in lg)
+                    foreach (_graphicpos gp in _list)
                     {
-                        lm.Add(mg);
+                        List<MyGraphic> lg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
+                        if (lg != null)
+                        {
+                            foreach (MyGraphic mg in lg)
+                            {
+                                lm.Add(mg);
+                            }
+                        }
                     }
+                    return lm;
+                } 
+                else
+                {
+                    lm.Add(this);
+                    return lm;
                 }
+            } 
+            else
+            {
+                return null;
             }
-            return lm;
         }
         #endregion
 
