@@ -63,6 +63,7 @@ namespace Ccao_big_homework_core_wpf
         /// 不然被视为（对用户）透明的存在
         /// </summary>
         public bool isCombined { get; set; }
+
         public override bool isContained(Point p, float left = 0, float top = 0)
         {
             MyGraphic g = SelectPoint(p, left, top);
@@ -101,8 +102,6 @@ namespace Ccao_big_homework_core_wpf
                 }
             }
         }
-
-        
         public override List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0)
         {
             List<MyGraphic> lm = new List<MyGraphic>();

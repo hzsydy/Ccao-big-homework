@@ -42,14 +42,25 @@
     <Compile Include="BasicGraphics\MyLine.cs" />
     <Compile Include="BasicGraphics\MyRectangle.cs" />
     <Compile Include="CompositeGraphic.cs" />
+    <Compile Include="DrawingUIElement.cs" />
     <Compile Include="Draw_Mode\DrawMode.cs" />
     <Compile Include="Draw_Mode\GeometryMode.cs" />
     <Compile Include="Draw_Mode\ImageMode.cs" />
     <Compile Include="MyGraphic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleModeGraphic.cs" />
+    <Compile Include="Strategy\Panda.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\emgucv\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9a1a77fe-f01b-495e-87b7-4b16e4f8c908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7c2c5325-8235-4a24-9c67-6bd79a4679e2}</Project>
+      <Name>Emgu.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
