@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Ccao_big_homework_core_wpf;
+using System.Windows;
 
 namespace Ccao_big_homework
 {
@@ -14,12 +15,22 @@ namespace Ccao_big_homework
                 if (MessageBox.Show("尚未保存,真的要新建画板吗?", "新建确认", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     canvas1.Children.Clear();
-                    isSaved = true;
+                    canvas1.InvalidateVisual();
+                    du = new DrawingUIElement();
+                    compositeGraphic.Clear();
+                    canvas1.Children.Add(du);
+                    du_refresh();
+                    isSaved = false;
                 }
             }
             else
             {
                 canvas1.Children.Clear();
+                canvas1.InvalidateVisual();
+                du = new DrawingUIElement();
+                compositeGraphic.Clear();
+                canvas1.Children.Add(du);
+                du_refresh();
                 isSaved = false;
             }
         }
