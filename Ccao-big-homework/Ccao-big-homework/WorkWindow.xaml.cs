@@ -24,6 +24,8 @@ namespace Ccao_big_homework
         private CompositeGraphic compositeGraphic = new CompositeGraphic();
         private DrawingUIElement du = new DrawingUIElement();
         private List<Path> paths = new List<Path>();
+        private List<MyGraphic> selectedGraphics = new List<MyGraphic>();
+        private List<MyGraphic> movingGraphics = new List<MyGraphic>();
         private Point startPoint = new Point();
         private Shape rubberBand = null;
         Point currentPoint = new Point();
@@ -74,10 +76,7 @@ namespace Ccao_big_homework
                 }
                 else if (rbSelect.IsChecked == true)
                 {
-                    if (canvas1 == e.Source)
-                        return;
                     isDown = true;
-                    originalElement = (Path)e.Source;
                     e.Handled = true;
                 }
                 /*else if (rbDelete.IsChecked == true)
@@ -117,7 +116,7 @@ namespace Ccao_big_homework
                     if (rbSquare.IsChecked == true ||
                     rbRectangle.IsChecked == true ||
                     rbCircle.IsChecked == true ||
-                    rbEllipse.IsChecked == true)
+                    rbEllipse.IsChecked == true || rbSelect.IsChecked == true)
                     {
                         canvas1.Children.Add(rubberBand);
                     }
@@ -134,7 +133,7 @@ namespace Ccao_big_homework
                 rubberBand.Height = height;
                 Canvas.SetLeft(rubberBand, left);
                 Canvas.SetTop(rubberBand, top);
-                /*if (rbSelect.IsChecked == true)
+                if (rbSelect.IsChecked == true && selectedGraphics.Count > 0)
                 {
                     if (isDown)
                     {
@@ -145,8 +144,76 @@ namespace Ccao_big_homework
                         if (isDragging)
                             DragMoving();
                     }
-                }*/
+                }
             }
+        }
+
+        private void DragStarting()
+        {
+            isDragging = true;
+            movingGraphics.Clear();
+            foreach (MyGraphic mg in selectedGraphics)
+            {
+
+            }
+            /*movingElement = new Path();
+            movingElement.Data = originalElement.Data;
+            movingElement.Fill = selectFillColor;
+            movingElement.Stroke = selectBorderColor;
+            canvas1.Children.Add(movingElement);*/
+        }
+
+        private void DragMoving()
+        {
+            currentPoint = Mouse.GetPosition(canvas1);
+            double xx = currentPoint.X - startPoint.Y;
+            movingGraphics.Clear();
+            TranslateTransform tt = new TranslateTransform();
+            tt.X = currentPoint.X - startPoint.X;
+            tt.Y = currentPoint.Y - startPoint.Y;
+            movingElement.RenderTransform = tt;
+        }
+
+        private void DragFinishing(bool cancel)
+        {
+            Mouse.Capture(null);
+            if (isDragging)
+            {
+                if (!cancel)
+                {
+                    currentPoint = Mouse.GetPosition(canvas1);
+                    TranslateTransform tt0 = new TranslateTransform();
+                    TranslateTransform tt = new TranslateTransform();
+                    tt.X = currentPoint.X - startPoint.X;
+                    tt.Y = currentPoint.Y - startPoint.Y;
+                    Geometry geometry =
+                    (RectangleGeometry)new RectangleGeometry();
+                    string s = originalElement.Data.ToString();
+                    if (s == "System.Windows.Media.EllipseGeometry")
+                        geometry = (EllipseGeometry)originalElement.Data;
+                    else if (s == "System.Windows.Media.RectangleGeometry")
+                        geometry = (RectangleGeometry)originalElement.Data;
+                    else if (s == "System.Windows.Media.CombinedGeometry")
+                        geometry = (CombinedGeometry)originalElement.Data;
+                    if (geometry.Transform.ToString() != "Identity")
+                    {
+                        tt0 = (TranslateTransform)geometry.Transform;
+                        tt.X += tt0.X;
+                        tt.Y += tt0.Y;
+                    }
+                    geometry.Transform = tt;
+                    canvas1.Children.Remove(originalElement);
+                    originalElement = new Path();
+                    originalElement.Fill = fillColor;
+                    originalElement.Stroke = borderColor;
+                    originalElement.Data = geometry;
+                    canvas1.Children.Add(originalElement);
+                }
+                canvas1.Children.Remove(movingElement);
+                movingElement = null;
+            }
+            isDragging = false;
+            isDown = false;
         }
         //鼠标抬起事件处理
         private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -165,16 +232,43 @@ namespace Ccao_big_homework
             {
                 canvas1.Children.Remove(rubberBand);
                 rubberBand = null;
+                if (rbSelect.IsChecked == false)
                 canvas1.ReleaseMouseCapture();
             }
-            /*if (rbSelect.IsChecked == true)
+            if (rbSelect.IsChecked == true)
             {
-                if (isDown)
+
+                if (isDown && startPoint == currentPoint &&selectedGraphics.Count == 0)
+                {
+                    MyGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
+                    if (!selectedGraphics.Contains(mg))
+                        selectedGraphics.Add(mg);
+                    else selectedGraphics.Remove(mg);
+                    DragFinishing(false);
+                    e.Handled = true;
+                }
+                else if (isDown && selectedGraphics.Count == 0)
+                {
+                    List<MyGraphic> mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
+                    if (mg != null)
+                    {
+                        foreach (MyGraphic mgg in mg)
+                        {
+                            selectedGraphics.Add(mgg);
+                        }
+                        mg.Clear();
+                        DragFinishing(false);
+                    }
+                    e.Handled = true;
+                }
+                else if (isDown && ( (Math.Abs(currentPoint.X - startPoint.X) > SystemParameters.MinimumHorizontalDragDistance)
+                            || (Math.Abs(currentPoint.Y - startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
                 {
                     DragFinishing(false);
                     e.Handled = true;
                 }
-            }*/
+                canvas1.ReleaseMouseCapture();
+            }
         }
 
         private void AddLine(Point pt1, Point pt2)
@@ -186,10 +280,10 @@ namespace Ccao_big_homework
                 line = null;
             }
             MyLine line1 = new MyLine();
-            line1.Left1 = (float)pt1.X;
-            line1.Top1 = (float)pt1.Y;
-            line1.Left2 = (float)pt2.X;
-            line1.Top2 = (float)pt2.Y;
+            line1.Left1 = pt1.X;
+            line1.Top1 = pt1.Y;
+            line1.Left2 = pt2.X;
+            line1.Top2 = pt2.Y;
             line1.drawmode = new GeometryMode(brush, pen);
             compositeGraphic.Add(line1, 0, 0);
             du_refresh();
@@ -198,44 +292,44 @@ namespace Ccao_big_homework
         private void AddSquare(Point pt1, Point pt2)
         {
             MyRectangle mr = new MyRectangle();
-            mr.Width = (float)Math.Abs(pt1.X - pt2.X);
-            mr.Height = (float)Math.Abs(pt1.Y - pt2.Y);
+            mr.Width = Math.Abs(pt1.X - pt2.X);
+            mr.Height = Math.Abs(pt1.Y - pt2.Y);
             if (mr.Width > mr.Height) mr.Width = mr.Height;
             else mr.Height = mr.Width;
             mr.drawmode = new GeometryMode(brush, pen);
-            compositeGraphic.Add(mr, (float)Math.Min(pt1.X, pt2.X), (float)Math.Min(pt1.Y, pt2.Y));
+            compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
         private void AddRectangle(Point pt1, Point pt2)
         {
             MyRectangle mr = new MyRectangle();
-            mr.Width = (float)Math.Abs(pt1.X - pt2.X);
-            mr.Height = (float)Math.Abs(pt1.Y - pt2.Y);
+            mr.Width = Math.Abs(pt1.X - pt2.X);
+            mr.Height = Math.Abs(pt1.Y - pt2.Y);
             mr.drawmode = new GeometryMode(brush, pen);
-            compositeGraphic.Add(mr, (float)Math.Min(pt1.X, pt2.X), (float)Math.Min(pt1.Y, pt2.Y));
+            compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
         private void AddCircle(Point pt1, Point pt2)
         {
             MyEllipse mr = new MyEllipse();
-            mr.Width = (float)Math.Abs(pt1.X - pt2.X);
-            mr.Height = (float)Math.Abs(pt1.Y - pt2.Y);
+            mr.Width = Math.Abs(pt1.X - pt2.X);
+            mr.Height = Math.Abs(pt1.Y - pt2.Y);
             if (mr.Width > mr.Height) mr.Width = mr.Height;
             else mr.Height = mr.Width;
             mr.drawmode = new GeometryMode(brush, pen);
-            compositeGraphic.Add(mr, (float)Math.Min(pt1.X, pt2.X), (float)Math.Min(pt1.Y, pt2.Y));
+            compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
         private void AddEllipse(Point pt1, Point pt2)
         {
             MyEllipse mr = new MyEllipse();
-            mr.Width = (float)Math.Abs(pt1.X - pt2.X);
-            mr.Height = (float)Math.Abs(pt1.Y - pt2.Y);
+            mr.Width = Math.Abs(pt1.X - pt2.X);
+            mr.Height = Math.Abs(pt1.Y - pt2.Y);
             mr.drawmode = new GeometryMode(brush, pen);
-            compositeGraphic.Add(mr, (float)Math.Min(pt1.X, pt2.X), (float)Math.Min(pt1.Y, pt2.Y));
+            compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
@@ -266,11 +360,12 @@ namespace Ccao_big_homework
         //删除选中的对象
         private void btnDelete_Click(object sender, RoutedEventArgs args)
         {
-           /* if (this.inkCanv.GetSelectedStrokes().Count > 0)
+            foreach (MyGraphic mg in selectedGraphics)
             {
-                foreach (Stroke strk in this.inkCanv.GetSelectedStrokes())
-                    this.inkCanv.Strokes.Remove(strk);
-            }*/
+                mg.Dispose();
+            }
+            selectedGraphics.Clear();
+            du_refresh();
         }
         //选中所有对象
         private void btnSelectAll_Click(object sender, RoutedEventArgs args)
