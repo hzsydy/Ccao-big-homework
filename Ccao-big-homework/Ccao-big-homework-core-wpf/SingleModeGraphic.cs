@@ -29,7 +29,7 @@ namespace Ccao_big_homework_core_wpf
         /// 获得此图像的Geometry
         /// </summary>
         /// <returns>graphicspath</returns>
-        public abstract Geometry getGeometry(double left = 0.0f, double top = 0.0f);
+        protected abstract Geometry getGeometry(double left = 0.0f, double top = 0.0f);
 
         public override Drawing Draw(double left = 0.0f, double top = 0.0f)
         {
