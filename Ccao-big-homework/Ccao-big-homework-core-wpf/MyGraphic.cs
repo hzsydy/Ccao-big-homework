@@ -24,7 +24,7 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 画图
         /// </summary>
-        public abstract Drawing Draw(float left = 0, float top = 0);
+        public abstract Drawing Draw(double left = 0.0f, double top = 0.0f);
         #endregion
 
         #region interactivities
@@ -33,19 +33,19 @@ namespace Ccao_big_homework_core_wpf
         /// left和top是两个修正值，因为如你所见你draw的时候也是要给left和top的，取iscontain的时候当然也要给。
         /// 你draw的时候给的0，0那你iscontained的时候也可以0，0
         /// </summary>
-        public abstract bool isContained(Point p, float left = 0, float top = 0);
+        public abstract bool isContained(Point p, double left = 0.0f, double top = 0.0f);
         /// <summary>
         /// 同上，返回找到的第一个被这个点选中的graphic
         /// </summary>
-        public abstract MyGraphic SelectPoint(Point p, float left = 0, float top = 0);
+        public abstract MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f);
         /// <summary>
         /// 返回这两个点组成矩形内的所有mygraphic的list
         /// </summary>
-        public abstract List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0);
+        public abstract List<MyGraphic> SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f);
         /// <summary>
         /// 一个傻逼辅助函数，如字面意思相加两个point
         /// </summary>
-        protected Point _addpoint(Point p1, Point p2) { return new Point(p1.X + p2.X, p1.Y + p2.Y); }
+        protected Point _addpoint(Point p1, Point p2) { return new Point(p1.X + p2.X, p1.Y + p2.Y);}
         #endregion
 
         #region composite
@@ -55,7 +55,7 @@ namespace Ccao_big_homework_core_wpf
         /// <param name="g">graphic</param>
         /// <param name="left">left</param>
         /// <param name="top">top</param>
-        public virtual void Add(MyGraphic g, int left, int top) { }
+        public virtual void Add(MyGraphic g, double left = 0.0f, double top = 0.0f) { }
         /// <summary>
         /// Clear all child graphics
         /// </summary>

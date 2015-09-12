@@ -11,15 +11,15 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
     /// </summary>
     public sealed class MyRectangle : SingleModeGraphic
     {
-        public float Height { get; set; }
-        public float Width { get; set; }
-        public float RadiusX { get; set; }
-        public float RadiusY { get; set; }
-        public override Geometry getGeometry(float left = 0, float top = 0)
+        public double Height { get; set; }
+        public double Width { get; set; }
+        public double RadiusX { get; set; }
+        public double RadiusY { get; set; }
+        public override Geometry getGeometry(double left = 0.0f, double top = 0.0f)
         {
             return new RectangleGeometry(new Rect(left, top, Width, Height), RadiusX, RadiusY);
         }
-        public MyRectangle(int height, int width, float radiusx, float radiusy)
+        public MyRectangle(int height, int width, double radiusx, double radiusy)
             : base()
         {
             Height = height;

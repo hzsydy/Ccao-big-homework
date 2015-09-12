@@ -25,8 +25,8 @@ namespace Ccao_big_homework_core_wpf
         }
         public CompositeGraphic()
             : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
-        public float Width { get; set; }
-        public float Height { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
         /// <summary>
         /// 背景色。
         /// </summary>
@@ -38,8 +38,8 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 辅助函数。获得边界
         /// </summary>
-        private Geometry getBorder(float left = 0, float top = 0) { return new RectangleGeometry(new Rect(left, top, Width, Height)); }
-        public override Drawing Draw(float left = 0, float top = 0)
+        private Geometry getBorder(double left = 0.0f, double top = 0.0f) { return new RectangleGeometry(new Rect(left, top, Width, Height)); }
+        public override Drawing Draw(double left = 0.0f, double top = 0.0f)
         {
             DrawingGroup dg = new DrawingGroup();
             GeometryDrawing drawbackcolor =
@@ -64,7 +64,7 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public bool isCombined { get; set; }
 
-        public override bool isContained(Point p, float left = 0, float top = 0)
+        public override bool isContained(Point p, double left = 0.0f, double top = 0.0f)
         {
             MyGraphic g = SelectPoint(p, left, top);
             if (g != null)
@@ -76,7 +76,7 @@ namespace Ccao_big_homework_core_wpf
                 return false;
             }
         }
-        public override MyGraphic SelectPoint(Point p, float left = 0, float top = 0)
+        public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
         {
             if (!isCombined)
             {
@@ -102,7 +102,7 @@ namespace Ccao_big_homework_core_wpf
                 }
             }
         }
-        public override List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0)
+        public override List<MyGraphic> SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
             List<MyGraphic> lm = new List<MyGraphic>();
             lm.Clear();
@@ -146,9 +146,9 @@ namespace Ccao_big_homework_core_wpf
         protected class _graphicpos
         {
             public MyGraphic g { get; set; }
-            public float left { get; set; }
-            public float top { get; set; }
-            public _graphicpos(MyGraphic _g, float _left, float _top) { g = _g; left = _left; top = _top; }
+            public double left { get; set; }
+            public double top { get; set; }
+            public _graphicpos(MyGraphic _g, double _left, double _top) { g = _g; left = _left; top = _top; }
         }
         /// <summary>
         /// 储存child的位置和内容
@@ -181,7 +181,7 @@ namespace Ccao_big_homework_core_wpf
 
         #region 以下实现composite功能，函数功能请见Mygraphic介绍
         public override bool isComposite() { return true; }
-        public override void Add(MyGraphic g, float left = 0, float top = 0)
+        public override void Add(MyGraphic g, double left = 0.0f, double top = 0.0f)
         {
             g.FatherDeleteMePlease += new Remove(this.DeleteChildren);
             _list.Add(new _graphicpos(g, left, top));

@@ -28,9 +28,9 @@ namespace Ccao_big_homework_core_wpf
         /// 获得此图像的Geometry
         /// </summary>
         /// <returns>graphicspath</returns>
-        public abstract Geometry getGeometry(float left = 0, float top = 0);
+        public abstract Geometry getGeometry(double left = 0.0f, double top = 0.0f);
 
-        public override Drawing Draw(float left = 0, float top = 0)
+        public override Drawing Draw(double left = 0.0f, double top = 0.0f)
         {
             return drawmode.draw(getGeometry(left, top));
         }
@@ -39,16 +39,16 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 点取graphic时允许的误差
         /// </summary>
-        public static float SelectError { get; set; }
-        public override bool isContained(Point p, float left = 0, float top = 0)
+        public static double SelectError { get; set; }
+        public override bool isContained(Point p, double left = 0.0f, double top = 0.0f)
         {
             return getGeometry(left, top).FillContains(p, SelectError, ToleranceType.Absolute);
         }
-        public override MyGraphic SelectPoint(Point p, float left = 0, float top = 0)
+        public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
         {
             return isContained(p, left, top) ? this : null;
         }
-        public override List<MyGraphic> SelectRect(Point p1, Point p2, float left = 0, float top = 0)
+        public override List<MyGraphic> SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
             List<MyGraphic> lm = new List<MyGraphic>();
             lm.Clear();

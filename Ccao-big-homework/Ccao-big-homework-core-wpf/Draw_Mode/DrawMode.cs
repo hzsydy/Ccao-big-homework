@@ -10,5 +10,6 @@ namespace Ccao_big_homework_core_wpf.Draw_Mode
     {
         public DrawMode() { }
         public abstract Drawing draw(Geometry g);
+        
     }
 }

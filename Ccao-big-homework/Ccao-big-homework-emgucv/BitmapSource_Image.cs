@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 
 namespace Ccao_big_homework_emgucv
 {
+    /// <summary>
+    /// 将Bitmapsource和IImage互相转化的辅助类。
+    /// </summary>
     public class BitmapSource_Image
     {
         /// <summary>
@@ -52,12 +55,12 @@ namespace Ccao_big_homework_emgucv
           System.Drawing.Bitmap bitmap;
           using (MemoryStream outStream = new MemoryStream())
           {
-            BitmapEncoder enc = new BmpBitmapEncoder();
-            enc.Frames.Add(BitmapFrame.Create(bitmapsource));
-            enc.Save(outStream);
+            BitmapEncoder be = new BmpBitmapEncoder();
+            be.Frames.Add(BitmapFrame.Create(bitmapsource));
+            be.Save(outStream);
             bitmap = new System.Drawing.Bitmap(outStream);
           }
-          IImage image = new Image<Rgba, Int16>(bitmap);
+          IImage image = new Image<Rgba, Byte>(bitmap);
           return image;
         }
     }
