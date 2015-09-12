@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework", "Ccao-big-homework\Ccao-big-homework.csproj", "{1E60EAC8-7DD5-44EF-AB59-19DDA0EC2562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework-core-winform", "Ccao-big-homework-core\Ccao-big-homework-core-winform.csproj", "{EAC5B403-9B7E-4330-A103-75FA60884CB6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework-core-wpf", "Ccao-big-homework-core-wpf\Ccao-big-homework-core-wpf.csproj", "{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emgu.CV", "emgucv\Emgu.CV\Emgu.CV.csproj", "{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emgu.Util", "emgucv\Emgu.Util\Emgu.Util.csproj", "{7C2C5325-8235-4A24-9C67-6BD79A4679E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework-core-emgucv", "Ccao-big-homework-emgucv\Ccao-big-homework-core-emgucv.csproj", "{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,6 @@ Global
 		{1E60EAC8-7DD5-44EF-AB59-19DDA0EC2562}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E60EAC8-7DD5-44EF-AB59-19DDA0EC2562}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E60EAC8-7DD5-44EF-AB59-19DDA0EC2562}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAC5B403-9B7E-4330-A103-75FA60884CB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAC5B403-9B7E-4330-A103-75FA60884CB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAC5B403-9B7E-4330-A103-75FA60884CB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAC5B403-9B7E-4330-A103-75FA60884CB6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +33,10 @@ Global
 		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

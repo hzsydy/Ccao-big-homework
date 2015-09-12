@@ -8,10 +8,10 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
 {
     public sealed class MyLine : SingleModeGraphic
     {
-        public int Left1 { get; set; }
-        public int Top1 { get; set; }
-        public int Left2 { get; set; }
-        public int Top2 { get; set; }
+        public float Left1 { get; set; }
+        public float Top1 { get; set; }
+        public float Left2 { get; set; }
+        public float Top2 { get; set; }
 
         public override Geometry getGeometry(float left = 0, float top = 0)
         {
@@ -21,7 +21,7 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
             );
         }
 
-        public MyLine(int left1, int top1, int left2, int top2)
+        public MyLine(float left1, float top1, float left2, float top2)
             : base() 
         {
             Left1 = left1;

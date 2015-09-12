@@ -14,16 +14,16 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         /// <summary>
         /// 短轴
         /// </summary>
-        public int Height { get; set; }
+        public float Height { get; set; }
         /// <summary>
         /// 长轴
         /// </summary>
-        public int Width { get; set; }
+        public float Width { get; set; }
         public override Geometry getGeometry(float left = 0, float top = 0)
         {
             return new EllipseGeometry(new Rect(left, top, Width, Height));
         }
-        public MyEllipse(int height, int width)
+        public MyEllipse(float height, float width)
             : base()
         {
             Height = height;

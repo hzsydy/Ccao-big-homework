@@ -25,8 +25,8 @@ namespace Ccao_big_homework_core_wpf
         }
         public CompositeGraphic()
             : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
-        public int Width { get; set; }
-        public int Height { get; set; }
+        public float Width { get; set; }
+        public float Height { get; set; }
         /// <summary>
         /// 背景色。
         /// </summary>
@@ -146,9 +146,9 @@ namespace Ccao_big_homework_core_wpf
         protected class _graphicpos
         {
             public MyGraphic g { get; set; }
-            public int left { get; set; }
-            public int top { get; set; }
-            public _graphicpos(MyGraphic _g, int _left, int _top) { g = _g; left = _left; top = _top; }
+            public float left { get; set; }
+            public float top { get; set; }
+            public _graphicpos(MyGraphic _g, float _left, float _top) { g = _g; left = _left; top = _top; }
         }
         /// <summary>
         /// 储存child的位置和内容
@@ -181,7 +181,7 @@ namespace Ccao_big_homework_core_wpf
 
         #region 以下实现composite功能，函数功能请见Mygraphic介绍
         public override bool isComposite() { return true; }
-        public override void Add(MyGraphic g, int left, int top)
+        public override void Add(MyGraphic g, float left = 0, float top = 0)
         {
             g.FatherDeleteMePlease += new Remove(this.DeleteChildren);
             _list.Add(new _graphicpos(g, left, top));
