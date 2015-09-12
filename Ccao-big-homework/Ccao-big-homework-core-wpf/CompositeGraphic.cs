@@ -18,17 +18,19 @@ namespace Ccao_big_homework_core_wpf
 
         #region basic properties and methods
         public CompositeGraphic(Brush _backcolorbrush, Pen _borderpen)
+            : base()
         {
             _list.Clear();
             BackColorBrush = _backcolorbrush;
             BorderPen = _borderpen;
+            isCombined = false;
         }
         public CompositeGraphic()
             : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
         public double Width { get; set; }
         public double Height { get; set; }
         /// <summary>
-        /// 背景色。
+        /// 背景色。只有iscombined的时候才有意义
         /// </summary>
         public Brush BackColorBrush { get; set; }
         /// <summary>
@@ -41,19 +43,32 @@ namespace Ccao_big_homework_core_wpf
         private Geometry getBorder(double left = 0.0f, double top = 0.0f) { return new RectangleGeometry(new Rect(left, top, Width, Height)); }
         public override Drawing Draw(double left = 0.0f, double top = 0.0f)
         {
-            DrawingGroup dg = new DrawingGroup();
-            GeometryDrawing drawbackcolor =
-                new GeometryDrawing(
-                    BackColorBrush,
-                    BorderPen,
-                    getBorder(left, top)
-                );
-            dg.Children.Add(drawbackcolor);
-            foreach (_graphicpos gp in _list)
+            if (isVisible)
             {
-                dg.Children.Add(gp.g.Draw(left + gp.left, top + gp.top));
+                DrawingGroup dg = new DrawingGroup();
+                if (isCombined)
+                {
+                    GeometryDrawing drawbackcolor = new GeometryDrawing(
+                        BackColorBrush,
+                        BorderPen,
+                        getBorder(left, top)
+                    );
+                    dg.Children.Add(drawbackcolor);
+                }
+                foreach (_graphicpos gp in _list)
+                {
+                    Drawing d = gp.g.Draw(left + gp.left, top + gp.top);
+                    if (d != null)
+                    {
+                        dg.Children.Add(d);
+                    }
+                }
+                return dg;
             }
-            return dg;
+            else
+            {
+                return null;
+            }
         }
         #endregion
 
@@ -86,7 +101,7 @@ namespace Ccao_big_homework_core_wpf
                     if (g != null)
                     {
                         return g;
-                    } 
+                    }
                 }
                 return null;
             }
@@ -124,13 +139,13 @@ namespace Ccao_big_homework_core_wpf
                         }
                     }
                     return lm;
-                } 
+                }
                 else
                 {
                     lm.Add(this);
                     return lm;
                 }
-            } 
+            }
             else
             {
                 return null;
@@ -210,6 +225,6 @@ namespace Ccao_big_homework_core_wpf
 
         #endregion
 
-        
+
     }
 }

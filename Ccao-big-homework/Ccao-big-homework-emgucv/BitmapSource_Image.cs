@@ -50,18 +50,16 @@ namespace Ccao_big_homework_emgucv
             }
         }
 
-        public static IImage BitmapSource2Image(BitmapSource bitmapsource)
+        public static Image<Rgba, Byte> BitmapSource2Image(BitmapSource bitmapsource)
         {
-          System.Drawing.Bitmap bitmap;
-          using (MemoryStream outStream = new MemoryStream())
-          {
+            System.Drawing.Bitmap bitmap;
+            MemoryStream outStream = new MemoryStream();
             BitmapEncoder be = new BmpBitmapEncoder();
             be.Frames.Add(BitmapFrame.Create(bitmapsource));
             be.Save(outStream);
             bitmap = new System.Drawing.Bitmap(outStream);
-          }
-          IImage image = new Image<Rgba, Byte>(bitmap);
-          return image;
+            Image<Rgba, Byte> image = new Image<Rgba, Byte>(bitmap);
+            return image;
         }
     }
 }

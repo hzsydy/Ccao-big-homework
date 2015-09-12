@@ -15,7 +15,8 @@ namespace Ccao_big_homework_core_wpf
     /// </summary>
     public abstract class SingleModeGraphic : MyGraphic
     {
-        public SingleModeGraphic()
+        public SingleModeGraphic() 
+            : base()
         {
             drawmode = new GeometryMode();
             SelectError = 2.0f;
@@ -32,7 +33,14 @@ namespace Ccao_big_homework_core_wpf
 
         public override Drawing Draw(double left = 0.0f, double top = 0.0f)
         {
-            return drawmode.draw(getGeometry(left, top));
+            if (isVisible)
+            {
+                return drawmode.draw(getGeometry(left, top));
+            } 
+            else
+            {
+                return null;
+            }
         }
 
 

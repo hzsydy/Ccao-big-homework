@@ -22,9 +22,20 @@ namespace Ccao_big_homework_core_wpf
     {
         #region basic properties and methods
         /// <summary>
+        /// 初始化
+        /// </summary>
+        public MyGraphic()
+        {
+            isVisible = true;
+        }
+        /// <summary>
         /// 画图
         /// </summary>
         public abstract Drawing Draw(double left = 0.0f, double top = 0.0f);
+        /// <summary>
+        /// 指示是否绘制这个图形
+        /// </summary>
+        public bool isVisible { get; set; }
         #endregion
 
         #region interactivities
