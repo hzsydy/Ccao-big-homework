@@ -11,9 +11,9 @@ using Ccao_big_homework_core_wpf.Draw_Mode;
 namespace Ccao_big_homework_core_wpf
 {
     /// <summary>
-    /// 可以包含其他graphic的graphic的基本实现。实现了IEnumerator
+    /// 可以包含其他graphic的graphic的基本实现。
     /// </summary>
-    public class CompositeGraphic : MyGraphic, IEnumerator
+    public class CompositeGraphic : MyGraphic
     {
 
         #region basic properties and methods
@@ -21,22 +21,15 @@ namespace Ccao_big_homework_core_wpf
             : base()
         {
             _list.Clear();
-            BackColorBrush = _backcolorbrush;
-            BorderPen = _borderpen;
+            backgroundmode = new GeometryMode();
             isCombined = false;
         }
         public CompositeGraphic()
             : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
         public double Width { get; set; }
         public double Height { get; set; }
-        /// <summary>
-        /// 背景色。只有iscombined的时候才有意义
-        /// </summary>
-        public Brush BackColorBrush { get; set; }
-        /// <summary>
-        /// 边框。
-        /// </summary>
-        public Pen BorderPen { get; set; }
+
+        public DrawMode backgroundmode { get; set; }
         /// <summary>
         /// 辅助函数。获得边界
         /// </summary>
@@ -48,12 +41,7 @@ namespace Ccao_big_homework_core_wpf
                 DrawingGroup dg = new DrawingGroup();
                 if (isCombined)
                 {
-                    GeometryDrawing drawbackcolor = new GeometryDrawing(
-                        BackColorBrush,
-                        BorderPen,
-                        getBorder(left, top)
-                    );
-                    dg.Children.Add(drawbackcolor);
+                    dg.Children.Add(backgroundmode.draw(getBorder(left, top)));
                 }
                 foreach (_graphicpos gp in _list)
                 {
@@ -200,29 +188,29 @@ namespace Ccao_big_homework_core_wpf
         {
             g.FatherDeleteMePlease += new Remove(this.DeleteChildren);
             _list.Add(new _graphicpos(g, left, top));
-            _currentindex = 0;
+            _currentindex = -1;
         }
         public override void Clear()
         {
             _list.Clear();
         }
-        public override Object Current
-        {
-            get
-            {
-                return _list[_currentindex].g;
-            }
-        }
         public override bool MoveNext()
         {
-            _currentindex++;
-            return (_currentindex < _list.Count) ? true : false;
+            if (++_currentindex >= _list.Count)
+            {
+                return false;
+            }
+            else
+            {
+                // Set current box to next item in collection.
+                _curMyGraphic = _list[_currentindex].g;
+            }
+            return true;
         }
         public override void Reset()
         {
-            _currentindex = 0;
+            _currentindex = -1;
         }
-
         #endregion
 
 
