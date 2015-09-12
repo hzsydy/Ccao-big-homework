@@ -30,3 +30,4 @@ Ccao*.dll
 *.lref
 *CodeAnalysis*.*
 *codeanalysis*.*
+*.dll
