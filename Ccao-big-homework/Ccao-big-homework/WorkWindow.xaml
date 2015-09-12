@@ -41,16 +41,16 @@
             </Border>
 
         <!--画布-->    
-            <Border Margin="4,18,40,19" Background="#FF3B373B" BorderThickness="4,4,4,4" CornerRadius="8,8,8,8" Grid.Row="1" Grid.Column="1">
-                <Canvas Name="canvas1" Width="594" Height="286" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Border Margin="4,18,40,19" Background="#FF3B373B" BorderThickness="4,4,4,4" Grid.Row="1" Grid.Column="1">
+            <Canvas Name="canvas1" Width="594" Height="286" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
             </Border>
 
         <!--左侧工具栏-->
-        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#99FFFFFF" Margin="20,10,39,10">
+        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,10">
                 <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center" Height="320" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
                     <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
                     <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
-                        <Polygon Points="14.4 2.4,24 2.4,24 24,33.6 24,19.2 38.4,4.8 24,14.4 24" Fill="#FF898989">
+                        <Polygon Points="17.6 2.4,20.8 2.4,20.8 24,33.6 20,19.2 38.4,4.8 20,17.6 24" Fill="White">
                             <Polygon.RenderTransform>
                                 <RotateTransform CenterX="20" CenterY="20" Angle="225"/>
                             </Polygon.RenderTransform>
@@ -59,24 +59,24 @@
 
                     <RadioButton x:Name="rbLine" IsChecked="True" ToolTip="直线" Height="40" Width="40" Background="{x:Null}">
                             <Grid>
-                                <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="#FF898989" Stroke="#FF898989"/>
+                                <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="White" Stroke="White"/>
                             </Grid>
                         </RadioButton>
 
                     <RadioButton x:Name="rbSquare" ToolTip="正方形" Height="42">
-                            <Rectangle Width="38" Height="38" Fill="#FF898989"/>
+                            <Rectangle Width="38" Height="38" Fill="White"/>
                         </RadioButton>
                         <RadioButton x:Name="rbRectangle" IsChecked="False" ToolTip="长方形" Height="42">
-                            <Rectangle Width="40" Height="20" Fill="#FF898989"/>
+                            <Rectangle Width="40" Height="20" Fill="White"/>
                         </RadioButton>
                     <RadioButton x:Name="rbCircle" IsChecked="False" ToolTip="圆形" Height="42">
-                            <Ellipse Width="36" Height="36" Fill="#FF898989"/>
+                            <Ellipse Width="36" Height="36" Fill="White"/>
                         </RadioButton>
                     <RadioButton x:Name="rbEllipse" IsChecked="False" ToolTip="椭圆" Height="42">
-                            <Ellipse Width="40" Height="25" Fill="#FF898989"/>
+                            <Ellipse Width="40" Height="25" Fill="White"/>
                         </RadioButton>
                     <RadioButton x:Name="rbCombine" IsChecked="False" ToolTip="组合图形" Height="42">
-                            <Path Fill="#FF898989">
+                            <Path Fill="White">
                                 <Path.Data>
                                     <CombinedGeometry>
                                         <CombinedGeometry.Geometry1>
