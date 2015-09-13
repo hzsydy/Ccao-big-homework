@@ -16,15 +16,27 @@ using System.Windows.Media;
 namespace Ccao_big_homework_core_wpf
 {
     /// <summary>
-    /// 基本的图像类
+    /// 基本的图像类。
     /// </summary>
-    public abstract class MyGraphic
+    public abstract class MyGraphic : IEnumerator<MyGraphic>, IEnumerable<MyGraphic>
     {
         #region basic properties and methods
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public MyGraphic()
+        {
+            FatherDeleteMePlease = null;
+            isVisible = true;
+        }
         /// <summary>
         /// 画图
         /// </summary>
         public abstract Drawing Draw(double left = 0.0f, double top = 0.0f);
+        /// <summary>
+        /// 指示是否绘制这个图形
+        /// </summary>
+        public bool isVisible { get; set; }
         #endregion
 
         #region interactivities
@@ -82,10 +94,14 @@ namespace Ccao_big_homework_core_wpf
             }
         }
 
-        #region IEnumerator Interface
-        public virtual Object Current { get { return null; } }
+        #region IEnumerable<MyGraphic> Interface
+        protected MyGraphic _curMyGraphic = null;
+        public MyGraphic Current { get { return _curMyGraphic; } }
         public virtual bool MoveNext() { return false; }
         public virtual void Reset() { }
+        public IEnumerator<MyGraphic> GetEnumerator() { return this; }
+        IEnumerator IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
+        Object IEnumerator.Current { get { return this.Current; } }
         #endregion
 
 

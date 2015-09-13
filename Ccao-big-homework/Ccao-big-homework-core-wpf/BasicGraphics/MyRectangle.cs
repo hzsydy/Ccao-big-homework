@@ -15,7 +15,7 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         public double Width { get; set; }
         public double RadiusX { get; set; }
         public double RadiusY { get; set; }
-        public override Geometry getGeometry(double left = 0.0f, double top = 0.0f)
+        protected override Geometry getGeometry(double left = 0.0f, double top = 0.0f)
         {
             return new RectangleGeometry(new Rect(left, top, Width, Height), RadiusX, RadiusY);
         }

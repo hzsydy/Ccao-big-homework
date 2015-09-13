@@ -13,7 +13,7 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         public double Left2 { get; set; }
         public double Top2 { get; set; }
 
-        public override Geometry getGeometry(double left = 0.0f, double top = 0.0f)
+        protected override Geometry getGeometry(double left = 0.0f, double top = 0.0f)
         {
             return new LineGeometry(
                 new Point(Left1 + left, Top1 + top),

@@ -11,49 +11,52 @@ using Ccao_big_homework_core_wpf.Draw_Mode;
 namespace Ccao_big_homework_core_wpf
 {
     /// <summary>
-    /// 可以包含其他graphic的graphic的基本实现。实现了IEnumerator
+    /// 可以包含其他graphic的graphic的基本实现。
     /// </summary>
-    public class CompositeGraphic : MyGraphic, IEnumerator
+    public class CompositeGraphic : MyGraphic
     {
 
         #region basic properties and methods
         public CompositeGraphic(Brush _backcolorbrush, Pen _borderpen)
+            : base()
         {
             _list.Clear();
-            BackColorBrush = _backcolorbrush;
-            BorderPen = _borderpen;
+            backgroundmode = new GeometryMode();
+            isCombined = false;
         }
         public CompositeGraphic()
             : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
         public double Width { get; set; }
         public double Height { get; set; }
-        /// <summary>
-        /// 背景色。
-        /// </summary>
-        public Brush BackColorBrush { get; set; }
-        /// <summary>
-        /// 边框。
-        /// </summary>
-        public Pen BorderPen { get; set; }
+
+        public DrawMode backgroundmode { get; set; }
         /// <summary>
         /// 辅助函数。获得边界
         /// </summary>
         private Geometry getBorder(double left = 0.0f, double top = 0.0f) { return new RectangleGeometry(new Rect(left, top, Width, Height)); }
         public override Drawing Draw(double left = 0.0f, double top = 0.0f)
         {
-            DrawingGroup dg = new DrawingGroup();
-            GeometryDrawing drawbackcolor =
-                new GeometryDrawing(
-                    BackColorBrush,
-                    BorderPen,
-                    getBorder(left, top)
-                );
-            dg.Children.Add(drawbackcolor);
-            foreach (_graphicpos gp in _list)
+            if (isVisible)
             {
-                dg.Children.Add(gp.g.Draw(left + gp.left, top + gp.top));
+                DrawingGroup dg = new DrawingGroup();
+                if (isCombined)
+                {
+                    dg.Children.Add(backgroundmode.draw(getBorder(left, top)));
+                }
+                foreach (_graphicpos gp in _list)
+                {
+                    Drawing d = gp.g.Draw(left + gp.left, top + gp.top);
+                    if (d != null)
+                    {
+                        dg.Children.Add(d);
+                    }
+                }
+                return dg;
             }
-            return dg;
+            else
+            {
+                return null;
+            }
         }
         #endregion
 
@@ -86,7 +89,7 @@ namespace Ccao_big_homework_core_wpf
                     if (g != null)
                     {
                         return g;
-                    } 
+                    }
                 }
                 return null;
             }
@@ -124,13 +127,13 @@ namespace Ccao_big_homework_core_wpf
                         }
                     }
                     return lm;
-                } 
+                }
                 else
                 {
                     lm.Add(this);
                     return lm;
                 }
-            } 
+            }
             else
             {
                 return null;
@@ -185,31 +188,31 @@ namespace Ccao_big_homework_core_wpf
         {
             g.FatherDeleteMePlease += new Remove(this.DeleteChildren);
             _list.Add(new _graphicpos(g, left, top));
-            _currentindex = 0;
+            _currentindex = -1;
         }
         public override void Clear()
         {
             _list.Clear();
         }
-        public override Object Current
-        {
-            get
-            {
-                return _list[_currentindex].g;
-            }
-        }
         public override bool MoveNext()
         {
-            _currentindex++;
-            return (_currentindex < _list.Count) ? true : false;
+            if (++_currentindex >= _list.Count)
+            {
+                return false;
+            }
+            else
+            {
+                // Set current box to next item in collection.
+                _curMyGraphic = _list[_currentindex].g;
+            }
+            return true;
         }
         public override void Reset()
         {
-            _currentindex = 0;
+            _currentindex = -1;
         }
-
         #endregion
 
-        
+
     }
 }

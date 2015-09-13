@@ -1,7 +1,7 @@
 ﻿//Du 2015.9
 //All rights reserved.
-//参考了官方文档http://www.emgu.com/wiki/index.php/WPF_in_CSharp
 
+using System;
 using Emgu.CV;
 using Emgu.CV.Structure;
 
@@ -9,6 +9,10 @@ namespace Ccao_big_homework_emgucv
 {
     public class Panda
     {
-        
+        public static IImage getPanda(Image<Rgba, Byte> i)
+        {
+            Image<Gray, Byte> grey_img = i.Convert<Gray, Byte>();
+            return grey_img;
+        }
     }
 }
