@@ -58,7 +58,6 @@ namespace Ccao_big_homework
             compositeGraphic.Width = canvas1.Width;
             compositeGraphic.Height = canvas1.Height;
             canvas1.Children.Add(du);
-            
             selected();
         }
         //窗口拖动
@@ -95,7 +94,7 @@ namespace Ccao_big_homework
         {
             if (canvas1.IsMouseCaptured)
             {
-                if (rbLine.IsChecked == true)
+                if (rbLine.IsChecked == true || (rbSelect.IsChecked == true && selectedGraphics.Count > 0))
                 {
                     if (line == null)
                     {
@@ -120,7 +119,7 @@ namespace Ccao_big_homework
                     if (rbSquare.IsChecked == true ||
                     rbRectangle.IsChecked == true ||
                     rbCircle.IsChecked == true ||
-                    rbEllipse.IsChecked == true || rbSelect.IsChecked == true)
+                    rbEllipse.IsChecked == true || (rbSelect.IsChecked == true && selectedGraphics.Count == 0))
                     {
                         canvas1.Children.Add(rubberBand);
                     }
@@ -155,27 +154,11 @@ namespace Ccao_big_homework
         private void DragStarting()
         {
             isDragging = true;
-            movingGraphics.Clear();
-            foreach (MyGraphic mg in selectedGraphics)
-            {
-
-            }
-            /*movingElement = new Path();
-            movingElement.Data = originalElement.Data;
-            movingElement.Fill = selectFillColor;
-            movingElement.Stroke = selectBorderColor;
-            canvas1.Children.Add(movingElement);*/
         }
 
         private void DragMoving()
         {
-            currentPoint = Mouse.GetPosition(canvas1);
-            double xx = currentPoint.X - startPoint.Y;
-            movingGraphics.Clear();
-            TranslateTransform tt = new TranslateTransform();
-            tt.X = currentPoint.X - startPoint.X;
-            tt.Y = currentPoint.Y - startPoint.Y;
-            movingElement.RenderTransform = tt;
+
         }
 
         private void DragFinishing(bool cancel)
@@ -247,13 +230,15 @@ namespace Ccao_big_homework
                 {
 
                     MyGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
-                    if (!selectedGraphics.Contains(mg))
-                        selectedGraphics.Add(mg);
-                    else
+                    if (selectedGraphics != null)
                     {
-                        mg.isVisible = true;
-                        selectedGraphics.Remove(mg);
+                        foreach (MyGraphic mgg in selectedGraphics)
+                        {
+                            mgg.isVisible = true;
+                        }
+                        selectedGraphics.Clear();
                     }
+                    selectedGraphics.Add(mg);
                     DragFinishing(false);
                     canvas1.ReleaseMouseCapture();
                     e.Handled = true;
@@ -269,13 +254,27 @@ namespace Ccao_big_homework
                         e.Handled = true;
                     }
                     canvas1.ReleaseMouseCapture();
+                    isDragging = false;
+                    isDown = false;
                     e.Handled = true;
                 }
-                else if (isDown && ( (Math.Abs(currentPoint.X - startPoint.X) > SystemParameters.MinimumHorizontalDragDistance)
-                            || (Math.Abs(currentPoint.Y - startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
+                else if (isDown && selectedGraphics.Count > 0 && startPoint != currentPoint)
                 {
+                    foreach (CompositeGraphic mg in selectedGraphics)
+                    {
+                        mg.Move(currentPoint.X - startPoint.X, currentPoint.Y - startPoint.Y);
+                        mg.isVisible = true;
+                    }
+                    selectedGraphics.Clear();
+                    if (line != null)
+                    {
+                        canvas1.Children.Remove(line);
+                        line = null;
+                    }
+                    
                     canvas1.ReleaseMouseCapture();
-                    DragFinishing(false);
+                    isDragging = false;
+                    isDown = false;
                     e.Handled = true;
                 }
                 
