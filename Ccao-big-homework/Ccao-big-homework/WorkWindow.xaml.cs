@@ -9,6 +9,7 @@ using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Windows.Media;
 using Ccao_big_homework_core_wpf.Draw_Mode;
+using System.Windows.Threading;
 
 namespace Ccao_big_homework
 {
@@ -17,7 +18,6 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class WorkWindow :Window
     {
-        private MyLine myline = null;
         public static Color color = Color.FromArgb(255, 0, 0, 0);
         public static Brush brush = new SolidColorBrush(color);
         public static Pen pen = new Pen(brush, 2.0f);
@@ -43,6 +43,7 @@ namespace Ccao_big_homework
         private SolidColorBrush selectFillColor =
         new SolidColorBrush();
         private SolidColorBrush selectBorderColor = new SolidColorBrush();
+        private DispatcherTimer timer1 = new DispatcherTimer();
 
         public WorkWindow()
         {
@@ -56,6 +57,7 @@ namespace Ccao_big_homework
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
             CompositeGraphic paint = new CompositeGraphic();
             canvas1.Children.Add(du);
+            selected();
         }
         //窗口拖动
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -232,19 +234,24 @@ namespace Ccao_big_homework
             {
                 canvas1.Children.Remove(rubberBand);
                 rubberBand = null;
-                if (rbSelect.IsChecked == false)
                 canvas1.ReleaseMouseCapture();
             }
             if (rbSelect.IsChecked == true)
             {
 
-                if (isDown && startPoint == currentPoint &&selectedGraphics.Count == 0)
+                if (isDown && startPoint == currentPoint)
                 {
+
                     MyGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
                     if (!selectedGraphics.Contains(mg))
                         selectedGraphics.Add(mg);
-                    else selectedGraphics.Remove(mg);
+                    else
+                    {
+                        mg.isVisible = true;
+                        selectedGraphics.Remove(mg);
+                    }
                     DragFinishing(false);
+                    canvas1.ReleaseMouseCapture();
                     e.Handled = true;
                 }
                 else if (isDown && selectedGraphics.Count == 0)
@@ -259,23 +266,25 @@ namespace Ccao_big_homework
                         mg.Clear();
                         DragFinishing(false);
                     }
+                    canvas1.ReleaseMouseCapture();
                     e.Handled = true;
                 }
                 else if (isDown && ( (Math.Abs(currentPoint.X - startPoint.X) > SystemParameters.MinimumHorizontalDragDistance)
                             || (Math.Abs(currentPoint.Y - startPoint.Y) > SystemParameters.MinimumVerticalDragDistance)))
                 {
+                    canvas1.ReleaseMouseCapture();
                     DragFinishing(false);
                     e.Handled = true;
                 }
-                canvas1.ReleaseMouseCapture();
+                
             }
+            
         }
 
         private void AddLine(Point pt1, Point pt2)
         {
             if (line != null)
             {
-
                 canvas1.Children.Remove(line);
                 line = null;
             }
@@ -339,6 +348,27 @@ namespace Ccao_big_homework
             du.drawing = compositeGraphic.Draw();
             du.InvalidateVisual();
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            foreach (MyGraphic mg in selectedGraphics)
+            {
+                mg.isVisible = !mg.isVisible;
+            }
+            du_refresh();
+        }
+
+        private void unselected()
+        {
+            timer1.Stop();
+        }
+
+        private void selected()
+        {
+            timer1.Interval = TimeSpan.FromSeconds(0.1);
+            timer1.Start();
+            timer1.Tick += new EventHandler(timer1_Tick);
+        }      
         //剪切选中的对象
         private void btnCut_Click(object sender, RoutedEventArgs args)
         {
