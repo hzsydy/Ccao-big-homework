@@ -56,21 +56,17 @@ namespace Ccao_big_homework_core_wpf
         {
             return isContained(p, left, top) ? this : null;
         }
-        public override List<MyGraphic> SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
+        public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
-            List<MyGraphic> lm = new List<MyGraphic>();
-            lm.Clear();
+            CompositeGraphic cg = new CompositeGraphic();
             Point p = new Point(left, top);
-            RectangleGeometry rg = new RectangleGeometry(new Rect(_addpoint(p1, p), _addpoint(p2, p)));
+            Rect r = new Rect(_addpoint(p1, p), _addpoint(p2, p));
+            RectangleGeometry rg = new RectangleGeometry(r);
             if (getGeometry(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
             {
-                lm.Add(this);
-                return lm;
+                cg.Add(this, left, top);
             }
-            else
-            {
-                return null;
-            }
+            return cg;
         }
     }
 }

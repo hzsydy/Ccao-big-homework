@@ -26,7 +26,7 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public MyGraphic()
         {
-            FatherDeleteMePlease = null;
+            Father = null;
             isVisible = true;
         }
         /// <summary>
@@ -53,7 +53,7 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 返回这两个点组成矩形内的所有mygraphic的list
         /// </summary>
-        public abstract List<MyGraphic> SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f);
+        public abstract CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f);
         /// <summary>
         /// 一个傻逼辅助函数，如字面意思相加两个point
         /// </summary>
@@ -76,22 +76,16 @@ namespace Ccao_big_homework_core_wpf
         /// 确定这是否是一个composite
         /// </summary>
         public virtual bool isComposite() { return false; }
-
         /// <summary>
-        /// 在自己挂掉的时候通知父节点删掉自己的callback
+        /// 父节点。
         /// </summary>
-        /// <param name="o"></param>
-        public delegate void Remove(MyGraphic g);
-        public Remove FatherDeleteMePlease { get; set; }
+        public CompositeGraphic Father { get; set; }
         /// <summary>
         /// 对象删除
         /// </summary>
         public void Dispose() 
         {
-            if (FatherDeleteMePlease != null)
-            {
-                FatherDeleteMePlease(this);
-            }
+            Father.DeleteChildren(this);
         }
 
         #region IEnumerable<MyGraphic> Interface
