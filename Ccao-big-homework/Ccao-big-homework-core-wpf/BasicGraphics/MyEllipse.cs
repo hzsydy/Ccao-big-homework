@@ -19,6 +19,13 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         /// 长轴
         /// </summary>
         public double Width { get; set; }
+        public override MyGraphic Clone()
+        {
+            MyEllipse me = new MyEllipse(Height, Width);
+            me.isVisible = this.isVisible;
+            me.drawmode = this.drawmode;
+            return me;
+        }
         protected override Geometry getGeometry(double left = 0.0f, double top = 0.0f)
         {
             return new EllipseGeometry(new Rect(left, top, Width, Height));

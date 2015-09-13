@@ -58,6 +58,7 @@ namespace Ccao_big_homework
             compositeGraphic.Width = canvas1.Width;
             compositeGraphic.Height = canvas1.Height;
             canvas1.Children.Add(du);
+            
             selected();
         }
         //窗口拖动

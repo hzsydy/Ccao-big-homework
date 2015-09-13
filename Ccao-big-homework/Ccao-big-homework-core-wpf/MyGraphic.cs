@@ -18,7 +18,8 @@ namespace Ccao_big_homework_core_wpf
     /// <summary>
     /// 基本的图像类。
     /// </summary>
-    public abstract class MyGraphic : IEnumerator<MyGraphic>, IEnumerable<MyGraphic>
+    public abstract class MyGraphic : 
+        IEnumerator<MyGraphic>, IEnumerable<MyGraphic>, ICloneable
     {
         #region basic properties and methods
         /// <summary>
@@ -57,16 +58,18 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 一个傻逼辅助函数，如字面意思相加两个point
         /// </summary>
-        protected Point _addpoint(Point p1, Point p2) { return new Point(p1.X + p2.X, p1.Y + p2.Y);}
+        protected Point _addpoint(Point p1, Point p2) { return new Point(p1.X + p2.X, p1.Y + p2.Y); }
+        /// <summary>
+        /// 复制一份拷贝。
+        /// </summary>
+        public abstract MyGraphic Clone();
+        Object ICloneable.Clone() { return this.Clone(); }
         #endregion
 
         #region composite
         /// <summary>
         /// add a graphic
         /// </summary>
-        /// <param name="g">graphic</param>
-        /// <param name="left">left</param>
-        /// <param name="top">top</param>
         public virtual void Add(MyGraphic g, double left = 0.0f, double top = 0.0f) { }
         /// <summary>
         /// Clear all child graphics
@@ -79,16 +82,28 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 父节点。
         /// </summary>
-        public CompositeGraphic Father { get; set; }
+        private CompositeGraphic _father;
+        public CompositeGraphic Father 
+        {
+            get
+            {
+                return _father;
+            }
+            set
+            {
+                if (_father != null)
+                {
+                    _father.Remove(this);
+                }
+                _father = value;
+            }
+        }
         /// <summary>
         /// 对象删除
         /// </summary>
         public void Dispose() 
         {
-            if (Father != null)
-            {
-                Father.DeleteChildren(this);
-            }
+            Father = null;
         }
 
         #region IEnumerable<MyGraphic> Interface
@@ -103,5 +118,6 @@ namespace Ccao_big_homework_core_wpf
 
 
         #endregion
-    }
+    
+}
 }

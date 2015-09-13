@@ -43,7 +43,6 @@ namespace Ccao_big_homework_core_wpf
             }
         }
 
-
         /// <summary>
         /// 点取graphic时允许的误差
         /// </summary>

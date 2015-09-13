@@ -17,15 +17,15 @@ namespace Ccao_big_homework_core_wpf
     {
 
         #region basic properties and methods
-        public CompositeGraphic(Brush _backcolorbrush, Pen _borderpen)
+        public CompositeGraphic(DrawMode _drawmode)
             : base()
         {
             _list.Clear();
-            backgroundmode = new GeometryMode();
+            backgroundmode = _drawmode;
             isCombined = false;
         }
         public CompositeGraphic()
-            : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
+            : this(new GeometryMode()) { }
         public double Width { get; set; }
         public double Height { get; set; }
 
@@ -117,17 +117,20 @@ namespace Ccao_big_homework_core_wpf
             {
                 if (!isCombined)
                 {
-                    foreach (_graphicpos gp in _list)
+                    List<_graphicpos> lg = new List<_graphicpos>(_list);
+                    for (int i = 0; i < lg.Count; i++)
                     {
-                        CompositeGraphic cg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
-                        compositegraphic.MergeComposite(cg, left + gp.left, top + gp.top);
+                        _graphicpos gp = lg[i];
+                        CompositeGraphic cg = gp.g.SelectRect(p1, p2, gp.left, gp.top);
+                        compositegraphic.MergeComposite(cg, left, top);
                     }
                 }
                 else
                 {
-                    compositegraphic.Add(this);
+                    return this;
                 }
             }
+            this.Add(compositegraphic);
             return compositegraphic;
         }
         /// <summary>
@@ -136,8 +139,9 @@ namespace Ccao_big_homework_core_wpf
         public void MergeComposite(CompositeGraphic cg, double left = 0.0f, double top = 0.0f)
         {
             List<_graphicpos> lgp = cg.getGraphicPosList();
-            foreach (_graphicpos gp in lgp)
+            for (int i = 0; i < lgp.Count; i++)
             {
+                _graphicpos gp = lgp[i];
                 this.Add(gp.g, left + gp.left, top + gp.top);
             }
             cg.Dispose();
@@ -153,6 +157,18 @@ namespace Ccao_big_homework_core_wpf
                 gp.left += left;
                 gp.top += top;
             }
+        }
+
+        public override MyGraphic Clone()
+        {
+            CompositeGraphic cg = new CompositeGraphic(backgroundmode);
+            cg.isVisible = this.isVisible;
+            foreach (_graphicpos gp in _list)
+            {
+                MyGraphic g = gp.g.Clone();
+                cg.Add(g, gp.left, gp.top);
+            }
+            return cg;
         }
 
         #endregion
@@ -181,7 +197,7 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 这个辅助函数用来删掉一个子graphic
         /// </summary>
-        public void DeleteChildren(MyGraphic g)
+        public void Remove(MyGraphic g)
         {
             _graphicpos mgp = null;
             foreach (_graphicpos gp in _list)

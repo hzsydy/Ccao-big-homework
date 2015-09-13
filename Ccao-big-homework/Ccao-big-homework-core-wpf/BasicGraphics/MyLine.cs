@@ -20,7 +20,13 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
                 new Point(Left2 + left, Top2 + top)
             );
         }
-
+        public override MyGraphic Clone()
+        {
+            MyLine me = new MyLine(Left1, Top1, Left2, Top2);
+            me.isVisible = this.isVisible;
+            me.drawmode = this.drawmode;
+            return me;
+        }
         public MyLine(double left1, double top1, double left2, double top2)
             : base() 
         {
