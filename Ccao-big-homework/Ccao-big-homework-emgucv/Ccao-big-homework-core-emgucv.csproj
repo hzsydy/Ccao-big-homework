@@ -55,6 +55,10 @@
       <Name>Emgu.Util</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="haarcascade_eye.xml" />
+    <Content Include="haarcascade_frontalface_alt_tree.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
