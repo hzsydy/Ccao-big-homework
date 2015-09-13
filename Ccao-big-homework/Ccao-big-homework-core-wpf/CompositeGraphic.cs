@@ -79,6 +79,7 @@ namespace Ccao_big_homework_core_wpf
                 return false;
             }
         }
+
         public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
         {
             if (!isCombined)
@@ -105,40 +106,55 @@ namespace Ccao_big_homework_core_wpf
                 }
             }
         }
-        public override List<MyGraphic> SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
+
+        public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
-            List<MyGraphic> lm = new List<MyGraphic>();
-            lm.Clear();
+            CompositeGraphic compositegraphic = new CompositeGraphic();
             Point p = new Point(left, top);
-            RectangleGeometry rg = new RectangleGeometry(new Rect(_addpoint(p1, p), _addpoint(p2, p)));
+            Rect r = new Rect(_addpoint(p1, p), _addpoint(p2, p));
+            RectangleGeometry rg = new RectangleGeometry(r);
             if (getBorder(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
             {
                 if (!isCombined)
                 {
                     foreach (_graphicpos gp in _list)
                     {
-                        List<MyGraphic> lg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
-                        if (lg != null)
-                        {
-                            foreach (MyGraphic mg in lg)
-                            {
-                                lm.Add(mg);
-                            }
-                        }
+                        CompositeGraphic cg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
+                        compositegraphic.MergeComposite(cg, left + gp.left, top + gp.top);
                     }
-                    return lm;
                 }
                 else
                 {
-                    lm.Add(this);
-                    return lm;
+                    compositegraphic.Add(this);
                 }
             }
-            else
+            return compositegraphic;
+        }
+        /// <summary>
+        /// 将一个compositegraphic的内容merge到本对象中
+        /// </summary>
+        public void MergeComposite(CompositeGraphic cg, double left = 0.0f, double top = 0.0f)
+        {
+            List<_graphicpos> lgp = cg.getGraphicPosList();
+            foreach (_graphicpos gp in lgp)
             {
-                return null;
+                this.Add(gp.g, left + gp.left, top + gp.top);
+            }
+            cg.Dispose();
+        }
+
+        /// <summary>
+        /// 将所有成员都移动一个距离
+        /// </summary>
+        public void Move(double left = 0.0f, double top = 0.0f)
+        {
+            foreach (_graphicpos gp in _list)
+            {
+                gp.left += left;
+                gp.top += top;
             }
         }
+
         #endregion
 
         #region 为了实现composite的辅助函数
@@ -146,7 +162,7 @@ namespace Ccao_big_homework_core_wpf
         /// 这个类只是包装一下数据，或者说当结构使了
         /// 三个参数分别是图像，left和top，都是字面意思
         /// </summary>
-        protected class _graphicpos
+        public class _graphicpos
         {
             public MyGraphic g { get; set; }
             public double left { get; set; }
@@ -157,6 +173,7 @@ namespace Ccao_big_homework_core_wpf
         /// 储存child的位置和内容
         /// </summary>
         protected List<_graphicpos> _list = new List<_graphicpos>();
+        public List<_graphicpos> getGraphicPosList() { return _list; }
         /// <summary>
         /// 充当iterator
         /// </summary>
@@ -186,7 +203,7 @@ namespace Ccao_big_homework_core_wpf
         public override bool isComposite() { return true; }
         public override void Add(MyGraphic g, double left = 0.0f, double top = 0.0f)
         {
-            g.FatherDeleteMePlease += new Remove(this.DeleteChildren);
+            g.Father = this;
             _list.Add(new _graphicpos(g, left, top));
             _currentindex = -1;
         }
