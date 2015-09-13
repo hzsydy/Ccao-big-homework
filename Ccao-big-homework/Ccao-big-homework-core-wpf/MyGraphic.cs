@@ -85,7 +85,10 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public void Dispose() 
         {
-            Father.DeleteChildren(this);
+            if (Father != null)
+            {
+                Father.DeleteChildren(this);
+            }
         }
 
         #region IEnumerable<MyGraphic> Interface

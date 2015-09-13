@@ -55,7 +55,8 @@ namespace Ccao_big_homework
             this.Opacity = 0;
             DoubleAnimation OpercityAnimation = new DoubleAnimation(0.01, 1.00, new Duration(TimeSpan.FromSeconds(0.4)));
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
-            CompositeGraphic paint = new CompositeGraphic();
+            compositeGraphic.Width = canvas1.Width;
+            compositeGraphic.Height = canvas1.Height;
             canvas1.Children.Add(du);
             selected();
         }
@@ -178,6 +179,7 @@ namespace Ccao_big_homework
 
         private void DragFinishing(bool cancel)
         {
+            /*
             Mouse.Capture(null);
             if (isDragging)
             {
@@ -216,6 +218,7 @@ namespace Ccao_big_homework
             }
             isDragging = false;
             isDown = false;
+             * */
         }
         //鼠标抬起事件处理
         private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -256,15 +259,13 @@ namespace Ccao_big_homework
                 }
                 else if (isDown && selectedGraphics.Count == 0)
                 {
-                    List<MyGraphic> mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
+                    MyGraphic mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
                     if (mg != null)
                     {
-                        foreach (MyGraphic mgg in mg)
-                        {
-                            selectedGraphics.Add(mgg);
-                        }
-                        mg.Clear();
+                        selectedGraphics.Add(mg);
                         DragFinishing(false);
+                        canvas1.ReleaseMouseCapture();
+                        e.Handled = true;
                     }
                     canvas1.ReleaseMouseCapture();
                     e.Handled = true;
@@ -365,7 +366,7 @@ namespace Ccao_big_homework
 
         private void selected()
         {
-            timer1.Interval = TimeSpan.FromSeconds(0.1);
+            timer1.Interval = TimeSpan.FromSeconds(0.3);
             timer1.Start();
             timer1.Tick += new EventHandler(timer1_Tick);
         }      
@@ -392,9 +393,11 @@ namespace Ccao_big_homework
         {
             foreach (MyGraphic mg in selectedGraphics)
             {
+                if (mg != null)
                 mg.Dispose();
             }
-            selectedGraphics.Clear();
+            if (selectedGraphics!=null)
+                selectedGraphics.Clear();
             du_refresh();
         }
         //选中所有对象
