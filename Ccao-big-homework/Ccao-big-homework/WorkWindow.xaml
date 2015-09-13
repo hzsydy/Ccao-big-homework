@@ -41,8 +41,8 @@
             </Border>
 
         <!--画布-->    
-            <Border Margin="4,18,40,19" Background="#FF3B373B" BorderThickness="4,4,4,4" Grid.Row="1" Grid.Column="1">
-            <Canvas Name="canvas1" Width="594" Height="286" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
+            <Border Margin="4,18,40,-90" Background="#FF3B373B" BorderThickness="4,4,4,4" Grid.Row="1" Grid.Column="1">
+            <Canvas Name="canvas1" Width="594" Height="393" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
             </Border>
 
         <!--左侧工具栏-->
