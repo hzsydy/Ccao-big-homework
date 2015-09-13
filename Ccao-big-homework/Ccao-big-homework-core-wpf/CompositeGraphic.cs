@@ -117,15 +117,17 @@ namespace Ccao_big_homework_core_wpf
             {
                 if (!isCombined)
                 {
-                    foreach (_graphicpos gp in _list)
+                    List<_graphicpos> lg = new List<_graphicpos>(_list);
+                    for (int i = 0; i < lg.Count; i++)
                     {
-                        CompositeGraphic cg = gp.g.SelectRect(p1, p2, left + gp.left, top + gp.top);
-                        compositegraphic.MergeComposite(cg, left + gp.left, top + gp.top);
+                        _graphicpos gp = lg[i];
+                        CompositeGraphic cg = gp.g.SelectRect(p1, p2, gp.left, gp.top);
+                        compositegraphic.MergeComposite(cg, left, top);
                     }
                 }
                 else
                 {
-                    compositegraphic.Add(this);
+                    return this;
                 }
             }
             this.Add(compositegraphic);
@@ -137,8 +139,9 @@ namespace Ccao_big_homework_core_wpf
         public void MergeComposite(CompositeGraphic cg, double left = 0.0f, double top = 0.0f)
         {
             List<_graphicpos> lgp = cg.getGraphicPosList();
-            foreach (_graphicpos gp in lgp)
+            for (int i = 0; i < lgp.Count; i++)
             {
+                _graphicpos gp = lgp[i];
                 this.Add(gp.g, left + gp.left, top + gp.top);
             }
             cg.Dispose();

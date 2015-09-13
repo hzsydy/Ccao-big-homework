@@ -103,14 +103,7 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public void Dispose() 
         {
-<<<<<<< HEAD
             Father = null;
-=======
-            if (Father != null)
-            {
-                Father.DeleteChildren(this);
-            }
->>>>>>> origin/Pierre
         }
 
         #region IEnumerable<MyGraphic> Interface
