@@ -19,7 +19,7 @@ namespace Ccao_big_homework_core_wpf
             : base()
         {
             drawmode = new GeometryMode();
-            SelectError = 2.0f;
+            SelectError = 1.0f;
         }
         /// <summary>
         /// 设置填充模式
@@ -41,19 +41,6 @@ namespace Ccao_big_homework_core_wpf
             {
                 return null;
             }
-        }
-
-        /// <summary>
-        /// 点取graphic时允许的误差
-        /// </summary>
-        public static double SelectError { get; set; }
-        public override bool isContained(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            return getGeometry(left, top).FillContains(p, SelectError, ToleranceType.Absolute);
-        }
-        public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            return isContained(p, left, top) ? this : null;
         }
         public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {

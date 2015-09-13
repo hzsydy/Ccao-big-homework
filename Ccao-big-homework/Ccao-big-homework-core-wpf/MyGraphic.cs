@@ -29,6 +29,7 @@ namespace Ccao_big_homework_core_wpf
         {
             Father = null;
             isVisible = true;
+            SelectError = 1.0f;
         }
         /// <summary>
         /// 画图
@@ -42,15 +43,16 @@ namespace Ccao_big_homework_core_wpf
 
         #region interactivities
         /// <summary>
-        /// 感知点p是否在图形内部，如是返回true
-        /// left和top是两个修正值，因为如你所见你draw的时候也是要给left和top的，取iscontain的时候当然也要给。
-        /// 你draw的时候给的0，0那你iscontained的时候也可以0，0
+        /// 点取graphic时允许的误差
         /// </summary>
-        public abstract bool isContained(Point p, double left = 0.0f, double top = 0.0f);
+        public static double SelectError { get; set; }
         /// <summary>
-        /// 同上，返回找到的第一个被这个点选中的graphic
+        /// 返回找到的第一个被这个点选中的graphic所组成的compositegraphic
         /// </summary>
-        public abstract MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f);
+        public CompositeGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
+        {
+            return SelectRect(p, _addpoint(new Point(SelectError, SelectError), p), left, top);
+        }
         /// <summary>
         /// 返回这两个点组成矩形内的所有mygraphic的list
         /// </summary>

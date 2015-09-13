@@ -67,46 +67,6 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public bool isCombined { get; set; }
 
-        public override bool isContained(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            MyGraphic g = SelectPoint(p, left, top);
-            if (g != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            if (!isCombined)
-            {
-                foreach (_graphicpos gp in _list)
-                {
-                    MyGraphic g = gp.g.SelectPoint(p, left + gp.left, top + gp.top);
-                    if (g != null)
-                    {
-                        return g;
-                    }
-                }
-                return null;
-            }
-            else
-            {
-                if (getBorder(left, top).FillContains(p))
-                {
-                    return this;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
         public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic compositegraphic = new CompositeGraphic();
