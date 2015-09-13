@@ -17,15 +17,15 @@ namespace Ccao_big_homework_core_wpf
     {
 
         #region basic properties and methods
-        public CompositeGraphic(Brush _backcolorbrush, Pen _borderpen)
+        public CompositeGraphic(DrawMode _drawmode)
             : base()
         {
             _list.Clear();
-            backgroundmode = new GeometryMode();
+            backgroundmode = _drawmode;
             isCombined = false;
         }
         public CompositeGraphic()
-            : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
+            : this(new GeometryMode()) { }
         public double Width { get; set; }
         public double Height { get; set; }
 
@@ -128,6 +128,7 @@ namespace Ccao_big_homework_core_wpf
                     compositegraphic.Add(this);
                 }
             }
+            this.Add(compositegraphic);
             return compositegraphic;
         }
         /// <summary>
@@ -153,6 +154,18 @@ namespace Ccao_big_homework_core_wpf
                 gp.left += left;
                 gp.top += top;
             }
+        }
+
+        public override MyGraphic Clone()
+        {
+            CompositeGraphic cg = new CompositeGraphic(backgroundmode);
+            cg.isVisible = this.isVisible;
+            foreach (_graphicpos gp in _list)
+            {
+                MyGraphic g = gp.g.Clone();
+                cg.Add(g, gp.left, gp.top);
+            }
+            return cg;
         }
 
         #endregion
@@ -181,7 +194,7 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 这个辅助函数用来删掉一个子graphic
         /// </summary>
-        public void DeleteChildren(MyGraphic g)
+        public void Remove(MyGraphic g)
         {
             _graphicpos mgp = null;
             foreach (_graphicpos gp in _list)

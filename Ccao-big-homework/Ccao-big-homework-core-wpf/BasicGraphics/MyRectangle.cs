@@ -19,7 +19,14 @@ namespace Ccao_big_homework_core_wpf.BasicGraphics
         {
             return new RectangleGeometry(new Rect(left, top, Width, Height), RadiusX, RadiusY);
         }
-        public MyRectangle(int height, int width, double radiusx, double radiusy)
+        public override MyRectangle Clone()
+        {
+            MyRectangle me = new MyRectangle(Height, Width, RadiusX, RadiusY);
+            me.isVisible = this.isVisible;
+            me.drawmode = this.drawmode;
+            return me;
+        }
+        public MyRectangle(double height, double width, double radiusx, double radiusy)
             : base()
         {
             Height = height;
