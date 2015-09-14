@@ -19,7 +19,7 @@ namespace Ccao_big_homework_core_wpf
             : base()
         {
             drawmode = new GeometryMode();
-            SelectError = 2.0f;
+            SelectError = 1.0f;
         }
         /// <summary>
         /// 设置填充模式
@@ -42,26 +42,12 @@ namespace Ccao_big_homework_core_wpf
                 return null;
             }
         }
-
-        /// <summary>
-        /// 点取graphic时允许的误差
-        /// </summary>
-        public static double SelectError { get; set; }
-        public override bool isContained(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            return getGeometry(left, top).FillContains(p, SelectError, ToleranceType.Absolute);
-        }
-        public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            return isContained(p, left, top) ? this : null;
-        }
-        public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
+        public override CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic cg = new CompositeGraphic();
-            Point p = new Point(left, top);
-            Rect r = new Rect(_addpoint(p1, p), _addpoint(p2, p));
             RectangleGeometry rg = new RectangleGeometry(r);
-            if (getGeometry(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
+            Geometry g = getGeometry(left, top);
+            if (g.FillContainsWithDetail(rg) != IntersectionDetail.Empty)
             {
                 cg.Add(this, left, top);
             }
