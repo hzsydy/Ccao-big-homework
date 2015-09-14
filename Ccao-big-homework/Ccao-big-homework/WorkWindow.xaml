@@ -12,7 +12,7 @@
         </ResourceDictionary>
     </Window.Resources>
     
-        <Grid Background="#FFACACAC">
+        <Grid Background="#FFACACAC" KeyDown="KeyPress">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="9*"/>
                 <ColumnDefinition Width="41*"/>
@@ -57,7 +57,7 @@
                         </Polygon>
                     </RadioButton>
 
-                    <RadioButton x:Name="rbLine" IsChecked="True" ToolTip="直线" Height="40" Width="40" Background="{x:Null}">
+                    <RadioButton x:Name="rbLine" IsChecked="False" ToolTip="直线" Height="40" Width="40" >
                             <Grid>
                                 <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="White" Stroke="White"/>
                             </Grid>
@@ -75,15 +75,22 @@
                     <RadioButton x:Name="rbEllipse" IsChecked="False" ToolTip="椭圆" Height="42">
                             <Ellipse Width="40" Height="25" Fill="White"/>
                         </RadioButton>
-                    <RadioButton x:Name="rbCombine" IsChecked="False" ToolTip="组合图形" Height="42">
+                    <RadioButton x:Name="rbRoundedRectangle" IsChecked="False" ToolTip="圆角矩形" Height="42">
                             <Path Fill="White">
                                 <Path.Data>
+                                <CombinedGeometry>
+                                    <CombinedGeometry.Geometry1>
                                     <CombinedGeometry>
                                         <CombinedGeometry.Geometry1>
                                             <EllipseGeometry RadiusX="12" RadiusY="12" Center="12,12"/>
                                         </CombinedGeometry.Geometry1>
                                         <CombinedGeometry.Geometry2>
                                             <EllipseGeometry RadiusX="12" RadiusY="12" Center="30,12"/>
+                                        </CombinedGeometry.Geometry2>
+                                    </CombinedGeometry>
+                                        </CombinedGeometry.Geometry1>
+                                    <CombinedGeometry.Geometry2>
+                                        <RectangleGeometry Rect="12,0,20,24" />
                                         </CombinedGeometry.Geometry2>
                                     </CombinedGeometry>
                                 </Path.Data>
