@@ -187,7 +187,7 @@ namespace Ccao_big_homework
                     }
                     CompositeGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
                     if (mg != null)
-                    selectedGraphics.Add(mg);
+                        selectedGraphics.Add(mg);
                     canvas1.ReleaseMouseCapture();
                     isDown = false;
                     e.Handled = true;
@@ -293,7 +293,8 @@ namespace Ccao_big_homework
             foreach (CompositeGraphic cg in clonedGraphics)
             {
                 compositeGraphic.Add(cg, 10, 10);
-                selectedGraphics.Add(cg);
+                if (cg != null)
+                    selectedGraphics.Add(cg);
             }
             clonedGraphics.Clear();
             du_refresh();

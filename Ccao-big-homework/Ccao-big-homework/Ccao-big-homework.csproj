@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>1.ico</ApplicationIcon>
+    <ApplicationIcon>resources\ColorWheel.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -60,7 +60,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="resources\FishEyePanel.cs" />
+    <Compile Include="WorkWindow\FishEyePanel.cs" />
     <Compile Include="StyleSettingWindow.xaml.cs">
       <DependentUpon>StyleSettingWindow.xaml</DependentUpon>
     </Compile>
@@ -141,7 +141,7 @@
     <Resource Include="resources\ColorWheel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="1.ico" />
+    <Resource Include="resources\ColorWheel.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\Palette.ico" />
