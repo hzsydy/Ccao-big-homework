@@ -23,6 +23,7 @@ namespace Ccao_big_homework_core_wpf
             _list.Clear();
             backgroundmode = _drawmode;
             isCombined = false;
+            isTemporary = false;
         }
         public CompositeGraphic()
             : this(new GeometryMode()) { }
@@ -67,11 +68,14 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public bool isCombined { get; set; }
 
+        public bool isTemporary { get; set; }
+
         public override CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic compositegraphic = new CompositeGraphic();
+            compositegraphic.isTemporary = true;
             RectangleGeometry rg = new RectangleGeometry(r);
-            if (getBorder(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
+            if (getBorder(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty || isTemporary)
             {
                 if (!isCombined)
                 {
@@ -80,6 +84,8 @@ namespace Ccao_big_homework_core_wpf
                     {
                         _graphicpos gp = lg[i];
                         CompositeGraphic cg = gp.g.SelectRect(r, gp.left, gp.top);
+                        if (cg == null || cg.isEmpty()) continue;
+                        cg.isTemporary = true;
                         compositegraphic.MergeComposite(cg, left, top);
                     }
                 }
@@ -88,14 +94,17 @@ namespace Ccao_big_homework_core_wpf
                     return this;
                 }
             }
+            if (compositegraphic.isEmpty()) return null;
             this.Add(compositegraphic);
-            compositegraphic.Width = this.Width + 2 * SelectError;
-            compositegraphic.Height = this.Height + 2 * SelectError;
             return compositegraphic;
         }
         public CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
             return DisposeNullComposite(SelectRect(new Rect(p1, p2), left, top));
+        }
+        public bool isEmpty()
+        {
+            return (_list.Count == 0) ? true : false;
         }
         /// <summary>
         /// 将一个compositegraphic的内容merge到本对象中
@@ -133,6 +142,10 @@ namespace Ccao_big_homework_core_wpf
                 MyGraphic g = gp.g.Clone();
                 cg.Add(g, gp.left, gp.top);
             }
+            cg.Width = this.Width;
+            cg.Height = this.Height;
+            cg.isCombined = this.isCombined;
+            cg.isTemporary = this.isTemporary;
             return cg;
         }
 
