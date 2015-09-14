@@ -42,6 +42,7 @@ namespace Ccao_big_homework_core_wpf
                 return null;
             }
         }
+
         public override CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic cg = new CompositeGraphic();
@@ -50,6 +51,8 @@ namespace Ccao_big_homework_core_wpf
             if (g.FillContainsWithDetail(rg) != IntersectionDetail.Empty)
             {
                 cg.Add(this, left, top);
+                cg.Width = g.Bounds.Width + 2 * SelectError;
+                cg.Height = g.Bounds.Height + 2 * SelectError;
             }
             return cg;
         }

@@ -89,17 +89,18 @@ namespace Ccao_big_homework_core_wpf
                 }
             }
             this.Add(compositegraphic);
+            compositegraphic.Width = this.Width + 2 * SelectError;
+            compositegraphic.Height = this.Height + 2 * SelectError;
             return compositegraphic;
         }
         public CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic cg = SelectRect(new Rect(p1, p2), left, top);
-            cg.Reset();
-            if (!cg.MoveNext())
+            if (cg.getGraphicPosList().Count == 0)
             {
+                cg.Dispose();
                 return null;
             }
-            cg.Reset();
             return cg;
         }
         /// <summary>
@@ -108,9 +109,10 @@ namespace Ccao_big_homework_core_wpf
         public void MergeComposite(CompositeGraphic cg, double left = 0.0f, double top = 0.0f)
         {
             List<_graphicpos> lgp = cg.getGraphicPosList();
-            for (int i = 0; i < lgp.Count; i++)
+            List<_graphicpos> l = new List<_graphicpos>(lgp);
+            for (int i = 0; i < l.Count; i++)
             {
-                _graphicpos gp = lgp[i];
+                _graphicpos gp = l[i];
                 this.Add(gp.g, left + gp.left, top + gp.top);
             }
             cg.Dispose();
