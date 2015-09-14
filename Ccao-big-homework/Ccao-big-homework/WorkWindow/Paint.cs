@@ -2,6 +2,7 @@
 using Ccao_big_homework_core_wpf.Draw_Mode;
 using System;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Ccao_big_homework
 {
@@ -92,6 +93,7 @@ namespace Ccao_big_homework
         private void AddBezier(Point pt1, Point pt2, Point pt3)
         {
             MyBezier mb = new MyBezier(pt1, pt2, pt3);
+            mb.drawmode = new GeometryMode(new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)), pen);
             compositeGraphic.Add(mb);
             du_refresh();
             canvas1.ReleaseMouseCapture();

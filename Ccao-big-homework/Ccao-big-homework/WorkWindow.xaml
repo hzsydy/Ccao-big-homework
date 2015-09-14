@@ -97,7 +97,17 @@
                         </Path>
                     </RadioButton>
                     <RadioButton x:Name="rbBezier" IsChecked="False" ToolTip="贝塞尔曲线" Height="42">
-                        <Rectangle Width="38" Height="38" Fill="White"/>
+                        <Grid>
+                            <Path Stroke="white" StrokeThickness="4" >
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathFigure StartPoint="4,6">
+                                            <BezierSegment Point1="24,10" Point2="16,30" Point3="36,34"></BezierSegment>
+                                        </PathFigure>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Grid>
                     </RadioButton>
                 </ToolBar>
             </ToolBarTray>

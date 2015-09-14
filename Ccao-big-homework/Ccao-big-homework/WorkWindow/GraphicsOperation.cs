@@ -51,14 +51,18 @@ namespace Ccao_big_homework
         //粘贴
         private void Paste()
         {
-            foreach (CompositeGraphic cg in clonedGraphics)
+            if (clonedGraphics != null)
             {
-                compositeGraphic.Add(cg, 10, 10);
-                if (cg != null)
-                    selectedGraphics.Add(cg);
+                foreach (CompositeGraphic cg in clonedGraphics)
+                {
+                    compositeGraphic.Add(cg, 10, 10);
+                    if (cg != null)
+                        selectedGraphics.Add(cg);
+                }
+                clonedGraphics.Clear();
+                rbSelect.IsChecked = true;
+                du_refresh();
             }
-            clonedGraphics.Clear();
-            du_refresh();
         }
         //删除
         private void Delete()

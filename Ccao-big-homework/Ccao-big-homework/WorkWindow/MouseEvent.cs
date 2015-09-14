@@ -152,6 +152,8 @@ namespace Ccao_big_homework
                 }
                 else
                 {
+                    Beizer[numOfPointInBezier].X = currentPoint.X;
+                    Beizer[numOfPointInBezier].Y = currentPoint.Y;
                     AddBezier(Beizer[0], Beizer[1], Beizer[2]);
                     numOfPointInBezier = 0;
                 }
