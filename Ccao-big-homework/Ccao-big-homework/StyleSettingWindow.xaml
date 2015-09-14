@@ -25,6 +25,8 @@
             <TextBlock Grid.Column="1" Text="颜色拾取器" Padding="4,4" MouseLeftButtonDown="TextBlock_MouseLeftButtonDown" />
             <Button Grid.Column="2" BorderThickness="0" Background="Transparent" Content="取消" Click="Color_Unchanged" Margin="-30,0,0,0" Foreground="Black" />
             <Button Grid.Column="1" BorderThickness="0" Background="Transparent" Content="确定" Click="Color_Changed" Margin="0,0,34.475,0" Foreground="#FF111111" HorizontalAlignment="Right" Width="46" />
+            <Button Grid.Column="1" BorderThickness="0" Background="Transparent" Content="仅选边框" Click="Border_Changed" Margin="-50,0,84,0" Foreground="#FF111111" HorizontalAlignment="Right" Width="53" />
+            <Button Grid.Column="1" BorderThickness="0" Background="Transparent" Content="仅选填充" Click="Fill_Changed" Margin="-50,0,142,0" Foreground="#FF111111" HorizontalAlignment="Right" Width="53" />
         </Grid>
         <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1">
             <colorPicker:ColorPicker 

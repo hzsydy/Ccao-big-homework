@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Ccao_big_homework
@@ -15,7 +16,7 @@ namespace Ccao_big_homework
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.CheckFileExists = true;
-            dlg.Filter = "矢量图 (*.eps)|*.eps|位图 (*.bmp)|*.bmp|所有格式 (*.*)|*.*";
+            dlg.Filter = "所有格式 (*.*)|*.*|矢量图 (*.eps)|*.eps|位图 (*.bmp)|*.bmp";
             if ((bool)dlg.ShowDialog(this))
             {
                 canvas1.Children.Clear();
@@ -34,7 +35,9 @@ namespace Ccao_big_homework
                             BitmapImage bmp = new BitmapImage(url);
                             System.Windows.Controls.Image img = new System.Windows.Controls.Image();
                             img.Source = bmp;
+                            img.Stretch = Stretch.Uniform;
                             canvas1.Children.Add(img);
+                            img.Stretch = Stretch.Uniform;
                             file.Close();
                         }
                     }

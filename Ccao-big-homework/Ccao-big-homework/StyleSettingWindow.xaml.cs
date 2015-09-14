@@ -28,6 +28,19 @@ namespace Ccao_big_homework
             Close();
         }
 
+        private void Border_Changed(object sender, RoutedEventArgs e)
+        {
+            WorkWindow.color = ColorPicker.SelectedColor;
+            WorkWindow.pen = new Pen(new SolidColorBrush(WorkWindow.color), 2.0f);
+            Close();
+        }
+        private void Fill_Changed(object sender, RoutedEventArgs e)
+        {
+            WorkWindow.color = ColorPicker.SelectedColor;
+            WorkWindow.brush = new SolidColorBrush(WorkWindow.color);
+            Close();
+        }
+
         private void Color_Unchanged(object sender, RoutedEventArgs e)
         {
             Close();

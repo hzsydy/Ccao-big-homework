@@ -24,7 +24,8 @@ namespace Ccao_big_homework
         private CompositeGraphic compositeGraphic = new CompositeGraphic();
         private DrawingUIElement du = new DrawingUIElement();
         private List<Path> paths = new List<Path>();
-        private List<MyGraphic> selectedGraphics = new List<MyGraphic>();
+        private List<CompositeGraphic> selectedGraphics = new List<CompositeGraphic>();
+        private List<CompositeGraphic> clonedGraphics = new List<CompositeGraphic>();
         private List<MyGraphic> movingGraphics = new List<MyGraphic>();
         private Point startPoint = new Point();
         private Shape rubberBand = null;
@@ -209,7 +210,7 @@ namespace Ccao_big_homework
                 }
                 else if (isDown && selectedGraphics.Count == 0)
                 {
-                    MyGraphic mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
+                    CompositeGraphic mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
                     if (mg != null)
                     {
                         selectedGraphics.Add(mg);
@@ -336,20 +337,41 @@ namespace Ccao_big_homework
         //剪切选中的对象
         private void btnCut_Click(object sender, RoutedEventArgs args)
         {
-           /* if (this.inkCanv.GetSelectedStrokes().Count > 0)
-                this.inkCanv.CutSelection();*/
+            if (selectedGraphics != null)
+            {
+                clonedGraphics.Clear();
+                foreach (CompositeGraphic cg in selectedGraphics)
+                {
+                    cg.isVisible = true;
+                    clonedGraphics.Add((CompositeGraphic)cg.Clone());
+                    cg.Dispose();
+                }
+                selectedGraphics.Clear();
+            }
         }
         //复制选中的对象
         private void btnCopy_Click(object sender, RoutedEventArgs args)
         {
-           /* if (this.inkCanv.GetSelectedStrokes().Count > 0)
-                this.inkCanv.CopySelection();*/
+            if (selectedGraphics != null)
+            {
+                clonedGraphics.Clear();
+                foreach (CompositeGraphic cg in selectedGraphics)
+                {
+                    cg.isVisible = true;
+                    clonedGraphics.Add((CompositeGraphic)cg.Clone());
+                }
+                selectedGraphics.Clear();
+            }
         }
         //粘贴复制的对象
         private void btnPaste_Click(object sender, RoutedEventArgs args)
         {
-           /* if (this.inkCanv.CanPaste())
-                this.inkCanv.Paste();*/
+            foreach (CompositeGraphic cg in clonedGraphics)
+            {
+                compositeGraphic.Add(cg, 10, 10);
+            }
+            clonedGraphics.Clear();
+            du_refresh();
         }
         //删除选中的对象
         private void btnDelete_Click(object sender, RoutedEventArgs args)
@@ -366,7 +388,7 @@ namespace Ccao_big_homework
         //选中所有对象
         private void btnSelectAll_Click(object sender, RoutedEventArgs args)
         {
-            MyGraphic mg = compositeGraphic.SelectRect(new Point(0, 0), new Point (canvas1.Width, canvas1.Height));
+            CompositeGraphic mg = compositeGraphic.SelectRect(new Point(0, 0), new Point (canvas1.Width, canvas1.Height));
             if (mg != null)
                 selectedGraphics.Add(mg);
             canvas1.ReleaseMouseCapture();
@@ -388,7 +410,6 @@ namespace Ccao_big_homework
             FrameworkElement mainPanelBorder = (FrameworkElement)toolBar.Template.FindName("MainPanelBorder", toolBar);
             if(mainPanelBorder != null)
             mainPanelBorder.Margin = new Thickness(0);
-
         }
 
     }
