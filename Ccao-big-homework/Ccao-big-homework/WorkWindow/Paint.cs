@@ -1,16 +1,16 @@
 ﻿using Ccao_big_homework_core_wpf.BasicGraphics;
 using Ccao_big_homework_core_wpf.Draw_Mode;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Ccao_big_homework
 {
+    /// <summary>
+    /// 绘图相关方法
+    /// </summary>
     public partial class WorkWindow : Window
     {
+        //画线
         private void AddLine(Point pt1, Point pt2)
         {
             if (line != null)
@@ -28,6 +28,7 @@ namespace Ccao_big_homework
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
+        //画正方形
         private void AddSquare(Point pt1, Point pt2)
         {
             MyRectangle mr = new MyRectangle();
@@ -40,6 +41,7 @@ namespace Ccao_big_homework
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
+        //画长方形
         private void AddRectangle(Point pt1, Point pt2)
         {
             MyRectangle mr = new MyRectangle();
@@ -50,6 +52,7 @@ namespace Ccao_big_homework
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
+        //画圆
         private void AddCircle(Point pt1, Point pt2)
         {
             MyEllipse mr = new MyEllipse();
@@ -61,7 +64,7 @@ namespace Ccao_big_homework
             compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();
-        }
+        }//画椭圆
         private void AddEllipse(Point pt1, Point pt2)
         {
             MyEllipse mr = new MyEllipse();
@@ -72,6 +75,7 @@ namespace Ccao_big_homework
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }
+        //画圆角矩形
         private void AddRoundedRectangle(Point pt1, Point pt2)
         {
             MyRectangle mr = new MyRectangle();
@@ -81,6 +85,14 @@ namespace Ccao_big_homework
             mr.RadiusX = mr.Width / 10;
             mr.RadiusY = mr.Height / 10;
             compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
+            du_refresh();
+            canvas1.ReleaseMouseCapture();
+        }
+        //画贝塞尔曲线
+        private void AddBezier(Point pt1, Point pt2, Point pt3)
+        {
+            MyBezier mb = new MyBezier(pt1, pt2, pt3);
+            compositeGraphic.Add(mb);
             du_refresh();
             canvas1.ReleaseMouseCapture();
         }

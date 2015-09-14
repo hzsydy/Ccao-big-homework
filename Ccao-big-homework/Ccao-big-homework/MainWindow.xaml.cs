@@ -18,7 +18,7 @@ using System.Windows.Threading;
 namespace Ccao_big_homework
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// 启动窗口
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -50,7 +50,6 @@ namespace Ccao_big_homework
             this.Close();
             
         }
-
         //新建绘图按钮
         private void NewWindow(object sender, RoutedEventArgs e)
         {
