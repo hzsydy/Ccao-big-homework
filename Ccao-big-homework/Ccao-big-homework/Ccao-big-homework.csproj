@@ -60,17 +60,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FishEyePanel.cs" />
+    <Compile Include="resources\FishEyePanel.cs" />
     <Compile Include="StyleSettingWindow.xaml.cs">
       <DependentUpon>StyleSettingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WorkWindow_Exit.cs" />
-    <Compile Include="WorkWindow_Load.cs" />
-    <Compile Include="WorkWindow_New.cs" />
-    <Compile Include="WorkWindow_Save.cs" />
+    <Compile Include="WorkWindow\WorkWindow_Exit.cs" />
+    <Compile Include="WorkWindow\WorkWindow_Load.cs" />
+    <Compile Include="WorkWindow\WorkWindow_New.cs" />
+    <Compile Include="WorkWindow\WorkWindow_Paint.cs" />
+    <Compile Include="WorkWindow\WorkWindow_Save.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -134,10 +135,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\1.jpg" />
+    <Resource Include="resources\ColorWheel.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\1.png" />
+    <Resource Include="resources\ColorWheel.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="1.ico" />
