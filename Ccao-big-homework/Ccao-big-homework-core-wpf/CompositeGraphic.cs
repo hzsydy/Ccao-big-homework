@@ -95,13 +95,7 @@ namespace Ccao_big_homework_core_wpf
         }
         public CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
-            CompositeGraphic cg = SelectRect(new Rect(p1, p2), left, top);
-            if (cg.getGraphicPosList().Count == 0)
-            {
-                cg.Dispose();
-                return null;
-            }
-            return cg;
+            return DisposeNullComposite(SelectRect(new Rect(p1, p2), left, top));
         }
         /// <summary>
         /// 将一个compositegraphic的内容merge到本对象中
