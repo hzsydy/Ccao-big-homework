@@ -28,7 +28,7 @@ namespace Ccao_big_homework
             try
             {
                 SaveFileDialog dlg = new SaveFileDialog();
-                dlg.Filter = "矢量图 (*.eps)|*.eps|位图 (*.bmp)|*.bmp|所有格式 (*.*)|*.*";
+                dlg.Filter = "位图 (*.bmp)|*.bmp|矢量图 (*.eps)|*.eps|所有格式 (*.*)|*.*";
                 dlg.FilterIndex = 1;
                 dlg.RestoreDirectory = true;
                 if ((bool)dlg.ShowDialog(this))
