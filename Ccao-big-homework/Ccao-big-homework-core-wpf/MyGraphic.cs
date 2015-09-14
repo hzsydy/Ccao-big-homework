@@ -52,7 +52,16 @@ namespace Ccao_big_homework_core_wpf
         public CompositeGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
         {
             Rect r = new Rect(p, _addpoint(new Point(SelectError, SelectError), p));
-            return SelectRect(r, left, top);
+            return DisposeNullComposite(SelectRect(r, left, top));
+        }
+        protected CompositeGraphic DisposeNullComposite(CompositeGraphic cg)
+        {
+            if (cg.getGraphicPosList().Count == 0)
+            {
+                cg.Dispose();
+                return null;
+            }
+            return cg;
         }
         /// <summary>
         /// 返回这两个点组成矩形内的所有mygraphic的list
