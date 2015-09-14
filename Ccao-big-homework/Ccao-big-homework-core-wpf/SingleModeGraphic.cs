@@ -42,13 +42,12 @@ namespace Ccao_big_homework_core_wpf
                 return null;
             }
         }
-        public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
+        public override CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic cg = new CompositeGraphic();
-            Point p = new Point(left, top);
-            Rect r = new Rect(_addpoint(p1, p), _addpoint(p2, p));
             RectangleGeometry rg = new RectangleGeometry(r);
-            if (getGeometry(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
+            Geometry g = getGeometry(left, top);
+            if (g.FillContainsWithDetail(rg) != IntersectionDetail.Empty)
             {
                 cg.Add(this, left, top);
             }

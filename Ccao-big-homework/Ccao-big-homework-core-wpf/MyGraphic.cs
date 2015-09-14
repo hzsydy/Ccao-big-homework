@@ -51,12 +51,13 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public CompositeGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
         {
-            return SelectRect(p, _addpoint(new Point(SelectError, SelectError), p), left, top);
+            Rect r = new Rect(p, _addpoint(new Point(SelectError, SelectError), p));
+            return SelectRect(r, left, top);
         }
         /// <summary>
         /// 返回这两个点组成矩形内的所有mygraphic的list
         /// </summary>
-        public abstract CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f);
+        public abstract CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f);
         /// <summary>
         /// 一个傻逼辅助函数，如字面意思相加两个point
         /// </summary>
