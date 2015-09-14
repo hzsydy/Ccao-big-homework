@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:src="clr-namespace:Ccao_big_homework"
-        Title="WorkWindow" WindowStyle="None"  AllowsTransparency="True" Height="600" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded" OpacityMask="White" WindowStartupLocation="CenterScreen" Visibility="Visible" Closing="On_Closing">
+        Title="WorkWindow" WindowStyle="None" KeyDown="KeyPress" AllowsTransparency="True" Height="600" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded" OpacityMask="White" WindowStartupLocation="CenterScreen" Visibility="Visible" Closing="On_Closing">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -11,44 +11,44 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
-        <Grid Background="#FFACACAC" KeyDown="KeyPress">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="9*"/>
-                <ColumnDefinition Width="41*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="124*"/>
-                <RowDefinition Height="339*"/>
-                <RowDefinition Height="137*"/>
-            </Grid.RowDefinitions>
+
+    <Grid Background="#FFACACAC" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*"/>
+            <ColumnDefinition Width="41*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="124*"/>
+            <RowDefinition Height="339*"/>
+            <RowDefinition Height="137*"/>
+        </Grid.RowDefinitions>
 
         <!--上部菜单栏-->
-            <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,13" Height="85" Width="770" Grid.ColumnSpan="2">
-                <src:FishEyePanel x:Name="fishButtons">
-                    <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存" Click="btnSave_Click" HorizontalAlignment="Center"/>
-                    <Button x:Name="btnOpen" Margin="5,5,5,5" Width="48" Height="48" Content="1" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="打开" Click="btnOpen_Click"/>
-                <Button x:Name="btnSelectAll" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="全选" Click="btnSelectAll_Click"/>
-                <Button x:Name="btnCut" Margin="5,5,5,5" Width="48" Height="48" Content="%" Style="{DynamicResource PulseButton}" FontFamily="Wingdings 2" FontSize="28" Foreground="#FFFFFFFF" ToolTip="剪切" Click="btnCut_Click"/>
-                    <Button x:Name="btnCopy" Margin="5,5,5,5" Width="48" Height="48" Content="2" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="复制" Click="btnCopy_Click"/>
-                    <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="粘贴" Click="btnPaste_Click"/>
-                    <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="删除" Click="btnDelete_Click"/>
-                    <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="样式选择" Click="btnStylusSettings_Click"/>
-                    <Button x:Name="btnExit" Margin="5,5,5,5" Width="48" Height="48" Content="r" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="退出" Click="btnExit_Click"/>
+        <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,13" Height="85" Width="770" Grid.ColumnSpan="2">
+            <src:FishEyePanel x:Name="fishButtons">
+                <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建(Ctrl+N)" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存(Ctrl+S)" Click="btnSave_Click" HorizontalAlignment="Center"/>
+                <Button x:Name="btnOpen" Margin="5,5,5,5" Width="48" Height="48" Content="1" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="打开(Ctrl+O)" Click="btnOpen_Click"/>
+                <Button x:Name="btnSelectAll" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="全选(Ctrl+A)" Click="btnSelectAll_Click"/>
+                <Button x:Name="btnCut" Margin="5,5,5,5" Width="48" Height="48" Content="%" Style="{DynamicResource PulseButton}" FontFamily="Wingdings 2" FontSize="28" Foreground="#FFFFFFFF" ToolTip="剪切(Ctrl+X)" Click="btnCut_Click"/>
+                <Button x:Name="btnCopy" Margin="5,5,5,5" Width="48" Height="48" Content="2" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="复制(Ctrl+C)" Click="btnCopy_Click"/>
+                <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="粘贴(Ctrl+V)" Click="btnPaste_Click"/>
+                <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="删除(Del)" Click="btnDelete_Click"/>
+                <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="样式选择" Click="btnStylusSettings_Click"/>
+                <Button x:Name="btnExit" Margin="5,5,5,5" Width="48" Height="48" Content="r" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="退出" Click="btnExit_Click"/>
 
             </src:FishEyePanel>
-            </Border>
+        </Border>
 
-        <!--画布-->    
-            <Border Margin="4,18,40,-90" Background="#FF3B373B" BorderThickness="4,4,4,4" Grid.Row="1" Grid.Column="1">
+        <!--画布-->
+        <Border Margin="4,18,40,-90" Background="#FF3B373B" BorderThickness="4,4,4,4" Grid.Row="1" Grid.Column="1">
             <Canvas Name="canvas1" Width="594" Height="393" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
-            </Border>
+        </Border>
 
         <!--左侧工具栏-->
-        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,10">
-                <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center" Height="320" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
-                    <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,98" Grid.RowSpan="2">
+            <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
+                <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-18,-10,-6,-40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="400" Width="84" >
                     <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
                         <Polygon Points="17.6 2.4,20.8 2.4,20.8 24,33.6 20,19.2 38.4,4.8 20,17.6 24" Fill="White">
                             <Polygon.RenderTransform>
@@ -58,47 +58,49 @@
                     </RadioButton>
 
                     <RadioButton x:Name="rbLine" IsChecked="False" ToolTip="直线" Height="40" Width="40" >
-                            <Grid>
-                                <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="White" Stroke="White"/>
-                            </Grid>
-                        </RadioButton>
+                        <Grid>
+                            <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="White" Stroke="White"/>
+                        </Grid>
+                    </RadioButton>
 
                     <RadioButton x:Name="rbSquare" ToolTip="正方形" Height="42">
-                            <Rectangle Width="38" Height="38" Fill="White"/>
-                        </RadioButton>
-                        <RadioButton x:Name="rbRectangle" IsChecked="False" ToolTip="长方形" Height="42">
-                            <Rectangle Width="40" Height="20" Fill="White"/>
-                        </RadioButton>
+                        <Rectangle Width="38" Height="38" Fill="White"/>
+                    </RadioButton>
+                    <RadioButton x:Name="rbRectangle" IsChecked="False" ToolTip="长方形" Height="42">
+                        <Rectangle Width="40" Height="20" Fill="White"/>
+                    </RadioButton>
                     <RadioButton x:Name="rbCircle" IsChecked="False" ToolTip="圆形" Height="42">
-                            <Ellipse Width="36" Height="36" Fill="White"/>
-                        </RadioButton>
+                        <Ellipse Width="36" Height="36" Fill="White"/>
+                    </RadioButton>
                     <RadioButton x:Name="rbEllipse" IsChecked="False" ToolTip="椭圆" Height="42">
-                            <Ellipse Width="40" Height="25" Fill="White"/>
-                        </RadioButton>
+                        <Ellipse Width="40" Height="25" Fill="White"/>
+                    </RadioButton>
                     <RadioButton x:Name="rbRoundedRectangle" IsChecked="False" ToolTip="圆角矩形" Height="42">
-                            <Path Fill="White">
-                                <Path.Data>
+                        <Path Fill="White">
+                            <Path.Data>
                                 <CombinedGeometry>
                                     <CombinedGeometry.Geometry1>
-                                    <CombinedGeometry>
-                                        <CombinedGeometry.Geometry1>
-                                            <EllipseGeometry RadiusX="12" RadiusY="12" Center="12,12"/>
-                                        </CombinedGeometry.Geometry1>
-                                        <CombinedGeometry.Geometry2>
-                                            <EllipseGeometry RadiusX="12" RadiusY="12" Center="30,12"/>
-                                        </CombinedGeometry.Geometry2>
-                                    </CombinedGeometry>
-                                        </CombinedGeometry.Geometry1>
+                                        <CombinedGeometry>
+                                            <CombinedGeometry.Geometry1>
+                                                <EllipseGeometry RadiusX="12" RadiusY="12" Center="12,12"/>
+                                            </CombinedGeometry.Geometry1>
+                                            <CombinedGeometry.Geometry2>
+                                                <EllipseGeometry RadiusX="12" RadiusY="12" Center="30,12"/>
+                                            </CombinedGeometry.Geometry2>
+                                        </CombinedGeometry>
+                                    </CombinedGeometry.Geometry1>
                                     <CombinedGeometry.Geometry2>
                                         <RectangleGeometry Rect="12,0,20,24" />
-                                        </CombinedGeometry.Geometry2>
-                                    </CombinedGeometry>
-                                </Path.Data>
-                            </Path>
-                        </RadioButton>
-
-                    </ToolBar>
-                </ToolBarTray>
-            </Border>
-        </Grid>
+                                    </CombinedGeometry.Geometry2>
+                                </CombinedGeometry>
+                            </Path.Data>
+                        </Path>
+                    </RadioButton>
+                    <RadioButton x:Name="rbBezier" IsChecked="False" ToolTip="贝塞尔曲线" Height="42">
+                        <Rectangle Width="38" Height="38" Fill="White"/>
+                    </RadioButton>
+                </ToolBar>
+            </ToolBarTray>
+        </Border>
+    </Grid>
 </Window>

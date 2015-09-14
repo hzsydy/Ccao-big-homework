@@ -60,6 +60,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WorkWindow\BtnEvent.cs" />
+    <Compile Include="WorkWindow\FileEvent.cs" />
     <Compile Include="WorkWindow\FishEyePanel.cs" />
     <Compile Include="StyleSettingWindow.xaml.cs">
       <DependentUpon>StyleSettingWindow.xaml</DependentUpon>
@@ -67,11 +69,10 @@
     <Compile Include="WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WorkWindow\WorkWindow_Exit.cs" />
-    <Compile Include="WorkWindow\WorkWindow_Load.cs" />
-    <Compile Include="WorkWindow\WorkWindow_New.cs" />
-    <Compile Include="WorkWindow\WorkWindow_Paint.cs" />
-    <Compile Include="WorkWindow\WorkWindow_Save.cs" />
+    <Compile Include="WorkWindow\GraphicsOperation.cs" />
+    <Compile Include="WorkWindow\KeyBoard.cs" />
+    <Compile Include="WorkWindow\MouseEvent.cs" />
+    <Compile Include="WorkWindow\Paint.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

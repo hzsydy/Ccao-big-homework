@@ -5,7 +5,7 @@ using System.Windows.Media;
 namespace Ccao_big_homework
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// 颜色拾取器窗口
     /// </summary>
     public partial class StyleSettingWindow : Window
     {
