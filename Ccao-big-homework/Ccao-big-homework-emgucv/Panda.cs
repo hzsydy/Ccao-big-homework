@@ -17,7 +17,7 @@ namespace Ccao_big_homework_emgucv
         /// <summary>
         /// 初始化一个HaarCascade
         /// </summary>
-        private void initiateHaar(string fileName)
+        private void initHaar(string fileName)
         {
             if (haar != null) return;
             haar = new HaarCascade(fileName);
@@ -47,10 +47,16 @@ namespace Ccao_big_homework_emgucv
             return l;
         }
 
-        public static IImage getPanda(Image<Bgr, Byte> i)
+        public Image<Bgr, Byte> getPanda(Image<Bgr, Byte> i, Image<Bgr, Byte> panda,
+            double left, double top, double width, double height)
         {
-            Image<Gray, Byte> grey_img = i.Convert<Gray, Byte>();
-            return grey_img;
+            if (panda == null || i == null) return null;
+            initHaar(haarXmlPath);
+            List<Image<Bgr, byte>> l = markFaces(i, haar);
+            if (l.Count == 0) return null;
+            Image<Bgr, Byte> face = l[0];
+            Image<Bgr, Byte> final = face;
+            return final;
         }
     }
 }
