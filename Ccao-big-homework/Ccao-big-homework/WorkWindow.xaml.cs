@@ -72,6 +72,7 @@ namespace Ccao_big_homework
             if (!canvas1.IsMouseCaptured)
             {
                 startPoint = e.GetPosition(canvas1);
+                isDown = true;
                 canvas1.CaptureMouse();
                 if (rbCombine.IsChecked == true)
                 {
@@ -143,70 +144,34 @@ namespace Ccao_big_homework
                         if (!isDragging
                             && (Math.Abs(currentPoint.X - startPoint.X) > SystemParameters.MinimumHorizontalDragDistance)
                             && (Math.Abs(currentPoint.Y - startPoint.Y) > SystemParameters.MinimumVerticalDragDistance))
-                            DragStarting();
-                        if (isDragging)
-                            DragMoving();
+                            isDragging = true;
                     }
                 }
             }
         }
 
-        private void DragStarting()
-        {
-            isDragging = true;
-        }
-
-        private void DragMoving()
-        {
-
-        }
-
-        private void DragFinishing(bool cancel)
-        {
-            /*
-            Mouse.Capture(null);
-            if (isDragging)
-            {
-                if (!cancel)
-                {
-                    currentPoint = Mouse.GetPosition(canvas1);
-                    TranslateTransform tt0 = new TranslateTransform();
-                    TranslateTransform tt = new TranslateTransform();
-                    tt.X = currentPoint.X - startPoint.X;
-                    tt.Y = currentPoint.Y - startPoint.Y;
-                    Geometry geometry =
-                    (RectangleGeometry)new RectangleGeometry();
-                    string s = originalElement.Data.ToString();
-                    if (s == "System.Windows.Media.EllipseGeometry")
-                        geometry = (EllipseGeometry)originalElement.Data;
-                    else if (s == "System.Windows.Media.RectangleGeometry")
-                        geometry = (RectangleGeometry)originalElement.Data;
-                    else if (s == "System.Windows.Media.CombinedGeometry")
-                        geometry = (CombinedGeometry)originalElement.Data;
-                    if (geometry.Transform.ToString() != "Identity")
-                    {
-                        tt0 = (TranslateTransform)geometry.Transform;
-                        tt.X += tt0.X;
-                        tt.Y += tt0.Y;
-                    }
-                    geometry.Transform = tt;
-                    canvas1.Children.Remove(originalElement);
-                    originalElement = new Path();
-                    originalElement.Fill = fillColor;
-                    originalElement.Stroke = borderColor;
-                    originalElement.Data = geometry;
-                    canvas1.Children.Add(originalElement);
-                }
-                canvas1.Children.Remove(movingElement);
-                movingElement = null;
-            }
-            isDragging = false;
-            isDown = false;
-             * */
-        }
         //鼠标抬起事件处理
         private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            currentPoint = e.GetPosition(canvas1);
+            if (isDown && startPoint == currentPoint)
+            {
+                if (selectedGraphics != null)
+                {
+                    foreach (CompositeGraphic mgg in selectedGraphics)
+                    {
+                        mgg.Move(currentPoint.X - startPoint.X, currentPoint.Y - startPoint.Y);
+                        mgg.isVisible = true;
+                    }
+                    selectedGraphics.Clear();
+                }
+                CompositeGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
+                selectedGraphics.Add(mg);
+                canvas1.ReleaseMouseCapture();
+                isDown = false;
+                e.Handled = true;
+                return;
+            }
             if (rbLine.IsChecked == true)
                 AddLine(startPoint, currentPoint);
             else if (rbSquare.IsChecked == true)
@@ -225,22 +190,21 @@ namespace Ccao_big_homework
             }
             if (rbSelect.IsChecked == true)
             {
-
                 if (isDown && startPoint == currentPoint)
                 {
-
-                    MyGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
                     if (selectedGraphics != null)
                     {
-                        foreach (MyGraphic mgg in selectedGraphics)
+                        foreach (CompositeGraphic mgg in selectedGraphics)
                         {
+                            mgg.Move(currentPoint.X - startPoint.X, currentPoint.Y - startPoint.Y);
                             mgg.isVisible = true;
                         }
                         selectedGraphics.Clear();
                     }
+                    CompositeGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
                     selectedGraphics.Add(mg);
-                    DragFinishing(false);
                     canvas1.ReleaseMouseCapture();
+                    isDown = false;
                     e.Handled = true;
                 }
                 else if (isDown && selectedGraphics.Count == 0)
@@ -249,7 +213,6 @@ namespace Ccao_big_homework
                     if (mg != null)
                     {
                         selectedGraphics.Add(mg);
-                        DragFinishing(false);
                         canvas1.ReleaseMouseCapture();
                         e.Handled = true;
                     }
@@ -279,7 +242,7 @@ namespace Ccao_big_homework
                 }
                 
             }
-            
+            canvas1.ReleaseMouseCapture();
         }
 
         private void AddLine(Point pt1, Point pt2)
@@ -403,49 +366,18 @@ namespace Ccao_big_homework
         //选中所有对象
         private void btnSelectAll_Click(object sender, RoutedEventArgs args)
         {
-            //this.inkCanv.Select(this.inkCanv.Strokes);
+            MyGraphic mg = compositeGraphic.SelectRect(new Point(0, 0), new Point (canvas1.Width, canvas1.Height));
+            if (mg != null)
+                selectedGraphics.Add(mg);
+            canvas1.ReleaseMouseCapture();
         }        
 
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            //this.popExit.IsOpen = false;
-        }
         private void btnStylusSettings_Click(object sender, RoutedEventArgs e)
         {
             StyleSettingWindow ssw = new StyleSettingWindow();
             ssw.Show();
-            /*StylusSettings dlg = new StylusSettings();
-            dlg.Owner = this;
-            dlg.DrawingAttributes = this.inkCanv.DefaultDrawingAttributes;
-            if ((bool)dlg.ShowDialog().GetValueOrDefault())
-            {
-                this.inkCanv.DefaultDrawingAttributes = dlg.DrawingAttributes;
-            }*/
         }
-        private void btnFormat_Click(object sender, RoutedEventArgs e)
-        {
 
-            /*StylusSettings dlg = new StylusSettings();
-            dlg.Owner = this;
-
-            // Try getting the DrawingAttributes of the first selected stroke.
-            StrokeCollection strokes = this.inkCanv.GetSelectedStrokes();
-
-            if (strokes.Count > 0)
-                dlg.DrawingAttributes = strokes[0].DrawingAttributes;
-            else
-                dlg.DrawingAttributes = this.inkCanv.DefaultDrawingAttributes;
-
-            if ((bool)dlg.ShowDialog().GetValueOrDefault())
-            {
-                // Set the DrawingAttributes of all the selected strokes.
-                foreach (Stroke strk in strokes)
-                    strk.DrawingAttributes = dlg.DrawingAttributes;
-            }
-
-            */
-        }
         //工具条隐藏尾部小箭头的方法
         private void ToolBar_Loaded(object sender, RoutedEventArgs e)
         {
