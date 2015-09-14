@@ -56,11 +56,16 @@ namespace Ccao_big_homework_core_wpf
         }
         protected CompositeGraphic DisposeNullComposite(CompositeGraphic cg)
         {
-            if (cg.getGraphicPosList().Count == 0)
+            if (cg == null)
+            {
+                return null;
+            }
+            if (cg.isEmpty())
             {
                 cg.Dispose();
                 return null;
             }
+            cg.isTemporary = true;
             return cg;
         }
         /// <summary>
