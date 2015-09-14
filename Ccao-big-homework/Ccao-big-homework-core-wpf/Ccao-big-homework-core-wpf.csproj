@@ -38,6 +38,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasicGraphics\MyBezier.cs" />
     <Compile Include="BasicGraphics\MyEllipse.cs" />
     <Compile Include="BasicGraphics\MyLine.cs" />
     <Compile Include="BasicGraphics\MyRectangle.cs" />
