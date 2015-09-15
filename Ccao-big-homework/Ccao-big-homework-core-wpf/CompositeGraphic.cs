@@ -23,6 +23,7 @@ namespace Ccao_big_homework_core_wpf
             _list.Clear();
             backgroundmode = _drawmode;
             isCombined = false;
+            isTemporary = false;
         }
         public CompositeGraphic()
             : this(new GeometryMode()) { }
@@ -67,53 +68,14 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public bool isCombined { get; set; }
 
-        public override bool isContained(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            MyGraphic g = SelectPoint(p, left, top);
-            if (g != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        public bool isTemporary { get; set; }
 
-        public override MyGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
-        {
-            if (!isCombined)
-            {
-                foreach (_graphicpos gp in _list)
-                {
-                    MyGraphic g = gp.g.SelectPoint(p, left + gp.left, top + gp.top);
-                    if (g != null)
-                    {
-                        return g;
-                    }
-                }
-                return null;
-            }
-            else
-            {
-                if (getBorder(left, top).FillContains(p))
-                {
-                    return this;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        public override CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
+        public override CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f)
         {
             CompositeGraphic compositegraphic = new CompositeGraphic();
-            Point p = new Point(left, top);
-            Rect r = new Rect(_addpoint(p1, p), _addpoint(p2, p));
+            compositegraphic.isTemporary = true;
             RectangleGeometry rg = new RectangleGeometry(r);
-            if (getBorder(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty)
+            if (getBorder(left, top).FillContainsWithDetail(rg) != IntersectionDetail.Empty || isTemporary)
             {
                 if (!isCombined)
                 {
@@ -121,7 +83,9 @@ namespace Ccao_big_homework_core_wpf
                     for (int i = 0; i < lg.Count; i++)
                     {
                         _graphicpos gp = lg[i];
-                        CompositeGraphic cg = gp.g.SelectRect(p1, p2, gp.left, gp.top);
+                        CompositeGraphic cg = gp.g.SelectRect(r, gp.left, gp.top);
+                        if (cg == null || cg.isEmpty()) continue;
+                        cg.isTemporary = true;
                         compositegraphic.MergeComposite(cg, left, top);
                     }
                 }
@@ -130,8 +94,17 @@ namespace Ccao_big_homework_core_wpf
                     return this;
                 }
             }
+            if (compositegraphic.isEmpty()) return null;
             this.Add(compositegraphic);
             return compositegraphic;
+        }
+        public CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
+        {
+            return DisposeNullComposite(SelectRect(new Rect(p1, p2), left, top));
+        }
+        public bool isEmpty()
+        {
+            return (_list.Count == 0) ? true : false;
         }
         /// <summary>
         /// 将一个compositegraphic的内容merge到本对象中
@@ -139,9 +112,10 @@ namespace Ccao_big_homework_core_wpf
         public void MergeComposite(CompositeGraphic cg, double left = 0.0f, double top = 0.0f)
         {
             List<_graphicpos> lgp = cg.getGraphicPosList();
-            for (int i = 0; i < lgp.Count; i++)
+            List<_graphicpos> l = new List<_graphicpos>(lgp);
+            for (int i = 0; i < l.Count; i++)
             {
-                _graphicpos gp = lgp[i];
+                _graphicpos gp = l[i];
                 this.Add(gp.g, left + gp.left, top + gp.top);
             }
             cg.Dispose();
@@ -168,6 +142,10 @@ namespace Ccao_big_homework_core_wpf
                 MyGraphic g = gp.g.Clone();
                 cg.Add(g, gp.left, gp.top);
             }
+            cg.Width = this.Width;
+            cg.Height = this.Height;
+            cg.isCombined = this.isCombined;
+            cg.isTemporary = this.isTemporary;
             return cg;
         }
 

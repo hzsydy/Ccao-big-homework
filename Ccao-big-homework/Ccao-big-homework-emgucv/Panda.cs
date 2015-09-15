@@ -6,18 +6,19 @@ using System;
 using System.Collections.Generic;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
 
 namespace Ccao_big_homework_emgucv
 {
     public class Panda
     {
-        private string haarXmlPath = @"haarcascade_frontalface_alt_tree.xml";
+        private string haarXmlPath = "D:\\learn\\Git\\Ccao-big-homework\\Ccao-big-homework\\Ccao-big-homework-emgucv\\haarcascade_frontalface_alt_tree.xml";
         private HaarCascade haar;
 
         /// <summary>
         /// 初始化一个HaarCascade
         /// </summary>
-        private void initiateHaar(string fileName)
+        private void initHaar(string fileName)
         {
             if (haar != null) return;
             haar = new HaarCascade(fileName);
@@ -47,10 +48,20 @@ namespace Ccao_big_homework_emgucv
             return l;
         }
 
-        public static IImage getPanda(Image<Bgr, Byte> i)
+        public Image<Bgr, Byte> getPanda(Image<Bgr, Byte> i, Image<Bgr, Byte> panda,
+            int left, int top, int width, int height)
         {
-            Image<Gray, Byte> grey_img = i.Convert<Gray, Byte>();
-            return grey_img;
+            if (panda == null || i == null) return null;
+            initHaar(haarXmlPath);
+            List<Image<Bgr, byte>> l = markFaces(i, haar);
+            if (l.Count == 0) return null;
+            Image<Bgr, Byte> originface = l[0];
+            Emgu.CV.Image<Bgr, byte> face = originface.Resize(width, height, INTER.CV_INTER_CUBIC);  
+            Image<Bgr, Byte> final = panda.Copy();
+            final.ROI = new System.Drawing.Rectangle(left, top, width, height);
+            final.Add(face, face.Convert<Gray, Byte>());
+            final.ROI = System.Drawing.Rectangle.Empty;
+            return final;
         }
     }
 }

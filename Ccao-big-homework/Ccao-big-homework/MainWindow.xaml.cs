@@ -18,7 +18,7 @@ using System.Windows.Threading;
 namespace Ccao_big_homework
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// 启动窗口
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -50,7 +50,6 @@ namespace Ccao_big_homework
             this.Close();
             
         }
-
         //新建绘图按钮
         private void NewWindow(object sender, RoutedEventArgs e)
         {
@@ -72,6 +71,7 @@ namespace Ccao_big_homework
         private void timer_Tick(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
+            Environment.Exit(0);
         }
 
         //关闭窗口时,若是彻底退出,则通过计时器载入淡出动画

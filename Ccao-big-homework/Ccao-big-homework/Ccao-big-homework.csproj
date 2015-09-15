@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>1.ico</ApplicationIcon>
+    <ApplicationIcon>resources\ColorWheel.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
@@ -60,17 +60,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FishEyePanel.cs" />
+    <Compile Include="WorkWindow\BtnEvent.cs" />
+    <Compile Include="WorkWindow\FileEvent.cs" />
+    <Compile Include="WorkWindow\FishEyePanel.cs" />
     <Compile Include="StyleSettingWindow.xaml.cs">
       <DependentUpon>StyleSettingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="WorkWindow.xaml.cs">
       <DependentUpon>WorkWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WorkWindow_Exit.cs" />
-    <Compile Include="WorkWindow_Load.cs" />
-    <Compile Include="WorkWindow_New.cs" />
-    <Compile Include="WorkWindow_Save.cs" />
+    <Compile Include="WorkWindow\GraphicsOperation.cs" />
+    <Compile Include="WorkWindow\KeyBoard.cs" />
+    <Compile Include="WorkWindow\MouseEvent.cs" />
+    <Compile Include="WorkWindow\Paint.cs" />
+    <Compile Include="WorkWindow\Panda.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +118,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -129,22 +133,40 @@
       <Project>{6994d3cb-ff8e-4069-ad8a-2935d487a8ff}</Project>
       <Name>Ccao-big-homework-core-wpf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ccao-big-homework-emgucv\Ccao-big-homework-core-emgucv.csproj">
+      <Project>{e8e3bad4-1257-4e0e-8eb0-a3817a01c9b7}</Project>
+      <Name>Ccao-big-homework-core-emgucv</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ColorPicker\ColorPicker.csproj">
       <Project>{827f8c33-8118-48c7-ab3c-4864298396ad}</Project>
       <Name>ColorPicker</Name>
     </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9a1a77fe-f01b-495e-87b7-4b16e4f8c908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7c2c5325-8235-4a24-9c67-6bd79a4679e2}</Project>
+      <Name>Emgu.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\1.jpg" />
+    <Resource Include="resources\ColorWheel.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="resources\1.png" />
+    <Resource Include="resources\ColorWheel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="1.ico" />
+    <Resource Include="resources\ColorWheel.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\Palette.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\panda.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\panda.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

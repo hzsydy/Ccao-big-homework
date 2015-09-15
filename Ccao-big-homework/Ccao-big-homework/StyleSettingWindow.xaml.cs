@@ -5,7 +5,7 @@ using System.Windows.Media;
 namespace Ccao_big_homework
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// 颜色拾取器窗口
     /// </summary>
     public partial class StyleSettingWindow : Window
     {
@@ -25,6 +25,19 @@ namespace Ccao_big_homework
             WorkWindow.color = ColorPicker.SelectedColor;
             WorkWindow.brush = new SolidColorBrush(WorkWindow.color);
             WorkWindow.pen = new Pen(WorkWindow.brush, 2.0f);
+            Close();
+        }
+
+        private void Border_Changed(object sender, RoutedEventArgs e)
+        {
+            WorkWindow.color = ColorPicker.SelectedColor;
+            WorkWindow.pen = new Pen(new SolidColorBrush(WorkWindow.color), 2.0f);
+            Close();
+        }
+        private void Fill_Changed(object sender, RoutedEventArgs e)
+        {
+            WorkWindow.color = ColorPicker.SelectedColor;
+            WorkWindow.brush = new SolidColorBrush(WorkWindow.color);
             Close();
         }
 
