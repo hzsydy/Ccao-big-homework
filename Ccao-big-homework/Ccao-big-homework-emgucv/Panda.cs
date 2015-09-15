@@ -12,7 +12,7 @@ namespace Ccao_big_homework_emgucv
 {
     public class Panda
     {
-        private string haarXmlPath = @"haarcascade_frontalface_alt_tree.xml";
+        private string haarXmlPath = "D:\\learn\\Git\\Ccao-big-homework\\Ccao-big-homework\\Ccao-big-homework-emgucv\\haarcascade_frontalface_alt_tree.xml";
         private HaarCascade haar;
 
         /// <summary>

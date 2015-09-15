@@ -133,9 +133,21 @@
       <Project>{6994d3cb-ff8e-4069-ad8a-2935d487a8ff}</Project>
       <Name>Ccao-big-homework-core-wpf</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ccao-big-homework-emgucv\Ccao-big-homework-core-emgucv.csproj">
+      <Project>{e8e3bad4-1257-4e0e-8eb0-a3817a01c9b7}</Project>
+      <Name>Ccao-big-homework-core-emgucv</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ColorPicker\ColorPicker.csproj">
       <Project>{827f8c33-8118-48c7-ab3c-4864298396ad}</Project>
       <Name>ColorPicker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9a1a77fe-f01b-495e-87b7-4b16e4f8c908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7c2c5325-8235-4a24-9c67-6bd79a4679e2}</Project>
+      <Name>Emgu.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="resources\Palette.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resources\panda.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="image\panda.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
