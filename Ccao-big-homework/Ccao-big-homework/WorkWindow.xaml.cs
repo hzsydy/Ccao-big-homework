@@ -19,9 +19,9 @@ namespace Ccao_big_homework
     public partial class WorkWindow :Window
     {
         #region 基础变量和构造函数
-        public static Color color = Color.FromArgb(255, 0, 0, 0);
+        public static Color color = Color.FromArgb(255, 100, 20, 255);
         public static Brush brush = new SolidColorBrush(color);
-        public static Pen pen = new Pen(brush, 2.0f);
+        public static Pen pen = new Pen(new SolidColorBrush(Color.FromArgb(255,0,0,0)), 2.0f);
         private double timeOfAnimation = 0.6;
         private CompositeGraphic compositeGraphic = new CompositeGraphic();
         private DrawingUIElement du = new DrawingUIElement();
