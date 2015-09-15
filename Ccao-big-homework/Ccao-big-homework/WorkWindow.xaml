@@ -49,7 +49,7 @@
         <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,98" Grid.RowSpan="2" Name="left">
             <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
                 <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-18,-10,-6,-40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="400" Width="84" >
-                    <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
+                    <RadioButton TabIndex="0"  x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
                         <Polygon Points="17.6 2.4,20.8 2.4,20.8 24,33.6 20,19.2 38.4,4.8 20,17.6 24" Fill="White">
                             <Polygon.RenderTransform>
                                 <RotateTransform CenterX="20" CenterY="20" Angle="225"/>
@@ -57,25 +57,25 @@
                         </Polygon>
                     </RadioButton>
 
-                    <RadioButton x:Name="rbLine" IsChecked="False" ToolTip="直线" Height="40" Width="40" >
+                    <RadioButton TabIndex="1"  x:Name="rbLine" IsChecked="False" ToolTip="直线" Height="40" Width="40" >
                         <Grid>
                             <Line X1="2" Y1="2" X2="38" Y2="38" StrokeThickness="4" Fill="White" Stroke="White"/>
                         </Grid>
                     </RadioButton>
 
-                    <RadioButton x:Name="rbSquare" ToolTip="正方形" Height="42">
+                    <RadioButton TabIndex="2"  x:Name="rbSquare" ToolTip="正方形" Height="42">
                         <Rectangle Width="38" Height="38" Fill="White"/>
                     </RadioButton>
-                    <RadioButton x:Name="rbRectangle" IsChecked="False" ToolTip="长方形" Height="42">
+                    <RadioButton TabIndex="3"  x:Name="rbRectangle" IsChecked="False" ToolTip="长方形" Height="42">
                         <Rectangle Width="40" Height="20" Fill="White"/>
                     </RadioButton>
-                    <RadioButton x:Name="rbCircle" IsChecked="False" ToolTip="圆形" Height="42">
+                    <RadioButton  TabIndex="4" x:Name="rbCircle" IsChecked="False" ToolTip="圆形" Height="42">
                         <Ellipse Width="36" Height="36" Fill="White"/>
                     </RadioButton>
-                    <RadioButton x:Name="rbEllipse" IsChecked="False" ToolTip="椭圆" Height="42">
+                    <RadioButton TabIndex="5"  x:Name="rbEllipse" IsChecked="False" ToolTip="椭圆" Height="42">
                         <Ellipse Width="40" Height="25" Fill="White"/>
                     </RadioButton>
-                    <RadioButton x:Name="rbRoundedRectangle" IsChecked="False" ToolTip="圆角矩形" Height="42">
+                    <RadioButton TabIndex="6"  x:Name="rbRoundedRectangle" IsChecked="False" ToolTip="圆角矩形" Height="42">
                         <Path Fill="White">
                             <Path.Data>
                                 <CombinedGeometry>
