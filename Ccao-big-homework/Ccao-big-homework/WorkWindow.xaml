@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <!--上部菜单栏-->
-        <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,13" Height="85" Width="770" Grid.ColumnSpan="2">
+        <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,13" Height="85" Width="770" Grid.ColumnSpan="2" Name="top">
             <src:FishEyePanel x:Name="fishButtons">
                 <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建(Ctrl+N)" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存(Ctrl+S)" Click="btnSave_Click" HorizontalAlignment="Center"/>
@@ -46,7 +46,7 @@
         </Border>
 
         <!--左侧工具栏-->
-        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,98" Grid.RowSpan="2">
+        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,98" Grid.RowSpan="2" Name="left">
             <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
                 <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-18,-10,-6,-40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="400" Width="84" >
                     <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
