@@ -22,6 +22,7 @@ namespace Ccao_big_homework
         public static Color color = Color.FromArgb(255, 0, 0, 0);
         public static Brush brush = new SolidColorBrush(color);
         public static Pen pen = new Pen(brush, 2.0f);
+        private double timeOfAnimation = 0.6;
         private CompositeGraphic compositeGraphic = new CompositeGraphic();
         private DrawingUIElement du = new DrawingUIElement();
         private DispatcherTimer timer1 = new DispatcherTimer();
@@ -36,7 +37,7 @@ namespace Ccao_big_homework
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Opacity = 0;
-            DoubleAnimation OpercityAnimation = new DoubleAnimation(0.01, 1.00, new Duration(TimeSpan.FromSeconds(0.2)));
+            DoubleAnimation OpercityAnimation = new DoubleAnimation(0.01, 1.00, new Duration(TimeSpan.FromSeconds(0.4)));
             this.BeginAnimation(Window.OpacityProperty, OpercityAnimation);
             compositeGraphic.Width = canvas1.Width;
             compositeGraphic.Height = canvas1.Height;
@@ -45,19 +46,19 @@ namespace Ccao_big_homework
             ThicknessAnimation ta1 = new ThicknessAnimation();
             ta1.From = new Thickness(15, -100, 15, 139);
             ta1.To = new Thickness(15, 26, 15, 13);
-            ta1.Duration = TimeSpan.FromSeconds(0.3);
+            ta1.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta1.DecelerationRatio = 1;
             top.BeginAnimation(Border.MarginProperty, ta1);
             ThicknessAnimation ta2 = new ThicknessAnimation();
             ta2.From = new Thickness(-100, 10, 159, 98);
             ta2.To = new Thickness(20, 10, 39, 98);
-            ta2.Duration = TimeSpan.FromSeconds(0.3);
+            ta2.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta2.DecelerationRatio = 1;
             left.BeginAnimation(Border.MarginProperty, ta2);
             ThicknessAnimation ta3 = new ThicknessAnimation();
             ta3.From = new Thickness(-100, 44, 136, 0);
             ta3.To = new Thickness(36, 44, 0, 0);
-            ta3.Duration = TimeSpan.FromSeconds(0.3);
+            ta3.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta3.DecelerationRatio = 1;
             StartPanda.BeginAnimation(Border.MarginProperty, ta3);
         }
