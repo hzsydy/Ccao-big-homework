@@ -71,6 +71,7 @@ namespace Ccao_big_homework
         private void timer_Tick(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
+            Environment.Exit(0);
         }
 
         //关闭窗口时,若是彻底退出,则通过计时器载入淡出动画

@@ -45,7 +45,6 @@ namespace Ccao_big_homework
                     cg.isVisible = true;
                     clonedGraphics.Add((CompositeGraphic)cg.Clone());
                 }
-                selectedGraphics.Clear();
             }
         }
         //粘贴
@@ -53,15 +52,25 @@ namespace Ccao_big_homework
         {
             if (clonedGraphics != null)
             {
-                foreach (CompositeGraphic cg in clonedGraphics)
+                if (selectedGraphics != null)
                 {
-                    compositeGraphic.Add(cg, 10, 10);
-                    if (cg != null)
-                        selectedGraphics.Add(cg);
+                    foreach(CompositeGraphic cg in selectedGraphics)
+                    {
+                        cg.isVisible = true;
+                    }
+                    selectedGraphics.Clear();
+                }
+                foreach (CompositeGraphic cg in clonedGraphics)
+                if (cg != null)
+                {
+                    compositeGraphic.Add(cg);
+                    cg.Move(10, 10);
+                    selectedGraphics.Add(cg);
                 }
                 clonedGraphics.Clear();
                 rbSelect.IsChecked = true;
                 du_refresh();
+                Copy();
             }
         }
         //删除
