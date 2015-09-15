@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <!--上部菜单栏-->
-        <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,26,10,13" Height="85" Width="770" Grid.ColumnSpan="2" Name="top">
+        <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="15,26,15,13" Height="85" Width="770" Grid.ColumnSpan="2" Name="top">
             <src:FishEyePanel x:Name="fishButtons">
                 <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建(Ctrl+N)" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存(Ctrl+S)" Click="btnSave_Click" HorizontalAlignment="Center"/>
@@ -35,7 +35,7 @@
                 <Button x:Name="btnPaste" Margin="5,5,5,5"  Width="48" Height="48" Content="¤" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="粘贴(Ctrl+V)" Click="btnPaste_Click"/>
                 <Button x:Name="btnDelete" Margin="5,5,5,5"  Width="48" Height="48" Content="x" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="删除(Del)" Click="btnDelete_Click"/>
                 <Button x:Name="btnStylusSetting" Margin="5,5,5,5" Width="48" Height="48" Content="@" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="样式选择" Click="btnStylusSettings_Click"/>
-                <Button x:Name="btnExit" Margin="5,5,5,5" Width="48" Height="48" Content="r" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="退出" Click="btnExit_Click"/>
+                <Button x:Name="btnExit" Margin="5,5,5,5" Width="48" Height="48" Content="r" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="退出(Ctrl+W)" Click="btnExit_Click"/>
 
             </src:FishEyePanel>
         </Border>
@@ -112,7 +112,7 @@
                 </ToolBar>
             </ToolBarTray>
         </Border>
-        <Button Height="54" HorizontalAlignment="Left" Margin="36,44,0,0" Name="StartPanda" VerticalAlignment="Top" Width="56" Background="#FF131313" FontSize="20" Grid.Row="2" Foreground="Black" Click="Panda">
+        <Button Height="54" HorizontalAlignment="Left" Margin="36,44,0,0" Name="StartPanda" VerticalAlignment="Top" Width="56" Background="#FF131313" FontSize="20" Grid.Row="2" Foreground="Black" Click="Panda" ToolTip="一键制作表情包！">
             <Path  Fill="White">
                 <Path.Data>
                     <CombinedGeometry>
