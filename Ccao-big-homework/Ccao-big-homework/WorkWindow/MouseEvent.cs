@@ -127,6 +127,7 @@ namespace Ccao_big_homework
                     selectedGraphics.Add(mg);
                 canvas1.ReleaseMouseCapture();
                 isDown = false;
+                rbSelect.IsChecked = true;
                 e.Handled = true;
                 return;
             }
