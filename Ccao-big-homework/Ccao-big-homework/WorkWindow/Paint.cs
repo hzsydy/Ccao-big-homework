@@ -47,7 +47,7 @@ namespace Ccao_big_homework
         {
             MyRectangle mr = new MyRectangle();
             mr.Width = Math.Abs(pt1.X - pt2.X);
-            mr.Height = Math.Abs(pt1.Y - pt2.Y);
+            mr.Height = Math.Abs(pt1.Y - pt2.Y);    
             mr.drawmode = new GeometryMode(brush, pen);
             compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
@@ -84,8 +84,8 @@ namespace Ccao_big_homework
             mr.Width = Math.Abs(pt1.X - pt2.X);
             mr.Height = Math.Abs(pt1.Y - pt2.Y);
             mr.drawmode = new GeometryMode(brush, pen);
-            mr.RadiusX = mr.Width / 10;
-            mr.RadiusY = mr.Height / 10;
+            mr.RadiusX = Math.Min(mr.Width, mr.Height) / 8;
+            mr.RadiusY = mr.RadiusX;
             compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();

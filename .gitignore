@@ -17,6 +17,7 @@
 *.lastbuildstate
 *.obj
 *.idb
+*.dll
 *.suo
 *.ilk
 *.exe
@@ -32,3 +33,5 @@ Ccao*.dll
 *codeanalysis*.*
 *.dll
 *.cd
+*.dll
+*.dll
