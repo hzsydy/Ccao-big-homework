@@ -145,7 +145,7 @@ namespace Ccao_big_homework
                 AddRoundedRectangle(startPoint, currentPoint);
             else if (rbBezier.IsChecked == true)
             {
-                if (numOfPointInBezier < 2)
+                if (numOfPointInBezier < 3)
                 {
                     Beizer[numOfPointInBezier].X = currentPoint.X;
                     Beizer[numOfPointInBezier].Y = currentPoint.Y;
@@ -155,7 +155,7 @@ namespace Ccao_big_homework
                 {
                     Beizer[numOfPointInBezier].X = currentPoint.X;
                     Beizer[numOfPointInBezier].Y = currentPoint.Y;
-                    AddBezier(Beizer[0], Beizer[1], Beizer[2]);
+                    AddBezier(Beizer[1], Beizer[2], Beizer[3],Beizer[0]);
                     numOfPointInBezier = 0;
                 }
             }
