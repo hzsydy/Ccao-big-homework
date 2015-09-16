@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using Emgu.CV;
 using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
 
 namespace Ccao_big_homework_emgucv
 {
     public class Panda
     {
-        private string haarXmlPath = @"haarcascade_frontalface_alt_tree.xml";
+        private string haarXmlPath = "C:\\git_ssh\\Ccao-big-homework\\Ccao-big-homework-emgucv\\haarcascade_frontalface_alt_tree.xml";
         private HaarCascade haar;
 
         /// <summary>
@@ -48,14 +49,18 @@ namespace Ccao_big_homework_emgucv
         }
 
         public Image<Bgr, Byte> getPanda(Image<Bgr, Byte> i, Image<Bgr, Byte> panda,
-            double left, double top, double width, double height)
+            int left, int top, int width, int height)
         {
             if (panda == null || i == null) return null;
             initHaar(haarXmlPath);
             List<Image<Bgr, byte>> l = markFaces(i, haar);
             if (l.Count == 0) return null;
-            Image<Bgr, Byte> face = l[0];
-            Image<Bgr, Byte> final = face;
+            Image<Bgr, Byte> originface = l[0];
+            Emgu.CV.Image<Bgr, byte> face = originface.Resize(width, height, INTER.CV_INTER_CUBIC);  
+            Image<Bgr, Byte> final = panda.Copy();
+            final.ROI = new System.Drawing.Rectangle(left, top, width, height);
+            final.Add(face, face.Convert<Gray, Byte>());
+            final.ROI = System.Drawing.Rectangle.Empty;
             return final;
         }
     }

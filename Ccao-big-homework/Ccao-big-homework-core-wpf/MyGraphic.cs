@@ -47,13 +47,16 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public static double SelectError { get; set; }
         /// <summary>
-        /// 返回找到的第一个被这个点选中的graphic所组成的compositegraphic
+        /// 给定一个点，返回这个点附近图形所成的Composite或者null（如果为空）
         /// </summary>
         public CompositeGraphic SelectPoint(Point p, double left = 0.0f, double top = 0.0f)
         {
             Rect r = new Rect(p, _addpoint(new Point(SelectError, SelectError), p));
             return DisposeNullComposite(SelectRect(r, left, top));
         }
+        /// <summary>
+        /// 将没有内容的cg转化为null
+        /// </summary>
         protected CompositeGraphic DisposeNullComposite(CompositeGraphic cg)
         {
             if (cg == null)
@@ -69,7 +72,7 @@ namespace Ccao_big_homework_core_wpf
             return cg;
         }
         /// <summary>
-        /// 返回这两个点组成矩形内的所有mygraphic的list
+        /// 给定矩形，返回其中图形所成的Composite或者null（如果为空）
         /// </summary>
         public abstract CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f);
         /// <summary>

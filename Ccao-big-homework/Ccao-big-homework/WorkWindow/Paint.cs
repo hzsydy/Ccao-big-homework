@@ -65,7 +65,8 @@ namespace Ccao_big_homework
             compositeGraphic.Add(mr, Math.Min(pt1.X, pt2.X), Math.Min(pt1.Y, pt2.Y));
             du_refresh();
             canvas1.ReleaseMouseCapture();
-        }//画椭圆
+        }
+        //画椭圆
         private void AddEllipse(Point pt1, Point pt2)
         {
             MyEllipse mr = new MyEllipse();

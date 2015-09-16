@@ -6,8 +6,12 @@ using System.Windows.Media;
 
 namespace Ccao_big_homework_core_wpf.BasicGraphics
 {
+    /// <summary>
+    /// 直线
+    /// </summary>
     public sealed class MyLine : SingleModeGraphic
     {
+        //直线的两个点的坐标。
         public double Left1 { get; set; }
         public double Top1 { get; set; }
         public double Left2 { get; set; }
