@@ -5,10 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework", "Ccao-b
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework-core-wpf", "Ccao-big-homework-core-wpf\Ccao-big-homework-core-wpf.csproj", "{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emgu.CV", "emgucv\Emgu.CV\Emgu.CV.csproj", "{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emgu.Util", "emgucv\Emgu.Util\Emgu.Util.csproj", "{7C2C5325-8235-4A24-9C67-6BD79A4679E2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccao-big-homework-core-emgucv", "Ccao-big-homework-emgucv\Ccao-big-homework-core-emgucv.csproj", "{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorPicker", "ColorPicker\ColorPicker.csproj", "{827F8C33-8118-48C7-AB3C-4864298396AD}"
@@ -27,14 +23,6 @@ Global
 		{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6994D3CB-FF8E-4069-AD8A-2935D487A8FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A1A77FE-F01B-495E-87B7-4B16E4F8C908}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7C2C5325-8235-4A24-9C67-6BD79A4679E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8E3BAD4-1257-4E0E-8EB0-A3817A01C9B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
