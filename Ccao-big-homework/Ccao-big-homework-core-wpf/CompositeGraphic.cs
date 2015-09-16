@@ -67,7 +67,9 @@ namespace Ccao_big_homework_core_wpf
         /// 不然被视为（对用户）透明的存在
         /// </summary>
         public bool isCombined { get; set; }
-
+        /// <summary>
+        /// 这个bool成员用来指示这个Composite是不是临时的，对于用户没有什么重要作用。
+        /// </summary>
         public bool isTemporary { get; set; }
 
         public override CompositeGraphic SelectRect(Rect r, double left = 0.0f, double top = 0.0f)
@@ -98,10 +100,16 @@ namespace Ccao_big_homework_core_wpf
             this.Add(compositegraphic);
             return compositegraphic;
         }
+        /// <summary>
+        /// 给定两个点，返回其中图形所成的Composite或者null（如果为空）
+        /// </summary>
         public CompositeGraphic SelectRect(Point p1, Point p2, double left = 0.0f, double top = 0.0f)
         {
             return DisposeNullComposite(SelectRect(new Rect(p1, p2), left, top));
         }
+        /// <summary>
+        /// 判定是否为空
+        /// </summary>
         public bool isEmpty()
         {
             return (_list.Count == 0) ? true : false;

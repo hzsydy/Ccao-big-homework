@@ -30,7 +30,13 @@ namespace Ccao_big_homework_core_wpf.Draw_Mode
         }
         public GeometryMode() 
             : this(defaultConstant.defaultbrush, defaultConstant.defaultpen) { }
+        /// <summary>
+        /// 绘制图形内部颜色用的刷子
+        /// </summary>
         public Brush brush { get; set; }
+        /// <summary>
+        /// 绘制图形边框用的画笔
+        /// </summary>
         public Pen pen { get; set; }
         public override Drawing draw(Geometry g)
         {
