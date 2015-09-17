@@ -91,9 +91,9 @@ namespace Ccao_big_homework
             canvas1.ReleaseMouseCapture();
         }
         //画贝塞尔曲线
-        private void AddBezier(Point pt1, Point pt2, Point pt3)
+        private void AddBezier(Point pt1, Point pt2, Point pt3, Point pt0)
         {
-            MyBezier mb = new MyBezier(pt1, pt2, pt3);
+            MyBezier mb = new MyBezier(pt1, pt2, pt3, pt0);
             mb.drawmode = new GeometryMode(new SolidColorBrush(Color.FromArgb(0, 0, 0, 0)), pen);
             compositeGraphic.Add(mb);
             du_refresh();
