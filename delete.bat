@@ -29,5 +29,5 @@ del /s /f /q Ccao*.dll
 del /s /f /q *.lref
 del /s /f /q *CodeAnalysis*.*
 del /s /f /q *codeanalysis*.*
-
+del /s /f /q ColorPicker.dll
 pause
