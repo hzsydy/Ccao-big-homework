@@ -15,7 +15,7 @@ namespace Ccao_big_homework
     {
         #region 变量定义
         private Point startPoint = new Point();
-        private Point[] Beizer = new Point [3];
+        private Point[] Beizer = new Point [4];
         private int numOfPointInBezier = 0;
         private Shape rubberBand = null;
         Point currentPoint = new Point();
