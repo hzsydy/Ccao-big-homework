@@ -17,7 +17,6 @@
 *.lastbuildstate
 *.obj
 *.idb
-*.dll
 *.suo
 *.ilk
 *.exe
