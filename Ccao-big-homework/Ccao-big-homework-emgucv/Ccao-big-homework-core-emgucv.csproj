@@ -30,14 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV, Version=2.4.9.1847, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\emgucv\bin\Emgu.CV.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.Util, Version=2.4.9.1847, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\emgucv\bin\Emgu.Util.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -56,6 +48,16 @@
   <ItemGroup>
     <Content Include="haarcascade_eye.xml" />
     <Content Include="haarcascade_frontalface_alt_tree.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\emgucv\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9a1a77fe-f01b-495e-87b7-4b16e4f8c908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7c2c5325-8235-4a24-9c67-6bd79a4679e2}</Project>
+      <Name>Emgu.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

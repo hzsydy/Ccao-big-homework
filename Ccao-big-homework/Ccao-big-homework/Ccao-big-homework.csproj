@@ -40,25 +40,14 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Emgu.CV, Version=2.4.9.1847, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\emgucv\bin\Emgu.CV.dll</HintPath>
-    </Reference>
-    <Reference Include="Emgu.Util, Version=2.4.9.1847, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\emgucv\bin\Emgu.Util.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.XML" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -146,6 +135,14 @@
     <ProjectReference Include="..\ColorPicker\ColorPicker.csproj">
       <Project>{827f8c33-8118-48c7-ab3c-4864298396ad}</Project>
       <Name>ColorPicker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.CV\Emgu.CV.csproj">
+      <Project>{9a1a77fe-f01b-495e-87b7-4b16e4f8c908}</Project>
+      <Name>Emgu.CV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\emgucv\Emgu.Util\Emgu.Util.csproj">
+      <Project>{7c2c5325-8235-4a24-9c67-6bd79a4679e2}</Project>
+      <Name>Emgu.Util</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
