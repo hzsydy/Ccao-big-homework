@@ -3,6 +3,7 @@
 //参考了官方文档http://www.emgu.com/wiki/index.php/WPF_in_CSharp
 
 using Emgu.CV;
+using Emgu.Util;
 using Emgu.CV.Structure;
 using System.Runtime.InteropServices;
 using System;

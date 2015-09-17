@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using Emgu.CV;
+using Emgu.Util;
 using Emgu.CV.Structure;
 using Emgu.CV.CvEnum;
 
