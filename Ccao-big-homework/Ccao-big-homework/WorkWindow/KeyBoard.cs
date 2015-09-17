@@ -9,6 +9,7 @@ namespace Ccao_big_homework
     /// </summary>
     public partial class WorkWindow : Window
     {
+        private bool shiftIsDown = false;
         private void KeyPress(object sender, KeyEventArgs e)
         {
             if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control && e.Key == Key.A) SelectAll();
@@ -52,6 +53,16 @@ namespace Ccao_big_homework
                 }
                 du_refresh();
             }
+            else if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
+            {
+                shiftIsDown = true;
+            }
+        }
+
+        private void KeyRelease(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers & ModifierKeys.Shift) == 0)
+                shiftIsDown = false;
         }
     }
 }
