@@ -125,7 +125,8 @@ namespace Ccao_big_homework
                 }
                 CompositeGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
                 if (mg != null)
-                    selectedGraphics.Add(mg);
+                    if (selectedGraphics.Contains(mg) == false)
+                        selectedGraphics.Add(mg);
                 canvas1.ReleaseMouseCapture();
                 isDown = false;
                 rbSelect.IsChecked = true;
@@ -210,9 +211,12 @@ namespace Ccao_big_homework
                     CompositeGraphic mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
                     if (mg != null)
                     {
-                        selectedGraphics.Add(mg);
-                        canvas1.ReleaseMouseCapture();
-                        e.Handled = true;
+                        if (selectedGraphics.Contains(mg) == false)
+                        {
+                            selectedGraphics.Add(mg);
+                            canvas1.ReleaseMouseCapture();
+                            e.Handled = true;
+                        }
                     }
                     canvas1.ReleaseMouseCapture();
                     isDragging = false;
