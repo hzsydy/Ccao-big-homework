@@ -55,7 +55,7 @@ namespace Ccao_big_homework
             }
 
             
-            Uri uri233=new Uri("D:\\learn\\Git\\Ccao-big-homework\\Ccao-big-homework\\Ccao-big-homework\\image\\panda.jpg");
+            Uri uri233=new Uri("C:\\git_ssh\\Ccao-big-homework\\Ccao-big-homework\\image\\panda.jpg");
             BitmapImage pd = new BitmapImage(uri233);
             System.Windows.Controls.Image img = new System.Windows.Controls.Image();
             img.Source = pd;
