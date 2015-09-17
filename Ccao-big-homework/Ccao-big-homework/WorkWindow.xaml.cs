@@ -22,6 +22,7 @@ namespace Ccao_big_homework
         public static Color color = Color.FromArgb(255, 100, 20, 255);
         public static Brush brush = new SolidColorBrush(color);
         public static Pen pen = new Pen(new SolidColorBrush(Color.FromArgb(255,0,0,0)), 2.0f);
+        private bool isVisible = true;
         private double timeOfAnimation = 0.6;
         private CompositeGraphic compositeGraphic = new CompositeGraphic();
         private DrawingUIElement du = new DrawingUIElement();
@@ -33,7 +34,7 @@ namespace Ccao_big_homework
         #endregion
 
         #region 动画相关
-        //淡入效果
+        //淡入效果和菜单进入效果
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.Opacity = 0;
@@ -71,9 +72,10 @@ namespace Ccao_big_homework
         //计时器,选中的图形闪烁
         private void timer1_Tick(object sender, EventArgs e)
         {
+            isVisible = !isVisible;
             foreach (MyGraphic mg in selectedGraphics)
             {
-                mg.isVisible = !mg.isVisible;
+                mg.isVisible = isVisible;
             }
             du_refresh();
         }
@@ -95,5 +97,6 @@ namespace Ccao_big_homework
             mainPanelBorder.Margin = new Thickness(0);
         }
         #endregion
+
     }
 }
