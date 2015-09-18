@@ -3,6 +3,7 @@
 //参考了官方文档http://www.emgu.com/wiki/index.php/WPF_in_CSharp
 
 using Emgu.CV;
+using Emgu.Util;
 using Emgu.CV.Structure;
 using System.Runtime.InteropServices;
 using System;
@@ -35,6 +36,7 @@ namespace Ccao_big_homework_emgucv
         /// <returns>The equivalent BitmapSource</returns>
         public static BitmapSource Image2BitmapSource(IImage image)
         {
+            if (image == null) return null;
             using (System.Drawing.Bitmap source = image.Bitmap)
             {
                 IntPtr ptr = source.GetHbitmap(); //obtain the Hbitmap
@@ -52,6 +54,7 @@ namespace Ccao_big_homework_emgucv
 
         public static Image<Bgr, Byte> BitmapSource2Image(BitmapSource bitmapsource)
         {
+            if (bitmapsource == null) return null;
             System.Drawing.Bitmap bitmap;
             MemoryStream outStream = new MemoryStream();
             BitmapEncoder be = new BmpBitmapEncoder();

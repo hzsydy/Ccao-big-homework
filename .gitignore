@@ -17,7 +17,6 @@
 *.lastbuildstate
 *.obj
 *.idb
-*.dll
 *.suo
 *.ilk
 *.exe
@@ -31,10 +30,4 @@ Ccao*.dll
 *.lref
 *CodeAnalysis*.*
 *codeanalysis*.*
-*.dll
 *.cd
-*.dll
-*.dll
-*.dll
-*.dll
-Ccao-big-homework/Ccao-big-homework/bin/Debug/ColorPicker.dll

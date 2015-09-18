@@ -13,11 +13,15 @@ using System.Windows.Media;
 
 namespace Ccao_big_homework
 {
+    /// <summary>
+    /// 本来这个函数是为了调用EmguCV的人脸识别一键制作表情包的，但由于总是出现灵异错误，至今未解决，所以注释掉了。
+    /// </summary>
     public partial class WorkWindow : Window
     {
         private void Panda(object sender, RoutedEventArgs e)
         {
-            BitmapImage face = new BitmapImage();
+            
+            /*BitmapImage face = new BitmapImage();
             canvas1.Children.Clear();
             canvas1.InvalidateVisual();
             du = new DrawingUIElement();
@@ -76,7 +80,7 @@ namespace Ccao_big_homework
                 );
             img.Source = bs;
             img.InvalidateVisual();
-
+            */
         }
     }
 }

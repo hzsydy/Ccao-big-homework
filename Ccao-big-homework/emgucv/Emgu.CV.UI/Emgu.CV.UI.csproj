@@ -65,24 +65,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZedGraph, Version=5.1.4.31904, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\3rdParty\ZedGraph.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HistogramBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="HistogramBox.designer.cs">
-      <DependentUpon>HistogramBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HistogramViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HistogramViewer.designer.cs">
-      <DependentUpon>HistogramViewer.cs</DependentUpon>
-    </Compile>
     <Compile Include="ImageBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -159,18 +143,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="HistogramBox.resx">
-      <DependentUpon>HistogramBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HistogramViewer.resx">
-      <DependentUpon>HistogramViewer.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HistogramViewer.zh-CN.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>HistogramViewer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ImageBox.resx">
       <DependentUpon>ImageBox.cs</DependentUpon>
       <SubType>Designer</SubType>
