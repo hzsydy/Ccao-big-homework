@@ -51,7 +51,7 @@ namespace Ccao_big_homework
         {
             if (canvas1.IsMouseCaptured)
             {
-                if (rbLine.IsChecked == true || (rbSelect.IsChecked == true && selectedGraphics.Count > 0))
+                if (rbLine.IsChecked == true || (rbSelect.IsChecked == true && selectedGraphics.Count > 0 && shiftIsDown == false))
                 {
                     if (line == null)
                     {
@@ -78,6 +78,7 @@ namespace Ccao_big_homework
                     rbCircle.IsChecked == true ||
                     rbEllipse.IsChecked == true ||
                     (rbSelect.IsChecked == true && selectedGraphics.Count == 0) ||
+                    (rbSelect.IsChecked == true && selectedGraphics.Count > 0 &&shiftIsDown == true) ||
                     rbRoundedRectangle.IsChecked == true)
                     {
                         canvas1.Children.Add(rubberBand);
@@ -113,7 +114,7 @@ namespace Ccao_big_homework
             currentPoint = e.GetPosition(canvas1);
             if (isDown && startPoint == currentPoint && rbBezier.IsChecked == false)
             {
-                if (selectedGraphics != null)
+                if (selectedGraphics != null && shiftIsDown == false)
                 {
                     foreach (CompositeGraphic mgg in selectedGraphics)
                     {
@@ -124,7 +125,8 @@ namespace Ccao_big_homework
                 }
                 CompositeGraphic mg = compositeGraphic.SelectPoint(e.GetPosition(canvas1));
                 if (mg != null)
-                    selectedGraphics.Add(mg);
+                    if (selectedGraphics.Contains(mg) == false)
+                        selectedGraphics.Add(mg);
                 canvas1.ReleaseMouseCapture();
                 isDown = false;
                 rbSelect.IsChecked = true;
@@ -169,7 +171,7 @@ namespace Ccao_big_homework
             {
                 if (isDown && startPoint == currentPoint)
                 {
-                    if (selectedGraphics != null)
+                    if (selectedGraphics != null && shiftIsDown == false)
                     {
                         foreach (CompositeGraphic mgg in selectedGraphics)
                         {
@@ -185,21 +187,7 @@ namespace Ccao_big_homework
                     isDown = false;
                     e.Handled = true;
                 }
-                else if (isDown && selectedGraphics.Count == 0)
-                {
-                    CompositeGraphic mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
-                    if (mg != null)
-                    {
-                        selectedGraphics.Add(mg);
-                        canvas1.ReleaseMouseCapture();
-                        e.Handled = true;
-                    }
-                    canvas1.ReleaseMouseCapture();
-                    isDragging = false;
-                    isDown = false;
-                    e.Handled = true;
-                }
-                else if (isDown && selectedGraphics.Count > 0 && startPoint != currentPoint)
+                else if (isDown && selectedGraphics.Count > 0 && startPoint != currentPoint && shiftIsDown == false)
                 {
                     foreach (CompositeGraphic mg in selectedGraphics)
                     {
@@ -213,6 +201,23 @@ namespace Ccao_big_homework
                         line = null;
                     }
 
+                    canvas1.ReleaseMouseCapture();
+                    isDragging = false;
+                    isDown = false;
+                    e.Handled = true;
+                }
+                else if (isDown && (selectedGraphics.Count == 0 || shiftIsDown == true) && startPoint != currentPoint)
+                {
+                    CompositeGraphic mg = compositeGraphic.SelectRect(startPoint, e.GetPosition(canvas1));
+                    if (mg != null)
+                    {
+                        if (selectedGraphics.Contains(mg) == false)
+                        {
+                            selectedGraphics.Add(mg);
+                            canvas1.ReleaseMouseCapture();
+                            e.Handled = true;
+                        }
+                    }
                     canvas1.ReleaseMouseCapture();
                     isDragging = false;
                     isDown = false;
