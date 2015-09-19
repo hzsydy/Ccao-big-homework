@@ -88,7 +88,7 @@ namespace Ccao_big_homework
         //全选
         private void SelectAll()
         {
-            CompositeGraphic mg = compositeGraphic.SelectRect(new Point(0, 0), new Point(canvas1.Width, canvas1.Height));
+            CompositeGraphic mg = compositeGraphic.SelectAll();
             if (mg != null)
                 selectedGraphics.Add(mg);
             canvas1.ReleaseMouseCapture();

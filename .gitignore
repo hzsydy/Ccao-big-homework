@@ -31,6 +31,7 @@ Ccao*.dll
 *CodeAnalysis*.*
 *codeanalysis*.*
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.cd
 =======
 *.dll
@@ -41,3 +42,6 @@ Ccao*.dll
 *.dll
 Ccao-big-homework/Ccao-big-homework/bin/Debug/ColorPicker.dll
 >>>>>>> origin/master
+=======
+*.cd
+>>>>>>> origin/Pierre

@@ -61,7 +61,6 @@ namespace Ccao_big_homework
             ta3.To = new Thickness(36, 44, 0, 0);
             ta3.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta3.DecelerationRatio = 1;
-            StartPanda.BeginAnimation(Border.MarginProperty, ta3);
         }
         //画面刷新
         private void du_refresh()

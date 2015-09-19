@@ -112,26 +112,5 @@
                 </ToolBar>
             </ToolBarTray>
         </Border>
-        <Button Height="54" HorizontalAlignment="Left" Margin="36,44,0,0" Name="StartPanda" VerticalAlignment="Top" Width="56" Background="#FF131313" FontSize="20" Grid.Row="2" Foreground="Black" Click="Panda" ToolTip="一键制作表情包！">
-            <Path  Fill="White">
-                <Path.Data>
-                    <CombinedGeometry>
-                        <CombinedGeometry.Geometry1>
-                            <CombinedGeometry>
-                                <CombinedGeometry.Geometry1>
-                                    <EllipseGeometry RadiusX="12" RadiusY="12" Center="12,12"/>
-                                </CombinedGeometry.Geometry1>
-                                <CombinedGeometry.Geometry2>
-                                    <EllipseGeometry RadiusX="12" RadiusY="12" Center="30,12"/>
-                                </CombinedGeometry.Geometry2>
-                            </CombinedGeometry>
-                        </CombinedGeometry.Geometry1>
-                        <CombinedGeometry.Geometry2>
-                            <EllipseGeometry RadiusX="20" RadiusY="20" Center="21,24"/>
-                        </CombinedGeometry.Geometry2>
-                    </CombinedGeometry>
-                </Path.Data>
-            </Path>
-        </Button>
     </Grid>
 </Window>

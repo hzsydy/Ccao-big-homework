@@ -11,6 +11,6 @@
         <Button Click="Close_MainWindow" Margin="330,112,0,0" Name="button2" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Background="SkyBlue" FontSize="20" Grid.Row="1">离开</Button>
         <Image HorizontalAlignment="Left" Source="resources/ColorLump.jpg" Margin="0,-10,0,150" Width="430" Grid.Row ="0" Grid.RowSpan="2"/>
         <Label Content="     简 易 绘 图 软 件&#xA;Simple Drawing Software" FontSize="30"  FontFamily="PMingLiU"  HorizontalAlignment="Center" Margin="25,10,0,0" VerticalAlignment="Center" Width="335" Height="91" FontWeight="Bold" Background="{x:Null}" Foreground="White"/>
-        <Label Content="版本 &#x9;        ver 0.x&#xA;开发人员        自43 董渊 2014011493&#xA;&#x9;        自44 邵键准 2014011517"  HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" Height="106" Width="400" Foreground="Black" FontFamily="Myriad Hebrew" FontSize="16"/>
+        <Label Content="版本 &#x9;        Final Version&#xA;开发人员        自43 董渊 2014011493&#xA;&#x9;        自44 邵键准 2014011517"  HorizontalAlignment="Left" Margin="10,12,0,0" Grid.Row="1" VerticalAlignment="Top" Height="106" Width="400" Foreground="Black" FontFamily="Myriad Hebrew" FontSize="16"/>
     </Grid>
 </Window>

@@ -157,6 +157,36 @@ namespace Ccao_big_homework_core_wpf
             return cg;
         }
 
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public CompositeGraphic SelectAll()
+        {
+            CompositeGraphic cg = new CompositeGraphic();
+            List<_graphicpos> l = new List<_graphicpos>(_list);
+            for (int i = 0; i < l.Count; i++)
+            {
+                _graphicpos gp = l[i];
+                cg.Add(gp.g, gp.left, gp.top);
+            }
+            this.Add(cg);
+            return cg;
+        }
+
+        public override int count
+        {
+            get
+            {
+                if (isCombined) return 1;
+                int num = 0;
+                foreach (MyGraphic g in this)
+                {
+                    num += g.count;
+                }
+                return num;
+            }
+        }
+
         #endregion
 
         #region 为了实现composite的辅助函数
