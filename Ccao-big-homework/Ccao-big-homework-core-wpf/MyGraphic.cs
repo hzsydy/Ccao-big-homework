@@ -84,6 +84,7 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public abstract MyGraphic Clone();
         Object ICloneable.Clone() { return this.Clone(); }
+        public virtual int count { get { return 0; } }
         #endregion
 
         #region composite
