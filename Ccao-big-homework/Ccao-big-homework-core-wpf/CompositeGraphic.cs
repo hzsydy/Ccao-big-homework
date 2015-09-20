@@ -243,7 +243,12 @@ namespace Ccao_big_homework_core_wpf
         }
         public override void Clear()
         {
-            _list.Clear();
+            List<_graphicpos> l = new List<_graphicpos>(_list);
+            for (int i = 0; i < l.Count; i++)
+            {
+                _graphicpos gp = l[i];
+                gp.g.Father = null;
+            }
         }
         public override bool MoveNext()
         {
