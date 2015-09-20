@@ -163,6 +163,8 @@ namespace Ccao_big_homework_core_wpf
         public CompositeGraphic SelectAll()
         {
             CompositeGraphic cg = new CompositeGraphic();
+            cg.Width = this.Width;
+            cg.Height = this.Height;
             List<_graphicpos> l = new List<_graphicpos>(_list);
             for (int i = 0; i < l.Count; i++)
             {
@@ -247,6 +249,7 @@ namespace Ccao_big_homework_core_wpf
         {
             if (++_currentindex >= _list.Count)
             {
+                Reset();
                 return false;
             }
             else
