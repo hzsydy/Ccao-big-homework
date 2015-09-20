@@ -126,7 +126,7 @@ namespace Ccao_big_homework_core_wpf
                 _graphicpos gp = l[i];
                 this.Add(gp.g, left + gp.left, top + gp.top);
             }
-            cg.Dispose();
+            cg.Father = null;
         }
 
         /// <summary>
@@ -155,6 +155,38 @@ namespace Ccao_big_homework_core_wpf
             cg.isCombined = this.isCombined;
             cg.isTemporary = this.isTemporary;
             return cg;
+        }
+
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public CompositeGraphic SelectAll()
+        {
+            CompositeGraphic cg = new CompositeGraphic();
+            cg.Width = this.Width;
+            cg.Height = this.Height;
+            List<_graphicpos> l = new List<_graphicpos>(_list);
+            for (int i = 0; i < l.Count; i++)
+            {
+                _graphicpos gp = l[i];
+                cg.Add(gp.g, gp.left, gp.top);
+            }
+            this.Add(cg);
+            return cg;
+        }
+
+        public override int count
+        {
+            get
+            {
+                if (isCombined) return 1;
+                int num = 0;
+                foreach (_graphicpos gp in _list)
+                {
+                    num += gp.g.count;
+                }
+                return num;
+            }
         }
 
         #endregion
@@ -217,6 +249,7 @@ namespace Ccao_big_homework_core_wpf
         {
             if (++_currentindex >= _list.Count)
             {
+                Reset();
                 return false;
             }
             else

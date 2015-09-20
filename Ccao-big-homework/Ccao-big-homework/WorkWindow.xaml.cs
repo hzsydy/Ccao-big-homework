@@ -45,23 +45,24 @@ namespace Ccao_big_homework
             canvas1.Children.Add(du);
             selected();
             ThicknessAnimation ta1 = new ThicknessAnimation();
-            ta1.From = new Thickness(15, -100, 15, 139);
-            ta1.To = new Thickness(15, 26, 15, 13);
+            ta1.From = new Thickness(0, 0, 0, 200);
+            ta1.To = new Thickness(0, 0, 0, 0);
             ta1.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta1.DecelerationRatio = 1;
             top.BeginAnimation(Border.MarginProperty, ta1);
             ThicknessAnimation ta2 = new ThicknessAnimation();
-            ta2.From = new Thickness(-100, 10, 159, 98);
-            ta2.To = new Thickness(20, 10, 39, 98);
+            ta2.From = new Thickness(0,0,200,0);
+            ta2.To = new Thickness(0,0,0,0);
             ta2.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta2.DecelerationRatio = 1;
             left.BeginAnimation(Border.MarginProperty, ta2);
+            left3.BeginAnimation(Border.MarginProperty, ta2);
             ThicknessAnimation ta3 = new ThicknessAnimation();
-            ta3.From = new Thickness(-100, 44, 136, 0);
-            ta3.To = new Thickness(36, 44, 0, 0);
+            ta3.From = new Thickness(0, 128, 0, 0);
+            ta3.To = new Thickness(0, 78, 0, 0);
             ta3.Duration = TimeSpan.FromSeconds(timeOfAnimation);
             ta3.DecelerationRatio = 1;
-            StartPanda.BeginAnimation(Border.MarginProperty, ta3);
+            left2.BeginAnimation(Border.MarginProperty, ta3);
         }
         //画面刷新
         private void du_refresh()
@@ -72,6 +73,7 @@ namespace Ccao_big_homework
         //计时器,选中的图形闪烁
         private void timer1_Tick(object sender, EventArgs e)
         {
+            numOfGraphics.Text = "图形个数:" + compositeGraphic.count + "\t系统时间:" + DateTime.Now.ToString("HH:mm:ss");
             isVisible = !isVisible;
             foreach (MyGraphic mg in selectedGraphics)
             {

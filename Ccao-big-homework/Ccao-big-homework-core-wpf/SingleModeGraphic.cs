@@ -56,5 +56,13 @@ namespace Ccao_big_homework_core_wpf
             }
             return null;
         }
+
+        public override int count
+        {
+            get
+            {
+                return 1;
+            }
+        }
     }
 }

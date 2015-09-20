@@ -65,7 +65,7 @@ namespace Ccao_big_homework_core_wpf
             }
             if (cg.isEmpty())
             {
-                cg.Dispose();
+                cg.DisposeMe();
                 return null;
             }
             cg.isTemporary = true;
@@ -84,6 +84,7 @@ namespace Ccao_big_homework_core_wpf
         /// </summary>
         public abstract MyGraphic Clone();
         Object ICloneable.Clone() { return this.Clone(); }
+        public abstract int count { get; }
         #endregion
 
         #region composite
@@ -121,7 +122,7 @@ namespace Ccao_big_homework_core_wpf
         /// <summary>
         /// 对象删除
         /// </summary>
-        public void Dispose() 
+        public void DisposeMe() 
         {
             Father = null;
         }
@@ -134,6 +135,7 @@ namespace Ccao_big_homework_core_wpf
         public IEnumerator<MyGraphic> GetEnumerator() { return this; }
         IEnumerator IEnumerable.GetEnumerator() { return this.GetEnumerator(); }
         Object IEnumerator.Current { get { return this.Current; } }
+        public void Dispose() { }
         #endregion
 
 

@@ -14,18 +14,18 @@
 
     <Grid Background="#FFACACAC" >
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="9*"/>
-            <ColumnDefinition Width="41*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="124*"/>
-            <RowDefinition Height="339*"/>
-            <RowDefinition Height="137*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="131*"/>
+            <RowDefinition Height="36*"/>
         </Grid.RowDefinitions>
 
         <!--上部菜单栏-->
-        <Border CornerRadius="10,10,10,10" Background="#993B3737" Margin="15,26,15,13" Height="85" Width="770" Grid.ColumnSpan="2" Name="top">
-            <src:FishEyePanel x:Name="fishButtons">
+        <Border  Background="#993B3737" Margin="0,0,0,0" Grid.ColumnSpan="2" Name="top" BorderThickness="4,4,4,2">
+            <src:FishEyePanel x:Name="fishButtons" Margin="20,0,20,0">
                 <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建(Ctrl+N)" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存(Ctrl+S)" Click="btnSave_Click" HorizontalAlignment="Center"/>
                 <Button x:Name="btnOpen" Margin="5,5,5,5" Width="48" Height="48" Content="1" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="打开(Ctrl+O)" Click="btnOpen_Click"/>
@@ -41,12 +41,12 @@
         </Border>
 
         <!--画布-->
-        <Border Margin="4,18,40,-90" Background="#FF3B373B" BorderThickness="4,4,4,4" Grid.Row="1" Grid.Column="1">
-            <Canvas Name="canvas1" Width="594" Height="393" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
+        <Border Margin="0,0,0,30" Background="#FF3B373B" BorderThickness="2,2,4,2" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+            <Canvas Name="canvas1" Width="686" Height="456" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
         </Border>
 
         <!--左侧工具栏-->
-        <Border Grid.Column="0" Grid.Row="1" CornerRadius="10,10,10,10" Background="#993B3737" Margin="20,10,39,98" Grid.RowSpan="2" Name="left">
+        <Border Grid.Column="0" Background="#993B3737" Margin="0,0,0,0" Name="left" Grid.Row="1" BorderThickness="4,2,2,2">
             <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
                 <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-18,-10,-6,-40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="400" Width="84" >
                     <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
@@ -112,26 +112,11 @@
                 </ToolBar>
             </ToolBarTray>
         </Border>
-        <Button Height="54" HorizontalAlignment="Left" Margin="36,44,0,0" Name="StartPanda" VerticalAlignment="Top" Width="56" Background="#FF131313" FontSize="20" Grid.Row="2" Foreground="Black" Click="Panda" ToolTip="一键制作表情包！">
-            <Path  Fill="White">
-                <Path.Data>
-                    <CombinedGeometry>
-                        <CombinedGeometry.Geometry1>
-                            <CombinedGeometry>
-                                <CombinedGeometry.Geometry1>
-                                    <EllipseGeometry RadiusX="12" RadiusY="12" Center="12,12"/>
-                                </CombinedGeometry.Geometry1>
-                                <CombinedGeometry.Geometry2>
-                                    <EllipseGeometry RadiusX="12" RadiusY="12" Center="30,12"/>
-                                </CombinedGeometry.Geometry2>
-                            </CombinedGeometry>
-                        </CombinedGeometry.Geometry1>
-                        <CombinedGeometry.Geometry2>
-                            <EllipseGeometry RadiusX="20" RadiusY="20" Center="21,24"/>
-                        </CombinedGeometry.Geometry2>
-                    </CombinedGeometry>
-                </Path.Data>
-            </Path>
-        </Button>
+        <Border  Grid.Column="1" Grid.Row="2" Background="#99423D3D" Margin="0,78,0,0" Name="left2" BorderThickness="2,2,4,4">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Right"  Text="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Name="numOfGraphics" FontFamily="Microsoft YaHei"/>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="0" BorderThickness="4,2,2,4" Name="left3">
+        <Image Source="resources/Brush.png" ToolTip="这只是个图标"  Grid.Row="2" Grid.Column="0" Stretch="Fill"/>
+            </Border>
     </Grid>
 </Window>
