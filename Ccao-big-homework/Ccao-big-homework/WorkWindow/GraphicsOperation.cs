@@ -29,7 +29,7 @@ namespace Ccao_big_homework
                 {
                     cg.isVisible = true;
                     clonedGraphics.Add((CompositeGraphic)cg.Clone());
-                    cg.Dispose();
+                    cg.DisposeMe();
                 }
                 selectedGraphics.Clear();
             }
@@ -76,10 +76,10 @@ namespace Ccao_big_homework
         //删除
         private void Delete()
         {
-            foreach (MyGraphic mg in selectedGraphics)
+            foreach (CompositeGraphic mg in selectedGraphics)
             {
                 if (mg != null)
-                    mg.Dispose();
+                    mg.DisposeMe();
             }
             if (selectedGraphics != null)
                 selectedGraphics.Clear();
