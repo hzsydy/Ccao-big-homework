@@ -24,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <!--上部菜单栏-->
-        <Border  Background="#993B3737" Margin="0,0,0,0" Grid.ColumnSpan="2" Name="top">
+        <Border  Background="#993B3737" Margin="0,0,0,0" Grid.ColumnSpan="2" Name="top" BorderThickness="4,4,4,2">
             <src:FishEyePanel x:Name="fishButtons" Margin="20,0,20,0">
                 <Button x:Name="btnNew" Margin="5,5,5,5" Width="48" Height="48" Content="g" Style="{DynamicResource PulseButton}" FontFamily="Webdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="新建(Ctrl+N)" Click="btnNew_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Button x:Name="btnSave" Margin="5,5,5,5" Width="48" Height="48" Content="=" Style="{DynamicResource PulseButton}" FontFamily="Wingdings" FontSize="28" Foreground="#FFFFFFFF" ToolTip="保存(Ctrl+S)" Click="btnSave_Click" HorizontalAlignment="Center"/>
@@ -41,12 +41,12 @@
         </Border>
 
         <!--画布-->
-        <Border Margin="0,0,0,0" Background="#FF3B373B" BorderThickness="2,2,2,2" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+        <Border Margin="0,0,0,0" Background="#FF3B373B" BorderThickness="2,2,4,4" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
             <Canvas Name="canvas1" Width="686" Height="486" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
         </Border>
 
         <!--左侧工具栏-->
-        <Border Grid.Column="0" Background="#993B3737" Margin="0,0,0,0" Name="left" Grid.Row="1">
+        <Border Grid.Column="0" Background="#993B3737" Margin="0,0,0,0" Name="left" Grid.Row="1" BorderThickness="4,2,2,2">
             <ToolBarTray Orientation="Vertical" Grid.Column="0"  HorizontalAlignment="Center"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50" Background="{x:Null}"  >
                 <ToolBar  Loaded="ToolBar_Loaded" Background="{x:Null}" Foreground="{x:Null}" Margin="-18,-10,-6,-40" HorizontalAlignment="Center" VerticalAlignment="Bottom" Height="400" Width="84" >
                     <RadioButton x:Name="rbSelect" IsChecked="False" ToolTip="选择" Height="44" Width="44" >
@@ -112,8 +112,8 @@
                 </ToolBar>
             </ToolBarTray>
         </Border>
-        <Border Grid.Column="0" Grid.Row="2" Background="#993B3737" Margin="0,0,0,0" Name="left2">
-            <Label Content="0" Name ="numOfGraphics"/>
+        <Border  Grid.Column="0" Grid.Row="2" Background="#993B3737" Margin="0,0,0,0" Name="left2" BorderThickness="4,2,2,4">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center"  Text="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Name="numOfGraphics"/>
         </Border>
     </Grid>
 </Window>

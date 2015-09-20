@@ -72,7 +72,7 @@ namespace Ccao_big_homework
         //计时器,选中的图形闪烁
         private void timer1_Tick(object sender, EventArgs e)
         {
-            numOfGraphics.Content = compositeGraphic.count;
+            numOfGraphics.Text = "图形个数\n" + compositeGraphic.count + "\n系统时间\n" + DateTime.Now.ToString("HH:mm:ss");
             isVisible = !isVisible;
             foreach (MyGraphic mg in selectedGraphics)
             {
