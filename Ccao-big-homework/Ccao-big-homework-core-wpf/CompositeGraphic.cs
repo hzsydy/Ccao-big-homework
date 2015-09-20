@@ -126,7 +126,7 @@ namespace Ccao_big_homework_core_wpf
                 _graphicpos gp = l[i];
                 this.Add(gp.g, left + gp.left, top + gp.top);
             }
-            cg.Dispose();
+            cg.Father = null;
         }
 
         /// <summary>
@@ -181,9 +181,9 @@ namespace Ccao_big_homework_core_wpf
             {
                 if (isCombined) return 1;
                 int num = 0;
-                foreach (MyGraphic g in this)
+                foreach (_graphicpos gp in _list)
                 {
-                    num += g.count;
+                    num += gp.g.count;
                 }
                 return num;
             }

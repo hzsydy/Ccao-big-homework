@@ -41,8 +41,8 @@
         </Border>
 
         <!--画布-->
-        <Border Margin="0,0,0,0" Background="#FF3B373B" BorderThickness="2,2,4,4" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-            <Canvas Name="canvas1" Width="686" Height="486" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
+        <Border Margin="0,0,0,30" Background="#FF3B373B" BorderThickness="2,2,4,2" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+            <Canvas Name="canvas1" Width="686" Height="456" ClipToBounds="True" Background="white" HorizontalAlignment="Center" VerticalAlignment="Center" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseLeftButtonUp="OnMouseLeftButtonUp" MouseMove="OnMouseMove" />
         </Border>
 
         <!--左侧工具栏-->
@@ -112,8 +112,11 @@
                 </ToolBar>
             </ToolBarTray>
         </Border>
-        <Border  Grid.Column="0" Grid.Row="2" Background="#993B3737" Margin="0,0,0,0" Name="left2" BorderThickness="4,2,2,4">
-            <TextBlock TextWrapping="Wrap" TextAlignment="Center"  Text="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Name="numOfGraphics"/>
+        <Border  Grid.Column="1" Grid.Row="2" Background="#99423D3D" Margin="0,78,0,0" Name="left2" BorderThickness="2,2,4,4">
+            <TextBlock TextWrapping="Wrap" TextAlignment="Right"  Text="0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Name="numOfGraphics" FontFamily="Microsoft YaHei"/>
         </Border>
+        <Border Grid.Row="2" Grid.Column="0" BorderThickness="4,2,2,4" Name="left3">
+        <Image Source="resources/Brush.png" ToolTip="这只是个图标"  Grid.Row="2" Grid.Column="0" Stretch="Fill"/>
+            </Border>
     </Grid>
 </Window>
