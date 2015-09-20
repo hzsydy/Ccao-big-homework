@@ -10,11 +10,13 @@ namespace Ccao_big_homework
         //保存按钮
         private void btnSave_Click(object sender, RoutedEventArgs args)
         {
+            rbSelect.IsChecked = true;
             Save();
         }
         //打开文件按钮
         private void btnOpen_Click(object sender, RoutedEventArgs args)
         {
+            rbSelect.IsChecked = true;
             Open();
         }
         //新建画布按钮
